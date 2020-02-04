@@ -41,7 +41,7 @@ class NavHelper extends Helper
 
     public function render()
     {
-        return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right"><div class="glitch-wrapper"><div class="glitch" data-text="Interface&nbsp;&nbsp;Rindula">Interface&nbsp;&nbsp;<small>by Rindula</small></div></div></a></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
+        return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right">Interface</div></div></a></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
     }
 
     private function nav(array $items)

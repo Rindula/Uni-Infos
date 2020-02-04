@@ -1,5 +1,5 @@
 .progress {
-    background: rgb(129, 129, 129);
+    background: var(--theme-color-secondary);
     justify-content: flex-start;
     border-radius: 100px;
     align-items: center;
@@ -10,10 +10,12 @@
 }
 
 .progress-value {
-    box-shadow: 0 10px 40px -10px #ff9226;
+    box-shadow: 0 0 10px 1px var(--theme-color-shadow);
     border-radius: 100px;
-    background: rgb(255, 0, 19);
+    background: var(--theme-color);
     height: 20px;
     min-width: 5px;
     color:white;
+    text-align: center;
+    transition: .2s ease width;
 }

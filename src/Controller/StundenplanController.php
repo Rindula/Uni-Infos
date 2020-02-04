@@ -57,6 +57,7 @@ class StundenplanController extends AppController
 
             if (!empty($event['DTSTART;TZID=Europe/Berlin'])) {
                 $event['custom']['begin']['nice'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->nice();
+                $event['custom']['begin']['date'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->toDateTimeString();
                 $event['custom']['begin']['words'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->timeAgoInWords(['format' => 'MMM d, YYY']);
                 $event['custom']['begin']['isFuture'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->isFuture();
                 $event['custom']['begin']['isPast'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->isPast();

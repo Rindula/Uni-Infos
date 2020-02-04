@@ -6,11 +6,17 @@ function loadData() {
     })
         .done(function (msg) {
             var out = "";
+            var lastDay = new Date().getDay()
             for (var e in msg) {
                 var event = msg[e];
-                var html = "<blockquote><div class=\"row row-top" + ((event['custom']['current']) ? " active" : "") + ((event['custom']['today'] && !event['custom']['current']) ? " indigo lighten-2" : "") + ((event['custom']['tomorrow']) ? " indigo lighten-4" : "") + ((event['custom']['isKlausur'] && !event['custom']['current']) ? " red accent-1" : "") + "\">" +
+                var html = "";
+                if (new Date(event['custom']['begin']['date']).getDate() != lastDay) {
+                    html += "<hr>";
+                    lastDay = new Date(event['custom']['begin']['date']).getDate();
+                }
+                html += "<blockquote class='" + ((event['custom']['current']) ? " active" : "") + ((event['custom']['today'] && !event['custom']['current']) ? " today" : "") + ((event['custom']['tomorrow']) ? " tomorrow" : "") + ((event['custom']['isKlausur'] && !event['custom']['current']) ? " klausur" : "") + "'><div class=\"row row-top\">" +
                     "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
-                    "                    class=\"column-offset-75 column-20 column\">" + event['LOCATION'] + "</span></div>" +
+                    "                    class=\"column-offset-67 column-20 column\">" + event['LOCATION'] + "</span></div>" +
                     "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>" +
                     "<div class='row'>\n" +
                     "                    <div class='column column-50'>Beginn:</div>\n" +
@@ -28,7 +34,7 @@ function loadData() {
                         "                        </div>\n";
                 }
 
-                out += html + "</blockquote><hr>";
+                out += html + "</blockquote>";
             }
 
             //

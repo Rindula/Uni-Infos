@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
+use Cake\Http\Exception\ServiceUnavailableException;
 use Cake\I18n\Time;
 
 /**
@@ -30,7 +31,8 @@ class MailCheckController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function ebon() {
+    public function ebon()
+    {
         if (($displayData = Cache::read('emailData', 'emailData')) === null) {
             Configure::load('app', 'default', false);
             if (file_exists(CONFIG . 'app_local.php')) {
@@ -41,7 +43,11 @@ class MailCheckController extends AppController
             $server = "{{$domain}/imap/novalidate-cert}INBOX.Rewe E-bon";
             $adresse = Configure::read('EmailTransport.default.username');;
             $password = Configure::read('EmailTransport.default.password');;
-            $mbox = imap_open($server, $adresse, $password) or die("Error: " . imap_last_error());
+            $mbox = imap_open($server, $adresse, $password);
+
+            if (!$mbox) {
+                throw new ServiceUnavailableException('Es konnte keine Verbindung zum Postfach hergestellt werden!');
+            }
 
             $emails = imap_sort($mbox, SORTDATE, true);
 
