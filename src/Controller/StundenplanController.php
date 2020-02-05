@@ -35,7 +35,7 @@ class StundenplanController extends AppController
 
     public function ajax()
     {
-        $this->viewBuilder()->setLayout("ajax");
+        $this->autoRender = false;
         Cache::enable();
         if (($icsString = Cache::read('icsString', 'shortTerm')) === null) {
             $icsString = file_get_contents('http://ics.mosbach.dhbw.de/ics/inf19b.ics');
@@ -115,7 +115,7 @@ class StundenplanController extends AppController
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
 
-        $this->set(compact('events'));
+        echo json_encode($events);
     }
 
 }
