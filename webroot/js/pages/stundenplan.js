@@ -10,7 +10,7 @@ function loadData() {
             for (var e in msg) {
                 var event = msg[e];
                 var html = "";
-                if (new Date(event['custom']['begin']['date']).getDate() != lastDay) {
+                if (new Date(event['custom']['begin']['date']).getDate() != lastDay && new Date(event['custom']['begin']['date']).toDateString() != new Date().toDateString()) {
                     html += "<hr>";
                     lastDay = new Date(event['custom']['begin']['date']).getDate();
                 }
