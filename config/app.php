@@ -166,7 +166,7 @@ return [
             'prefix' => 'st_',
             'path' => CACHE,
             'serialize' => true,
-            'duration' => '+2 hours',
+            'duration' => '+30 minutes',
             'url' => env('CACHE_CAKECORE_URL', null),
         ],
     ],
