@@ -54,6 +54,10 @@ body {
     color: white;
 }
 
+blockquote {
+    font-family: "Raleway", sans-serif;
+}
+
 .content {
     padding: 2rem;
     background: #818181;

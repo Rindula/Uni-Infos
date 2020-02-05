@@ -19,15 +19,15 @@ function loadData() {
                     lastDay = new Date(event['custom']['begin']['date']).getDate();
                 }
                 if (!printedToday && event['custom']['today']) {
-                    html += "<h3 style='text-align: center'>Heute</h3>";
+                    html += "<h3 style='text-align: center; font-family: \"Raleway\", sans-serif;'>Heute</h3>";
                     printedToday = true;
                 }
                 if (!printedTomorrow && event['custom']['tomorrow']) {
-                    html += "<h3 style='text-align: center'>Morgen</h3>";
+                    html += "<h3 style='text-align: center; font-family: \"Raleway\", sans-serif;'>Morgen</h3>";
                     printedTomorrow = true;
                 }
                 if (!printedLater && !event['custom']['tomorrow'] && !event['custom']['today']) {
-                    html += "<h3 style='text-align: center'>Später</h3>";
+                    html += "<h3 style='text-align: center; font-family: \"Raleway\", sans-serif;'>Später</h3>";
                     printedLater = true;
                 }
                 html += "<blockquote class='" + ((event['custom']['isKlausur']) ? "klausur" : "") + "'><div class=\"row row-top\">" +
