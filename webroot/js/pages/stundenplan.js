@@ -14,7 +14,7 @@ function loadData() {
                     html += "<hr>";
                     lastDay = new Date(event['custom']['begin']['date']).getDate();
                 }
-                html += "<blockquote class='" + ((event['custom']['current']) ? " active" : "") + ((event['custom']['today'] && !event['custom']['current']) ? " today" : "") + ((event['custom']['tomorrow']) ? " tomorrow" : "") + ((event['custom']['isKlausur'] && !event['custom']['current']) ? " klausur" : "") + "'><div class=\"row row-top\">" +
+                html += "<blockquote class='" + ((event['custom']['current']) ? " current" : "") + ((event['custom']['today'] && !event['custom']['current']) ? " today" : "") + ((event['custom']['tomorrow']) ? " tomorrow" : "") + ((event['custom']['isKlausur'] && !event['custom']['current']) ? " klausur" : "") + "'><div class=\"row row-top\">" +
                     "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
                     "                    class=\"column-offset-67 column-20 column\">" + event['LOCATION'] + "</span></div>" +
                     "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>" +

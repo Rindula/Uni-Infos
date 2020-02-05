@@ -1,12 +1,16 @@
 :root {
-    --theme-color: #1f79d3;
-    --theme-color-secondary: rgb(129, 129, 129);
-    --theme-color-shadow: #12168b
+    --theme-color: #d39800;
+    --theme-color-secondary: rgb(174, 159, 38);
+    --theme-color-shadow: #8b4100
 }
 /* Miligram overrides */
 a {
     font-family: "Raleway", sans-serif;
-    color: #404041;
+    color: #d5d5d8;
+}
+
+a:focus, a:hover {
+    color: #bcbcbf;
 }
 
 fieldset {
@@ -39,11 +43,12 @@ fieldset {
 
 /* Main */
 body {
-    background: #f5f7fa;
+    background: #555555;
+    color: white;
 }
 .content {
     padding: 2rem;
-    background: #ffffff;
+    background: #818181;
     border-radius: 0.4rem;
     /* Thanks Stripe */
     box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
@@ -66,7 +71,7 @@ th {
 .klausur {
     background-color: rgba(255,49,27,0.1);
 }
-.active {
+.current {
     background-color: rgba(255, 234, 22, 0.1);
 }
 
@@ -84,7 +89,7 @@ th {
     color: var(--theme-color);
 }
 .top-nav-title span {
-    color: #404041;
+    color: #c5c5c8;
 }
 .top-nav-links a {
     margin: 0 0.5rem;
