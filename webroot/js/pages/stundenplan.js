@@ -7,14 +7,30 @@ function loadData() {
         .done(function (msg) {
             var out = "";
             var lastDay = new Date().getDay()
+            var printedToday = false;
+            var printedTomorrow = false;
+            var printedLater = false;
             for (var e in msg) {
                 var event = msg[e];
                 var html = "";
+
                 if (new Date(event['custom']['begin']['date']).getDate() != lastDay && new Date(event['custom']['begin']['date']).toDateString() != new Date().toDateString()) {
                     html += "<hr>";
                     lastDay = new Date(event['custom']['begin']['date']).getDate();
                 }
-                html += "<blockquote class='" + ((event['custom']['current']) ? " current" : "") + ((event['custom']['today'] && !event['custom']['current']) ? " today" : "") + ((event['custom']['tomorrow']) ? " tomorrow" : "") + ((event['custom']['isKlausur'] && !event['custom']['current']) ? " klausur" : "") + "'><div class=\"row row-top\">" +
+                if (!printedToday && event['custom']['today']) {
+                    html += "<h3 style='text-align: center'>Heute</h3>";
+                    printedToday = true;
+                }
+                if (!printedTomorrow && event['custom']['tomorrow']) {
+                    html += "<h3 style='text-align: center'>Morgen</h3>";
+                    printedTomorrow = true;
+                }
+                if (!printedLater && !event['custom']['tomorrow'] && !event['custom']['today']) {
+                    html += "<h3 style='text-align: center'>Später</h3>";
+                    printedLater = true;
+                }
+                html += "<blockquote class='" + ((event['custom']['isKlausur']) ? "klausur" : "") + "'><div class=\"row row-top\">" +
                     "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
                     "                    class=\"column-offset-67 column-20 column\">" + event['LOCATION'] + "</span></div>" +
                     "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>" +
@@ -35,6 +51,7 @@ function loadData() {
                 }
 
                 out += html + "</blockquote>";
+                lastDate = new Date(event['custom']['begin']['date']);
             }
 
             //
