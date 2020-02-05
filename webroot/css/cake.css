@@ -9,6 +9,12 @@ a {
     color: #404041;
 }
 
+fieldset {
+    border: 1px solid var(--theme-color-secondary);
+    border-radius: 10px;
+    padding-left: 20px;
+}
+
 /* Utility */
 .table-responsive {
     display: block;
@@ -82,6 +88,7 @@ th {
 }
 .top-nav-links a {
     margin: 0 0.5rem;
+    transition: border .1s linear;
 }
 .top-nav-title a,
 .top-nav-links a {
