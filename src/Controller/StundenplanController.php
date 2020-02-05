@@ -33,7 +33,7 @@ class StundenplanController extends AppController
 
     }
 
-    public function ajax($all = false)
+    public function ajax($all = false, $showVorlesung = false)
     {
         $this->autoRender = false;
         Cache::enable();
@@ -110,6 +110,10 @@ class StundenplanController extends AppController
             if (empty($event['SUMMARY']) || ((!empty($event['custom']['end']) && $event['custom']['end']['isPast']) && !$all)) {
                 unset($events[$key]);
                 continue;
+            }
+
+            if (!$showVorlesung) {
+                $event['SUMMARY'] = str_replace(" Vorlesung", "", $event['SUMMARY']);
             }
 
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
