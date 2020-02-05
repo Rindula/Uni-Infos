@@ -43,11 +43,25 @@ class StundenplanController extends AppController
         }
         $cal = $this->Ics;
         $events = $cal->getIcsEventsAsArray($icsString);
+        $last = null;
         foreach ($events as $key => &$event) {
 
             if (!empty($event['SUMMARY']) && $event['SUMMARY'] == "Studientag") {
                 unset($events[$key]);
                 continue;
+            }
+
+            if (!empty($last)) {
+                $begin = new Time($event['DTSTART;TZID=Europe/Berlin']);
+                if ($begin->diffInSeconds($last['time']) < 5) {
+                    $events[$last['key']]['LOCATION'] .= ' / ' . $event['LOCATION'];
+                    unset($events[$key]);
+                    continue;
+                }
+            }
+
+            if (empty($event['LOCATION'])) {
+                $event['LOCATION'] = '';
             }
 
             $event['custom']['isKlausur'] = false;
@@ -94,6 +108,8 @@ class StundenplanController extends AppController
                 unset($events[$key]);
                 continue;
             }
+
+            $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
 
         $this->set(compact('events'));

@@ -3,6 +3,7 @@
     --theme-color-secondary: rgb(174, 159, 38);
     --theme-color-shadow: #8b4100
 }
+
 /* Miligram overrides */
 a {
     font-family: "Raleway", sans-serif;
@@ -32,10 +33,12 @@ fieldset {
     border-color: var(--theme-color);
     transition: background-color .1s linear;
 }
+
 .button.button-clear, button.button-clear, input[type='button'].button-clear, input[type='reset'].button-clear, input[type='submit'].button-clear {
     color: var(--theme-color);
     transition: color .1s linear;
 }
+
 .button.button-outline, button.button-outline, input[type='button'].button-outline, input[type='reset'].button-outline, input[type='submit'].button-outline {
     color: var(--theme-color);
     transition: color .1s linear;
@@ -46,31 +49,48 @@ body {
     background: #555555;
     color: white;
 }
+
 .content {
     padding: 2rem;
     background: #818181;
     border-radius: 0.4rem;
     /* Thanks Stripe */
     box-shadow: 0 7px 14px 0 rgba(60, 66, 87, 0.1),
-        0 3px 6px 0 rgba(0, 0, 0, 0.07);
+    0 3px 6px 0 rgba(0, 0, 0, 0.07);
 }
+
 .actions a {
     font-weight: bold;
     padding: 0 0.4rem;
 }
+
 th {
     white-space: nowrap;
+}
+
+hr {
+
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right,
+    rgba(0, 0, 0, 0),
+    rgb(180, 180, 180),
+    rgba(0, 0, 0, 0));
+
 }
 
 .today {
     background-color: rgba(0, 34, 255, 0.1);
 }
+
 .tomorrow {
     background-color: rgba(13, 231, 255, 0.1);
 }
+
 .klausur {
-    background-color: rgba(255,49,27,0.1);
+    background-color: rgba(255, 49, 27, 0.1);
 }
+
 .current {
     background-color: rgba(255, 234, 22, 0.1);
 }
@@ -84,24 +104,30 @@ th {
     padding: 2rem;
     margin: 0 auto 2rem;
 }
+
 .top-nav-title a {
     font-size: 2.4rem;
     color: var(--theme-color);
 }
+
 .top-nav-title span {
     color: #c5c5c8;
 }
+
 .top-nav-links a {
     margin: 0 0.5rem;
     transition: border .1s linear;
 }
+
 .top-nav-title a,
 .top-nav-links a {
     font-weight: bold;
 }
+
 .top-nav-links a.active {
     border-bottom: 2px dotted var(--theme-color);
 }
+
 .top-nav-links a:hover {
     border-bottom: 2px solid var(--theme-color-secondary);
 }
@@ -115,6 +141,7 @@ th {
 .view.content .text {
     margin-top: 1.2rem;
 }
+
 .related {
     margin-top: 2rem;
 }
@@ -132,14 +159,17 @@ th {
     border-radius: 4px;
     margin-bottom: 2rem;
 }
+
 .message.hidden {
     display: none;
 }
+
 .message.success {
     background: #e3fcec;
     color: #1f9d55;
     border-color: #51d88a;
 }
+
 .message.error {
     background: #fcebea;
     color: #cc1f1a;
@@ -151,20 +181,24 @@ th {
 .input.checkbox {
     margin-bottom: 2.0rem;
 }
+
 .input.radio input,
 .input.checkbox input {
     margin: 0;
 }
+
 .input.radio label,
 .input.checkbox label {
     margin: 0;
     display: flex;
     align-items: center;
 }
+
 .input.radio label > input,
 .input.checkbox label > input {
     margin-right: 1.0rem;
 }
+
 .input.radio label:first-of-type {
     margin-bottom: 2.0rem;
 }
@@ -173,6 +207,7 @@ th {
 .paginator {
     text-align: right;
 }
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -180,17 +215,21 @@ th {
     padding: 0;
     margin: 0 0 1rem;
 }
+
 .pagination li {
     margin: 0 0.5rem;
 }
+
 .prev.disabled a,
 .next.disabled a {
     cursor: not-allowed;
     color: #606c76;
 }
+
 .asc:after {
     content: " \2193";
 }
+
 .desc:after {
     content: " \2191";
 }
@@ -208,19 +247,24 @@ th {
     .top-nav {
         margin: 0 auto;
     }
+
     .side-nav {
         margin-bottom: 1rem;
     }
+
     .heading {
         margin-bottom: 1rem;
     }
+
     .side-nav-item {
         display: inline;
         margin: 0 1.5rem 0 0;
     }
+
     .asc:after {
         content: " \2192";
     }
+
     .desc:after {
         content: " \2190";
     }
