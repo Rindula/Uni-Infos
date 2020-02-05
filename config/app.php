@@ -110,7 +110,7 @@ return [
          */
         '_cake_core_' => [
             'className' => FileEngine::class,
-            'prefix' => 'myapp_cake_core_',
+            'prefix' => 'uniinfo_cake_core_',
             'path' => CACHE . 'persistent' . DS,
             'serialize' => true,
             'duration' => '+1 years',
@@ -125,7 +125,7 @@ return [
          */
         '_cake_model_' => [
             'className' => FileEngine::class,
-            'prefix' => 'myapp_cake_model_',
+            'prefix' => 'uniinfo_cake_model_',
             'path' => CACHE . 'models' . DS,
             'serialize' => true,
             'duration' => '+1 years',
@@ -139,7 +139,7 @@ return [
          */
         '_cake_routes_' => [
             'className' => FileEngine::class,
-            'prefix' => 'myapp_cake_routes_',
+            'prefix' => 'uniinfo_cake_routes_',
             'path' => CACHE,
             'serialize' => true,
             'duration' => '+1 years',
@@ -147,7 +147,7 @@ return [
         ],
         'emailData' => [
             'className' => FileEngine::class,
-            'prefix' => 'emailData_',
+            'prefix' => 'uniinfo_emailData_',
             'path' => CACHE,
             'serialize' => true,
             'duration' => '+3 hours',
@@ -155,7 +155,7 @@ return [
         ],
         'longTerm' => [
             'className' => FileEngine::class,
-            'prefix' => 'lt_',
+            'prefix' => 'uniinfo_lt_',
             'path' => CACHE,
             'serialize' => true,
             'duration' => '+6 months',
@@ -163,7 +163,7 @@ return [
         ],
         'shortTerm' => [
             'className' => FileEngine::class,
-            'prefix' => 'st_',
+            'prefix' => 'uniinfo_st_',
             'path' => CACHE,
             'serialize' => true,
             'duration' => '+30 minutes',
