@@ -14,6 +14,10 @@ a:focus, a:hover {
     color: #bcbcbf;
 }
 
+.container {
+    width: 95%;
+}
+
 fieldset {
     border: 1px solid var(--theme-color-secondary);
     border-radius: 10px;
@@ -264,7 +268,8 @@ hr {
     .desc:after {
         content: " \2190";
     }
-
+}
+@media screen and (max-width: 460px) {
     .mobile-margin-down {
         margin-bottom: 15px;
     }
