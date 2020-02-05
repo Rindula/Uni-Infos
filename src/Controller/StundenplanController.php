@@ -33,7 +33,7 @@ class StundenplanController extends AppController
 
     }
 
-    public function ajax()
+    public function ajax($all = false)
     {
         $this->autoRender = false;
         Cache::enable();
@@ -46,7 +46,7 @@ class StundenplanController extends AppController
         $last = null;
         foreach ($events as $key => &$event) {
 
-            if (!empty($event['SUMMARY']) && $event['SUMMARY'] == "Studientag") {
+            if (!empty($event['SUMMARY']) && ($event['SUMMARY'] == "Studientag" && !$all)) {
                 unset($events[$key]);
                 continue;
             }
@@ -107,7 +107,7 @@ class StundenplanController extends AppController
                 $event['custom']['tomorrow'] = true;
             }
 
-            if (empty($event['SUMMARY']) || (!empty($event['custom']['end']) && $event['custom']['end']['isPast'])) {
+            if (empty($event['SUMMARY']) || ((!empty($event['custom']['end']) && $event['custom']['end']['isPast']) && !$all)) {
                 unset($events[$key]);
                 continue;
             }
