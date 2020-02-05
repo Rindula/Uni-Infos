@@ -34,13 +34,13 @@ function loadData() {
                     "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
                     "                    class=\"column-offset-67 column-20 column\">" + event['LOCATION'] + "</span></div>" +
                     "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>" +
-                    "<div class='row'>\n" +
-                    "                    <div class='column column-50'>Beginn:</div>\n" +
-                    "                    <div class='column column-50'>" + event['custom']['begin']['nice'] + "\n" +
+                    "<div class='row mobile-margin-down'>\n" +
+                    "                    <div class='column column-20'>Beginn:</div>\n" +
+                    "                    <div class='column column-80'>" + event['custom']['begin']['nice'] + "\n" +
                     "                        (" + event['custom']['begin']['words'] + ")\n" +
                     "                    </div></div><div class='row'> \n" +
-                    "                    <div class='column column-50'>Ende:</div>\n" +
-                    "                    <div class='column column-50'>" + event['custom']['end']['nice'] + ((event['custom']['begin']['isPast']) ? " (" + event['custom']['end']['words'] + ")" : "") + "</div></div>\n";
+                    "                    <div class='column column-20'>Ende:</div>\n" +
+                    "                    <div class='column column-80'>" + event['custom']['end']['nice'] + ((event['custom']['begin']['isPast']) ? " (" + event['custom']['end']['words'] + ")" : "") + "</div></div>\n";
                 if (event['custom']['current']) {
                     var percent = new Number(((Date.now() / 1000) - event['custom']['begin']['timestamp']) / (event['custom']['end']['timestamp'] - event['custom']['begin']['timestamp'])) * 100;
                     html += "                        <br><div class='column'>\n" +

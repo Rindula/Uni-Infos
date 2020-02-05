@@ -260,4 +260,8 @@ hr {
     .desc:after {
         content: " \2190";
     }
+
+    .mobile-margin-down {
+        margin-bottom: 15px;
+    }
 }
