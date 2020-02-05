@@ -45,7 +45,7 @@ function loadData() {
                     var percent = new Number(((Date.now() / 1000) - event['custom']['begin']['timestamp']) / (event['custom']['end']['timestamp'] - event['custom']['begin']['timestamp'])) * 100;
                     html += "                        <br><div class='column'>\n" +
                         "                            <div class=\"progress\">\n" +
-                        "                                <div class=\"progress-value\" style=\"width: " + percent + "%\">"+percent.toFixed(2)+"%</div>\n" +
+                        "                                <div class=\"progress-value\" style=\"width: " + percent + "%\">"+percent.toFixed(0)+"%</div>\n" +
                         "                            </div>\n" +
                         "                        </div>\n";
                 }
