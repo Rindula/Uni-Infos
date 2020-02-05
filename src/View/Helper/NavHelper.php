@@ -41,7 +41,7 @@ class NavHelper extends Helper
 
     public function render()
     {
-        return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right">Interface</div></div></a></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
+        return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right">Uni<span>Infos</span></div></div></a></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
     }
 
     private function nav(array $items)
@@ -58,7 +58,8 @@ class NavHelper extends Helper
             $url = $this->getUrl($item);
 
             $content .= $this->Html->link($item['title'], $url, [
-                    'escape' => false
+                    'escape' => false,
+                    'class' => implode(' ', $class),
             ]);
         }
 
