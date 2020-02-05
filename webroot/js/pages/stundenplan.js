@@ -6,7 +6,8 @@ function loadData() {
     })
         .done(function (msg) {
             var out = "";
-            var lastDay = new Date().getDay()
+            var lastDay = new Date().getDay();
+            var first = true;
             var printedToday = false;
             var printedTomorrow = false;
             var printedLater = false;
@@ -14,7 +15,7 @@ function loadData() {
                 var event = msg[e];
                 var html = "";
 
-                if (new Date(event['custom']['begin']['date']).getDate() != lastDay && new Date(event['custom']['begin']['date']).toDateString() != new Date().toDateString()) {
+                if (new Date(event['custom']['begin']['date']).getDate() != lastDay && new Date(event['custom']['begin']['date']).toDateString() != new Date().toDateString() && !first) {
                     html += "<hr>";
                     lastDay = new Date(event['custom']['begin']['date']).getDate();
                 }
@@ -52,6 +53,7 @@ function loadData() {
 
                 out += html + "</blockquote>";
                 lastDate = new Date(event['custom']['begin']['date']);
+                first = false;
             }
 
             //
