@@ -33,6 +33,7 @@ class MailCheckController extends AppController
      */
     public function ebon()
     {
+        return $this->redirect(['controller' => 'stundenplan', 'action' => 'index']);
         if (($displayData = Cache::read('emailData', 'emailData')) === null) {
             Configure::load('app', 'default', false);
             if (file_exists(CONFIG . 'app_local.php')) {
