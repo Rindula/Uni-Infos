@@ -20,6 +20,10 @@ fieldset {
     padding-left: 20px;
 }
 
+.main {
+    margin-bottom: 50px;
+}
+
 /* Utility */
 .table-responsive {
     display: block;
@@ -80,7 +84,9 @@ hr {
 }
 
 .klausur {
-    background-color: rgba(255, 49, 27, 0.1);
+    border-top: 2px dotted var(--theme-color);
+    border-bottom: 2px dotted var(--theme-color);
+    border-right: 2px dotted var(--theme-color);
 }
 
 /* Nav bar */
