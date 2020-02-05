@@ -84,9 +84,7 @@ hr {
 }
 
 .klausur {
-    border-top: 2px dotted var(--theme-color);
-    border-bottom: 2px dotted var(--theme-color);
-    border-right: 2px dotted var(--theme-color);
+    border-left-color: #ef5753;
 }
 
 /* Nav bar */
