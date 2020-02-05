@@ -63,6 +63,9 @@ class StundenplanController extends AppController
             if (empty($event['LOCATION'])) {
                 $event['LOCATION'] = '';
             }
+            if (empty($event['DESCRIPTION'])) {
+                $event['DESCRIPTION'] = '';
+            }
 
             $event['custom']['isKlausur'] = false;
             if (!empty($event['SUMMARY']) && strpos($event['SUMMARY'], 'Klausur')) {
