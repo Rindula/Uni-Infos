@@ -37,7 +37,7 @@ fieldset {
 }
 
 .cc-revoke {
-    display: none;
+    display: none !important;
 }
 
 .button, button, input[type='button'], input[type='reset'], input[type='submit'] {
