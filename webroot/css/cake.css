@@ -36,6 +36,10 @@ fieldset {
     -webkit-overflow-scrolling: touch;
 }
 
+.cc-revoke {
+    display: none;
+}
+
 .button, button, input[type='button'], input[type='reset'], input[type='submit'] {
     background-color: var(--theme-color);
     border-color: var(--theme-color);
