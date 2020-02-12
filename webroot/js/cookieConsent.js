@@ -1,18 +1,21 @@
 window.cookieconsent.initialise({
-    "palette": {
-        "popup": {
-            "background": "#252e39"
-        },
-        "button": {
-            "background": "#14a7d0"
-        }
+  "palette": {
+    "popup": {
+      "background": "#252e39"
     },
-    "theme": "edgeless",
-    "content": {
-        "message": "Diese Website verwendet Cookies, um Ihnen das bestmögliche Erlebnis auf unserer Website zu ermöglichen.",
-        "dismiss": "Geht klar!",
-        "link": "Mehr erfahren"
+    "button": {
+      "background": "transparent",
+      "text": "#14a7d0",
+      "border": "#14a7d0"
     }
+  },
+  "type": "opt-out",
+  "content": {
+    "message": "Diese Website verwendet Cookies und Google Analytics um die beste Erfahrung auf dieser Website zu bieten.",
+    "dismiss": "Verstanden",
+    "deny": "Ablehnen",
+    "link": "Mehr erfahren"
+  }
 });
 
 function setCookie(cname, cvalue, exdays) {
