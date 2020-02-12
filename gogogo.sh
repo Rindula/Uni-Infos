@@ -6,7 +6,7 @@ cd /var/www/vhosts/rindula.de/uni.rindula.de/
 
 # Cake
 ## Datenbank Migration
-/bin/bash ./bin/cake migrations migrate
+/opt/plesk/php/7.2/bin/php ./bin/cake.php migrations migrate
 
 ## Cache leeren
-/bin/bash ./bin/cake cache clear_all
+/opt/plesk/php/7.2/bin/php ./bin/cake.php cache clear_all
