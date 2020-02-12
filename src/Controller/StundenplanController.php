@@ -40,6 +40,9 @@ class StundenplanController extends AppController
         $courses = [
             'inf19a' => 'INF19A',
             'inf19b' => 'INF19B',
+            'Sonderwünsche' => [
+                'ht19' => 'HT19',
+            ]
         ];
         $courseSelected = (isset($_COOKIE["selectedCourse"])) ? $_COOKIE["selectedCourse"] : "inf19b";
         $this->set(compact('courses', 'courseSelected'));
