@@ -34,8 +34,13 @@ function loadData() {
                 html += "<blockquote class='" + ((event['custom']['isKlausur']) ? "klausur" : "") + "'><div class=\"row row-top\">" +
                     "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
                     "                    class=\"column-offset-50 column-33 column\" style='text-align: right'>" + event['LOCATION'] + "</span></div>" +
-                    "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>" +
-                    "<div class='row mobile-margin-down'>\n" +
+                    "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>";
+
+                if (event['custom']['note']) {
+                    html += "<p class='message'>" + event['custom']['note'] + "</p>";
+                }
+
+                html += "<div class='row mobile-margin-down'>\n" +
                     "                    <div class='column column-20'>Beginn:</div>\n" +
                     "                    <div class='column column-80'>" + event['custom']['begin']['nice'] + "\n" +
                     "                        (" + event['custom']['begin']['words'] + ")\n" +
@@ -46,7 +51,7 @@ function loadData() {
                     var percent = new Number(((Date.now() / 1000) - event['custom']['begin']['timestamp']) / (event['custom']['end']['timestamp'] - event['custom']['begin']['timestamp'])) * 100;
                     html += "                        <br><div class='column'>\n" +
                         "                            <div class=\"progress\">\n" +
-                        "                                <div class=\"progress-value\" style=\"width: " + percent + "%\">"+percent.toFixed(0)+"%</div>\n" +
+                        "                                <div class=\"progress-value\" style=\"width: " + percent + "%\">" + percent.toFixed(0) + "%</div>\n" +
                         "                            </div>\n" +
                         "                        </div>\n";
                 }

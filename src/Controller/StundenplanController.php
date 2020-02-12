@@ -3,15 +3,22 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\Stundenplan;
 use Cake\Cache\Cache;
+use Cake\Datasource\RepositoryInterface;
+use Cake\Datasource\ResultSetInterface;
+use Cake\Http\Response;
 use Cake\I18n\Time;
+use Ics;
+use IcsComponent;
 
 /**
  * Stundenplan Controller
  *
  *
- * @method \App\Model\Entity\Stundenplan[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- * @property Component\IcsComponent|\Cake\Controller\Component\IcsComponent|\Cake\Datasource\RepositoryInterface|\Ics|\IcsComponent|null Ics
+ * @method Stundenplan[]|ResultSetInterface paginate($object = null, array $settings = [])
+ * @property Component\IcsComponent|\Cake\Controller\Component\IcsComponent|RepositoryInterface|Ics|IcsComponent|null Ics
+ * @property RepositoryInterface|null Stundenplan
  */
 class StundenplanController extends AppController
 {
@@ -26,7 +33,7 @@ class StundenplanController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null
+     * @return Response|null
      */
     public function index()
     {
@@ -116,10 +123,46 @@ class StundenplanController extends AppController
                 $event['SUMMARY'] = str_replace(" Vorlesung", "", $event['SUMMARY']);
             }
 
+            $dbEvent = $this->saveToDatabase($event);
+
+            if (!empty($dbEvent->note)) {
+                $event['custom']['note'] = $dbEvent->note;
+            }
+
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
 
-        echo json_encode($events);
+        echo json_encode($events); exit;
+    }
+
+    /**
+     * @param $event
+     * @return Stundenplan
+     */
+    private function saveToDatabase($event)
+    {
+        $data = [
+            'uid' => $event['UID'],
+            'info_for_db' => $event['custom']['begin']['nice'] . ' - ' . $event['SUMMARY'],
+        ];
+        /** @var Stundenplan $stundenplan */
+        $stundenplan = $this->Stundenplan->find('all')->where([
+            'uid IS' => $data['uid']
+        ])->select([
+            'uid',
+            'note',
+            'info_for_db',
+        ])->first();
+
+        if (!$stundenplan) {
+            $stundenplan = $this->Stundenplan->newEmptyEntity();
+            $data['note'] = '';
+        }
+
+        $stundenplan = $this->Stundenplan->patchEntity($stundenplan, $data);
+        $this->Stundenplan->save($stundenplan);
+
+        return $stundenplan;
     }
 
 }
