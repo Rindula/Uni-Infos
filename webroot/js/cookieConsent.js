@@ -9,6 +9,7 @@ window.cookieconsent.initialise({
   },
   "theme": "edgeless",
   "position": "top",
+  "static": true,
   "type": "opt-out",
   "content": {
     "message": "Diese Website verwendet Cookies und Google Analytics um die beste Erfahrung auf dieser Website zu bieten.",
