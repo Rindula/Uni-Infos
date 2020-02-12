@@ -4,11 +4,10 @@ window.cookieconsent.initialise({
       "background": "#252e39"
     },
     "button": {
-      "background": "transparent",
-      "text": "#14a7d0",
-      "border": "#14a7d0"
+      "background": "#14a7d0"
     }
   },
+  "theme": "edgeless",
   "type": "opt-out",
   "content": {
     "message": "Diese Website verwendet Cookies und Google Analytics um die beste Erfahrung auf dieser Website zu bieten.",
