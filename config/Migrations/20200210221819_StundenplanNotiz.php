@@ -17,7 +17,7 @@ class StundenplanNotiz extends AbstractMigration
         $table = $this->table('stundenplan', ['id' => false, 'primary_key' => ['uid']]);
 
         $table->addColumn('uid', 'string', ['limit' => 255])
-            ->addColumn('note', 'text', ['null' => true])
+            ->addColumn('note', 'text')
             ->addColumn('info_for_db', 'string', ['limit' => 255])
             ->addColumn('created', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->addColumn('modified', 'timestamp', ['default' => 'CURRENT_TIMESTAMP', 'update' => 'CURRENT_TIMESTAMP'])
