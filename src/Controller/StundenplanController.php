@@ -37,16 +37,21 @@ class StundenplanController extends AppController
      */
     public function index()
     {
-
+        $courses = [
+            'inf19a' => 'INF19A',
+            'inf19b' => 'INF19B',
+        ];
+        $courseSelected = (isset($_COOKIE["selectedCourse"])) ? $_COOKIE["selectedCourse"] : "inf19b";
+        $this->set(compact('courses', 'courseSelected'));
     }
 
-    public function ajax($all = false, $showVorlesung = false)
+    public function ajax($course = 'inf19b', $all = false, $showVorlesung = false)
     {
         $this->autoRender = false;
         Cache::enable();
-        if (($icsString = Cache::read('icsString', 'shortTerm')) === null) {
-            $icsString = file_get_contents('http://ics.mosbach.dhbw.de/ics/inf19b.ics');
-            Cache::write('icsString', $icsString, 'shortTerm');
+        if (($icsString = Cache::read('icsString' . $course, 'shortTerm')) === null) {
+            $icsString = file_get_contents("http://ics.mosbach.dhbw.de/ics/$course.ics");
+            Cache::write('icsString' . $course, $icsString, 'shortTerm');
         }
         $cal = $this->Ics;
         $events = $cal->getIcsEventsAsArray($icsString);
@@ -132,7 +137,8 @@ class StundenplanController extends AppController
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
 
-        echo json_encode($events); exit;
+        echo json_encode($events);
+        exit;
     }
 
     /**
