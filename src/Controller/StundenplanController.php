@@ -7,6 +7,7 @@ use App\Model\Entity\Stundenplan;
 use Cake\Cache\Cache;
 use Cake\Datasource\RepositoryInterface;
 use Cake\Datasource\ResultSetInterface;
+use Cake\Event\EventInterface;
 use Cake\Http\Response;
 use Cake\I18n\Time;
 use Ics;
@@ -22,6 +23,14 @@ use IcsComponent;
  */
 class StundenplanController extends AppController
 {
+
+    public function beforeFilter(EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        if ($this->request->getParam('action') == 'ajax') {
+            $this->response->cors($this->request)->allowOrigin('*')->build();
+        }
+    }
 
     public function initialize(): void
     {
