@@ -7,7 +7,6 @@ use App\Model\Entity\Stundenplan;
 use Cake\Cache\Cache;
 use Cake\Datasource\RepositoryInterface;
 use Cake\Datasource\ResultSetInterface;
-use Cake\Event\EventInterface;
 use Cake\Http\Response;
 use Cake\I18n\Time;
 use Ics;
@@ -53,7 +52,6 @@ class StundenplanController extends AppController
     public function ajax($course = 'inf19b', $all = false, $showVorlesung = false)
     {
 //        $this->autoRender = false;
-        $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET']);
         $this->viewBuilder()->setLayout('ajax');
         Cache::enable();
         if (($icsString = Cache::read('icsString' . $course, 'shortTerm')) === null) {
@@ -145,6 +143,7 @@ class StundenplanController extends AppController
         }
 
         $this->set(compact('events'));
+        $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
     }
 
     /**
