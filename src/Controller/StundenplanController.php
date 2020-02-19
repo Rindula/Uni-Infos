@@ -52,7 +52,9 @@ class StundenplanController extends AppController
 
     public function ajax($course = 'inf19b', $all = false, $showVorlesung = false)
     {
-        $this->autoRender = false;
+//        $this->autoRender = false;
+        $response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
+        $this->viewBuilder()->setLayout('ajax');
         Cache::enable();
         if (($icsString = Cache::read('icsString' . $course, 'shortTerm')) === null) {
             $icsString = file_get_contents("http://ics.mosbach.dhbw.de/ics/$course.ics");
@@ -142,9 +144,8 @@ class StundenplanController extends AppController
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
 
-        echo json_encode($events);
-        $this->response->cors($this->request)->allowOrigin('*')->build();
-        exit;
+        $this->set(compact('events'));
+        return $response;
     }
 
     /**
