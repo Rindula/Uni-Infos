@@ -1,1 +1,1 @@
-<?= json_encode($events) . '\n' ?>
+<?= json_encode($events) ?>
