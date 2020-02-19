@@ -1,6 +1,7 @@
 <?php
 
 use Cake\Cache\Engine\FileEngine;
+use Cake\Cache\Engine\RedisEngine;
 use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
 use Cake\Error\ExceptionRenderer;
@@ -145,14 +146,6 @@ return [
             'duration' => '+1 years',
             'url' => env('CACHE_CAKEROUTES_URL', null),
         ],
-        'emailData' => [
-            'className' => FileEngine::class,
-            'prefix' => 'uniinfo_emailData_',
-            'path' => CACHE,
-            'serialize' => true,
-            'duration' => '+3 hours',
-            'url' => env('CACHE_CAKECORE_URL', null),
-        ],
         'longTerm' => [
             'className' => FileEngine::class,
             'prefix' => 'uniinfo_lt_',
@@ -162,11 +155,12 @@ return [
             'url' => env('CACHE_CAKECORE_URL', null),
         ],
         'shortTerm' => [
-            'className' => FileEngine::class,
+            'className' => RedisEngine::class,
             'prefix' => 'uniinfo_st_',
-            'path' => CACHE,
             'serialize' => true,
             'duration' => '+30 minutes',
+            'host' => 'localhost',
+            'port' => '6379',
             'url' => env('CACHE_CAKECORE_URL', null),
         ],
     ],

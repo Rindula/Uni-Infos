@@ -24,14 +24,6 @@ use IcsComponent;
 class StundenplanController extends AppController
 {
 
-    public function beforeFilter(EventInterface $event)
-    {
-        parent::beforeFilter($event);
-        if ($this->request->getParam('action') == 'ajax') {
-            $this->response->cors($this->request)->allowOrigin('*')->build();
-        }
-    }
-
     public function initialize(): void
     {
         parent::initialize();
@@ -60,6 +52,7 @@ class StundenplanController extends AppController
 
     public function ajax($course = 'inf19b', $all = false, $showVorlesung = false)
     {
+        $this->response->cors($this->request)->allowOrigin('*')->build();
         $this->autoRender = false;
         Cache::enable();
         if (($icsString = Cache::read('icsString' . $course, 'shortTerm')) === null) {
