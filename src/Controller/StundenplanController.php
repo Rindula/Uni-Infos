@@ -53,7 +53,7 @@ class StundenplanController extends AppController
     public function ajax($course = 'inf19b', $all = false, $showVorlesung = false)
     {
 //        $this->autoRender = false;
-        $response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
+        $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET']);
         $this->viewBuilder()->setLayout('ajax');
         Cache::enable();
         if (($icsString = Cache::read('icsString' . $course, 'shortTerm')) === null) {
@@ -145,7 +145,6 @@ class StundenplanController extends AppController
         }
 
         $this->set(compact('events'));
-        return $response;
     }
 
     /**
