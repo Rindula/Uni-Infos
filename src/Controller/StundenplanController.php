@@ -98,6 +98,7 @@ class StundenplanController extends AppController
                 $event['custom']['begin']['timestamp'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->toUnixString();
                 $event['custom']['begin']['isToday'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->isToday();
                 $event['custom']['begin']['isTomorrow'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->isTomorrow();
+                $event['custom']['dayid'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->format("Ymd");
             }
             if (!empty($event['DTEND;TZID=Europe/Berlin'])) {
                 $event['custom']['end']['nice'] = (new Time($event['DTEND;TZID=Europe/Berlin']))->nice();
