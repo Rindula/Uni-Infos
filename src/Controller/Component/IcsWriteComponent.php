@@ -98,7 +98,7 @@ class Event
             $props[] = "LOCATION:" . $this->getLocation();
         }
         if (!empty($this->getDescription())) {
-            $props[] = "DESCRIPTION:" . $this->getLocation();
+            $props[] = "DESCRIPTION:" . $this->getDescription();
         }
         $props[] = "END:VEVENT";
         return join(PHP_EOL, $props);
