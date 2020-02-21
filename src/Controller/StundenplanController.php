@@ -115,6 +115,7 @@ class StundenplanController extends AppController
      */
     private function fetchCalendar($course, $all, $showVorlesung)
     {
+        $course = strtolower($course);
         Cache::enable();
         if (($icsString = Cache::read('icsString' . $course, 'shortTerm')) === null) {
             $icsString = file_get_contents("http://ics.mosbach.dhbw.de/ics/$course.ics");
