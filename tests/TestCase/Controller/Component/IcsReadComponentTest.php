@@ -3,19 +3,19 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller\Component;
 
-use App\Controller\Component\IcsComponent;
+use App\Controller\Component\IcsReadComponent;
 use Cake\Controller\ComponentRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
  * App\Controller\Component\IcsComponent Test Case
  */
-class IcsComponentTest extends TestCase
+class IcsReadComponentTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Controller\Component\IcsComponent
+     * @var IcsReadComponent
      */
     protected $IcsComponent;
 
@@ -28,7 +28,7 @@ class IcsComponentTest extends TestCase
     {
         parent::setUp();
         $registry = new ComponentRegistry();
-        $this->IcsComponent = new IcsComponent($registry);
+        $this->IcsComponent = new IcsReadComponent($registry);
     }
 
     /**

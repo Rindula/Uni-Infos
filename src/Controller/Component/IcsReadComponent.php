@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\Controller\ComponentRegistry;
 
 /**
  * Ics component
  */
-class IcsComponent extends Component
+class IcsReadComponent extends Component
 {
     /**
      * Default configuration.
@@ -17,6 +16,7 @@ class IcsComponent extends Component
      * @var array
      */
     protected $_defaultConfig = [];
+
     public function initialize(array $config): void
     {
         parent::initialize($config);

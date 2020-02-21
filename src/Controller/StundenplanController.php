@@ -3,22 +3,23 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Component\IcsReadComponent;
+use App\Controller\Component\IcsWriteComponent;
 use App\Model\Entity\Stundenplan;
 use Cake\Cache\Cache;
 use Cake\Datasource\RepositoryInterface;
 use Cake\Datasource\ResultSetInterface;
 use Cake\Http\Response;
 use Cake\I18n\Time;
-use Ics;
-use IcsComponent;
 
 /**
  * Stundenplan Controller
  *
  *
  * @method Stundenplan[]|ResultSetInterface paginate($object = null, array $settings = [])
- * @property Component\IcsComponent|\Cake\Controller\Component\IcsComponent|RepositoryInterface|Ics|IcsComponent|null Ics
+ * @property Component\IcsReadComponent|RepositoryInterface|IcsReadComponent|null IcsRead
  * @property RepositoryInterface|null Stundenplan
+ * @property Component\IcsWriteComponent|RepositoryInterface|IcsWriteComponent|null IcsWrite
  */
 class StundenplanController extends AppController
 {
@@ -27,7 +28,8 @@ class StundenplanController extends AppController
     {
         parent::initialize();
 
-        $this->loadComponent('Ics');
+        $this->loadComponent('IcsRead');
+        $this->loadComponent('IcsWrite');
     }
 
     /**
@@ -53,17 +55,77 @@ class StundenplanController extends AppController
     {
 //        $this->autoRender = false;
         $this->viewBuilder()->setLayout('ajax');
+        $events = $this->fetchCalendar($course, $all, $showVorlesung);
+
+        $this->set(compact('events'));
+        $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
+    }
+
+    public function calendar($course = null)
+    {
+        $this->viewBuilder()->setLayout('ajax');
+        if ($course) {
+            $events = $this->fetchCalendar($course, true, false);
+            $icsWriter = $this->IcsWrite;
+            foreach ($events as $event) {
+                $icsWriter->newEvent($event['SUMMARY'], $event['custom']['begin']['timestamp'], $event['custom']['end']['timestamp'], $event['DESCRIPTION'], $event['LOCATION']);
+            }
+            $this->set('writer', $icsWriter);
+            return;
+        }
+
+        $this->set('writer', $this->IcsWrite);
+    }
+
+    /**
+     * @param $event
+     * @return Stundenplan
+     */
+    private function saveToDatabase($event)
+    {
+        $data = [
+            'uid' => $event['UID'],
+            'info_for_db' => $event['custom']['begin']['nice'] . ' - ' . $event['SUMMARY'],
+        ];
+        /** @var Stundenplan $stundenplan */
+        $stundenplan = $this->Stundenplan->find('all')->where([
+            'uid IS' => $data['uid']
+        ])->select([
+            'uid',
+            'note',
+            'info_for_db',
+        ])->first();
+
+        if (!$stundenplan) {
+            $stundenplan = $this->Stundenplan->newEmptyEntity();
+            $data['note'] = '';
+        }
+
+        $stundenplan = $this->Stundenplan->patchEntity($stundenplan, $data);
+        $this->Stundenplan->save($stundenplan);
+
+        return $stundenplan;
+    }
+
+    /**
+     * @param $course
+     * @param $all
+     * @param $showVorlesung
+     * @return array
+     */
+    private function fetchCalendar($course, $all, $showVorlesung)
+    {
         Cache::enable();
         if (($icsString = Cache::read('icsString' . $course, 'shortTerm')) === null) {
             $icsString = file_get_contents("http://ics.mosbach.dhbw.de/ics/$course.ics");
             Cache::write('icsString' . $course, $icsString, 'shortTerm');
         }
-        $cal = $this->Ics;
+        $cal = $this->IcsRead;
         $events = $cal->getIcsEventsAsArray($icsString);
         $last = null;
         foreach ($events as $key => &$event) {
 
-            if (!empty($event['SUMMARY']) && ($event['SUMMARY'] == "Studientag" && !$all)) {
+            if (!empty($event['SUMMARY']) && $event['SUMMARY'] == "Studientag") {
                 unset($events[$key]);
                 continue;
             }
@@ -142,39 +204,7 @@ class StundenplanController extends AppController
 
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
-
-        $this->set(compact('events'));
-        $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
-    }
-
-    /**
-     * @param $event
-     * @return Stundenplan
-     */
-    private function saveToDatabase($event)
-    {
-        $data = [
-            'uid' => $event['UID'],
-            'info_for_db' => $event['custom']['begin']['nice'] . ' - ' . $event['SUMMARY'],
-        ];
-        /** @var Stundenplan $stundenplan */
-        $stundenplan = $this->Stundenplan->find('all')->where([
-            'uid IS' => $data['uid']
-        ])->select([
-            'uid',
-            'note',
-            'info_for_db',
-        ])->first();
-
-        if (!$stundenplan) {
-            $stundenplan = $this->Stundenplan->newEmptyEntity();
-            $data['note'] = '';
-        }
-
-        $stundenplan = $this->Stundenplan->patchEntity($stundenplan, $data);
-        $this->Stundenplan->save($stundenplan);
-
-        return $stundenplan;
+        return $events;
     }
 
 }
