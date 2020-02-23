@@ -26,7 +26,7 @@ class IcsWriteComponent extends Component
     public function to_string()
     {
         $rows = $this->build_props();
-        return implode("\r\n", $rows);
+        return implode(PHP_EOL, $rows);
     }
 
     private function build_props()
