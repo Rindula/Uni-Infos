@@ -109,7 +109,7 @@ class Event
      */
     public function getStart(): Time
     {
-        return $this->start;
+        return $this->start->timezone("Europe/Berlin");
     }
 
     /**
@@ -125,7 +125,7 @@ class Event
      */
     public function getEnd(): Time
     {
-        return $this->end;
+        return $this->end->timezone("Europe/Berlin");
     }
 
     /**
