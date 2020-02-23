@@ -5,6 +5,7 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\I18n\Time;
+use Cake\Utility\Security;
 
 /**
  * IcsWrite component
@@ -89,7 +90,7 @@ class Event
     {
         $props = [];
         $props[] = "BEGIN:VEVENT";
-        $props[] = "UID:" . uniqid();
+        $props[] = "UID:" . $this->getUid();
         $props[] = "DTSTAMP:" . (new Time())->format(self::DT_FORMAT);
         $props[] = "DTSTART;TZID=Europe/Berlin:" . $this->getStart()->format(self::DT_FORMAT);
         $props[] = "DTEND;TZID=Europe/Berlin:" . $this->getEnd()->format(self::DT_FORMAT);
@@ -203,6 +204,11 @@ class Event
     public function setUrl(?string $url): void
     {
         $this->url = $url;
+    }
+
+    private function getUid()
+    {
+        return Security::encrypt($this->getStart()->toAtomString() . $this->getEnd()->toAtomString() . $this->getSummary(), 'randomCalendarUid', Security::getSalt());
     }
 
 }
