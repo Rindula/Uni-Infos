@@ -153,26 +153,27 @@ class StundenplanController extends AppController
             }
 
             if (!empty($event['DTSTART;TZID=Europe/Berlin'])) {
-                $event['custom']['begin']['nice'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->nice();
-                $event['custom']['begin']['date'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->toDateTimeString();
-                $event['custom']['begin']['words'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->timeAgoInWords(['format' => 'MMM d, YYY']);
-                $event['custom']['begin']['isFuture'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->isFuture();
-                $event['custom']['begin']['isPast'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->isPast();
-                $event['custom']['begin']['timestamp'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->toUnixString();
-                $event['custom']['begin']['isToday'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->isToday();
-                $event['custom']['begin']['isTomorrow'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->isTomorrow();
-                $event['custom']['dayid'] = (new Time($event['DTSTART;TZID=Europe/Berlin']))->format("Ymd");
+                $startTime = new Time($event['DTSTART;TZID=Europe/Berlin']);
+                $event['custom']['begin']['nice'] = $startTime->nice();
+                $event['custom']['begin']['date'] = $startTime->toDateTimeString();
+                $event['custom']['begin']['words'] = $startTime->timeAgoInWords(['format' => 'MMM d, YYY']);
+                $event['custom']['begin']['isFuture'] = $startTime->isFuture();
+                $event['custom']['begin']['isPast'] = $startTime->isPast();
+                $event['custom']['begin']['timestamp'] = $startTime->toUnixString();
+                $event['custom']['begin']['isToday'] = $startTime->isToday();
+                $event['custom']['begin']['isTomorrow'] = $startTime->isTomorrow();
+                $event['custom']['dayid'] = $startTime->format("Ymd");
             }
             if (!empty($event['DTEND;TZID=Europe/Berlin'])) {
-                $event['custom']['end']['nice'] = (new Time($event['DTEND;TZID=Europe/Berlin']))->nice();
-                $event['custom']['end']['words'] = (new Time($event['DTEND;TZID=Europe/Berlin']))->timeAgoInWords(['format' => 'MMM d, YYY']);
-                $event['custom']['end']['isFuture'] = (new Time($event['DTEND;TZID=Europe/Berlin']))->isFuture();
-                $event['custom']['end']['isPast'] = (new Time($event['DTEND;TZID=Europe/Berlin']))->isPast();
-                $event['custom']['end']['timestamp'] = (new Time($event['DTEND;TZID=Europe/Berlin']))->toUnixString();
-                $event['custom']['end']['isToday'] = (new Time($event['DTEND;TZID=Europe/Berlin']))->isToday();
+                $endTime = new Time($event['DTEND;TZID=Europe/Berlin']);
+                $event['custom']['end']['nice'] = $endTime->nice();
+                $event['custom']['end']['words'] = $endTime->timeAgoInWords(['format' => 'MMM d, YYY']);
+                $event['custom']['end']['isFuture'] = $endTime->isFuture();
+                $event['custom']['end']['isPast'] = $endTime->isPast();
+                $event['custom']['end']['timestamp'] = $endTime->toUnixString();
+                $event['custom']['end']['isToday'] = $endTime->isToday();
+                $event['custom']['end']['isTomorrow'] = $endTime->isTomorrow();
             }
-
-//            (new Time())->
 
             $event['custom']['current'] = false;
             $event['custom']['today'] = false;
