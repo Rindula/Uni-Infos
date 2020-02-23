@@ -208,7 +208,7 @@ class Event
 
     private function getUid()
     {
-        return Security::encrypt($this->getStart()->toAtomString() . $this->getEnd()->toAtomString() . $this->getSummary(), 'randomCalendarUid', Security::getSalt());
+        return Security::hash($this->getStart()->toAtomString() . $this->getEnd()->toAtomString() . $this->getSummary(), Security::$hashType, Security::getSalt());
     }
 
 }
