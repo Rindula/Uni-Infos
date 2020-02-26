@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "de.rindula.uniinfos",
+    "sha256_cert_fingerprints":
+    ["5F:F2:51:CC:1E:33:BC:A4:10:7B:96:6B:EA:EE:5C:C7:6C:1B:7B:E6:EF:BC:D0:F9:9D:7E:4F:60:64:17:F5:15"]
+  }
+}]
