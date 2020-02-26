@@ -9,5 +9,5 @@
 <?= $this->Html->link("Zum Stundenplan", ['controller' => 'stundenplan', 'action' => 'index'], ['class' => 'button button-clear']) ?>
 <?= $this->Html->link("Zum Dateispeicher", 'https://files.rindula.de/nextcloud/index.php/s/Fj3YTt9Mcga287L', ['class' => 'button button-outline', 'target' => '_blank']) ?>
 <br>
-<?= $this->Html->link("Zur App im Google PlayStore", 'https://play.google.com/store/apps/details?id=de.rindula.uniinfos', ['class' => 'button', 'target' => '_blank']) ?>
+<?= $this->Html->link("Zur Android App", 'https://play.google.com/store/apps/details?id=de.rindula.uniinfos', ['class' => 'button', 'target' => '_blank']) ?>
 </div>
