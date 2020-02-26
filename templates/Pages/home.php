@@ -9,5 +9,5 @@
 <?= $this->Html->link("Zum Stundenplan", ['controller' => 'stundenplan', 'action' => 'index'], ['class' => 'button button-clear']) ?>
 <?= $this->Html->link("Zum Dateispeicher", 'https://files.rindula.de/nextcloud/index.php/s/Fj3YTt9Mcga287L', ['class' => 'button button-outline', 'target' => '_blank']) ?>
 <br>
-<?= $this->Html->link("<img alt='Jetzt bei Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/de_badge_web_generic.png'/>", 'https://play.google.com/store/apps/details?id=de.rindula.uniinfos&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1', ['class' => 'button', 'target' => '_blank', 'escape' => false]) ?>
+<?= $this->Html->link("<img alt='Jetzt bei Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/de_badge_web_generic.png'/>", 'https://play.google.com/store/apps/details?id=de.rindula.uniinfos&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1', ['style' => 'width: 200px', 'target' => '_blank', 'escape' => false]) ?>
 </div>
