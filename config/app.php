@@ -1,7 +1,6 @@
 <?php
 
 use Cake\Cache\Engine\FileEngine;
-use Cake\Cache\Engine\RedisEngine;
 use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
 use Cake\Error\ExceptionRenderer;
@@ -151,7 +150,7 @@ return [
             'prefix' => 'uniinfo_lt_',
             'path' => CACHE,
             'serialize' => true,
-            'duration' => '+6 months',
+            'duration' => '+2 months',
             'url' => env('CACHE_CAKECORE_URL', null),
         ],
         'shortTerm' => [

@@ -39,14 +39,7 @@ class StundenplanController extends AppController
      */
     public function index()
     {
-        $courses = [
-            'inf19a' => 'INF19A',
-            'inf19b' => 'INF19B',
-            'Sonderwünsche' => [
-                'ht19' => 'HT19',
-                'wi17b' => 'WI17B',
-            ]
-        ];
+        $courses = $this->getCourses(true);
         $courseSelected = (isset($_COOKIE["selectedCourse"])) ? $_COOKIE["selectedCourse"] : "inf19b";
         $this->set(compact('courses', 'courseSelected'));
     }
@@ -207,6 +200,31 @@ class StundenplanController extends AppController
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
         return $events;
+    }
+
+    private function getCourses($grouped = false)
+    {
+        Cache::enable();
+        if (($coursesJson = Cache::read('courses', 'longTerm')) === null) {
+            $coursesJson = file_get_contents("https://stuv-mosbach.de/survival/api.php?action=getCourses");
+            Cache::write('courses', $coursesJson, 'longTerm');
+        }
+        $courses = json_decode($coursesJson);
+        foreach ($courses as $key => &$course) {
+            $course = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
+            if (empty($course)) unset($courses[$key]);
+        }
+        sort($courses);
+        if (!$grouped) return $courses;
+
+        $courseGroup = [];
+
+        foreach ($courses as $key => &$course) {
+            $courseGroup[preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$2', $course)][strtolower(preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$1', $course))] = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
+            if (empty($course)) unset($courses[$key]);
+        }
+
+        return $courseGroup;
     }
 
 }
