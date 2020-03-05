@@ -95,6 +95,10 @@ hr {
     border-left-color: #ef5753;
 }
 
+.seminar {
+    border-left-color: #39deef;
+}
+
 /* Nav bar */
 .top-nav {
     display: flex;

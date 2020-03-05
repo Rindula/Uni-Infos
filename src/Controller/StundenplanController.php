@@ -44,11 +44,11 @@ class StundenplanController extends AppController
         $this->set(compact('courses', 'courseSelected'));
     }
 
-    public function ajax($course = 'inf19b', $all = false, $showVorlesung = false)
+    public function ajax($course = 'inf19b', $all = false, $showVorlesung = false, $showSeminar = false)
     {
 //        $this->autoRender = false;
         $this->viewBuilder()->setLayout('ajax');
-        $events = $this->fetchCalendar($course, $all, $showVorlesung);
+        $events = $this->fetchCalendar($course, $all, $showVorlesung, $showSeminar);
 
         $this->set(compact('events'));
         $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
@@ -58,10 +58,14 @@ class StundenplanController extends AppController
     {
         $this->viewBuilder()->setLayout('ajax');
         if ($course) {
-            $events = $this->fetchCalendar($course, true, false);
+            $events = $this->fetchCalendar($course, true, false, false);
             $icsWriter = $this->IcsWrite;
             foreach ($events as $event) {
-                $icsWriter->newEvent($event['SUMMARY'], $event['custom']['begin']['timestamp'], $event['custom']['end']['timestamp'], $event['DESCRIPTION'], $event['LOCATION']);
+                $categories = [];
+                if ($event['custom']['isKlausur']) $categories[] = "KLAUSUR";
+                if ($event['custom']['isSeminar']) $categories[] = "SEMINAR";
+                if (!($event['custom']['isKlausur'] || $event['custom']['isSeminar'])) $categories[] = "VORLESUNG";
+                $icsWriter->newEvent($event['SUMMARY'], $event['custom']['begin']['timestamp'], $event['custom']['end']['timestamp'], $event['DESCRIPTION'], $event['LOCATION'], $categories);
             }
             $this->set('writer', $icsWriter);
             return;
@@ -106,7 +110,7 @@ class StundenplanController extends AppController
      * @param $showVorlesung
      * @return array
      */
-    private function fetchCalendar($course, $all, $showVorlesung)
+    private function fetchCalendar($course, $all, $showVorlesung, $showSeminar)
     {
         $course = strtolower($course);
         Cache::enable();
@@ -143,6 +147,11 @@ class StundenplanController extends AppController
             $event['custom']['isKlausur'] = false;
             if (!empty($event['SUMMARY']) && strpos($event['SUMMARY'], 'Klausur')) {
                 $event['custom']['isKlausur'] = true;
+            }
+
+            $event['custom']['isSeminar'] = false;
+            if (!empty($event['SUMMARY']) && strpos($event['SUMMARY'], 'Seminar')) {
+                $event['custom']['isSeminar'] = true;
             }
 
             if (!empty($event['DTSTART;TZID=Europe/Berlin'])) {
@@ -189,6 +198,10 @@ class StundenplanController extends AppController
 
             if (!$showVorlesung) {
                 $event['SUMMARY'] = str_replace(" Vorlesung", "", $event['SUMMARY']);
+            }
+
+            if (!$showSeminar) {
+                $event['SUMMARY'] = str_replace(" Seminar", "", $event['SUMMARY']);
             }
 
             $dbEvent = $this->saveToDatabase($event);
