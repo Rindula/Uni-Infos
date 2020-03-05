@@ -15,7 +15,7 @@ function loadData() {
 
 function setData(msg) {
     var out = "";
-    var lastDay = new Date().getDay();
+    var lastDay = new Date().getDate();
     var first = true;
     var printedToday = false;
     var printedTomorrow = false;
