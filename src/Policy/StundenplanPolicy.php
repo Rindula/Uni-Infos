@@ -36,6 +36,18 @@ class StundenplanPolicy
     }
 
     /**
+     * Check if $user can update Stundenplan
+     *
+     * @param IdentityInterface $user The user.
+     * @param Stundenplan $stundenplan
+     * @return bool
+     */
+    public function canReadNote(IdentityInterface $user, Stundenplan $stundenplan)
+    {
+        return $user->hasRole('admin') || $user->hasRole('user');
+    }
+
+    /**
      * Check if $user can delete Stundenplan
      *
      * @param IdentityInterface $user The user.

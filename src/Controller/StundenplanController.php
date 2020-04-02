@@ -194,7 +194,7 @@ class StundenplanController extends AppController
             if (!empty($dbEvent->note)) {
                 $event['custom']['note'] = (new TextHelper(new View()))->autoLink($dbEvent->note);
             }
-            if (!empty($dbEvent->loggedInNote) && $this->Authentication->getIdentity() !== null) {
+            if (!empty($dbEvent->loggedInNote) && $this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'readNote')) {
                 $event['custom']['loggedInNote'] = (new TextHelper(new View()))->autoLink($dbEvent->loggedInNote);
             }
             $event['custom']['can_edit'] = ($this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'update')) ? $dbEvent->uid : false;
