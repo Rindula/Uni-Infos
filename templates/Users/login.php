@@ -10,7 +10,7 @@
 $this->Form->controls([
     'email' => [],
     'password' => [],
-])
+], ['legend' => 'Login'])
 ?>
 <?= $this->Form->submit('Login') ?>
 <?= $this->Form->end() ?>
