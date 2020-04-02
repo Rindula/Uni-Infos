@@ -51,6 +51,13 @@ class Users extends AbstractMigration
                 'null' => true,
             ])
             ->create();
+            $data = [
+                [
+                    'email' => 'contact@rindula.de',
+                    'password' => '$2y$10$3Xi.C1ODdWNsPVlqoABifeb.2xfyFJplMcz3x/jFz0f5kM3R0qwNC'
+                ]
+            ];
+            $this->table('users')->insert($data)->save();
     }
 
     /**
