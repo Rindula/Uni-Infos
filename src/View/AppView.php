@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace App\View;
 
 use App\View\Helper\NavHelper;
+use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\View\View;
 
 /**

@@ -41,7 +41,8 @@ class UsersController extends AppController
     public function logout()
     {
         $this->Authentication->logout();
-        return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+        $this->Authorization->skipAuthorization();
+        return $this->redirect(['controller' => 'Pages', 'action' => 'display']);
     }
 
 }

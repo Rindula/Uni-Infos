@@ -87,7 +87,7 @@ $cakeDescription = 'UniInfos';
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 <?php endif; ?>
-<?= $this->Nav->render() ?>
+<?= $this->Nav->render($loggedIn) ?>
 <main class="main">
     <div class="container">
         <?= $this->Flash->render() ?>

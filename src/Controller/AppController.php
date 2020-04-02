@@ -13,6 +13,7 @@ declare(strict_types=1);
  * @link      https://cakephp.org CakePHP(tm) Project
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
+ * @property \Authentication\Controller\Component\AuthenticationComponent Authentication
  */
 namespace App\Controller;
 
@@ -46,6 +47,8 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
         $this->loadComponent('Authorization.Authorization');
+        $loggedIn = !is_null($this->Authentication->getIdentity());
+        $this->set(compact('loggedIn'));
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
