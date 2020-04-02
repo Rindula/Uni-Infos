@@ -47,7 +47,7 @@ function setData(msg) {
             "                    class=\"column-offset-50 column-33 column\" style='text-align: right'>" + event['LOCATION'] + "</span></div>" +
             "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>";
 
-        if (event['custom']['note']) {
+        if (event['custom']['note'] && typeof loggedIn === "boolean" && loggedIn) {
             html += "<p class='message'>" + event['custom']['note'] + "</p>";
         }
 

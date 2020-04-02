@@ -31,16 +31,20 @@ class NavHelper extends Helper
     {
         if ($loggedIn) {
             $array = [
-                'title' => 'Logout',
-                'url' => ['controller' => 'users', 'action' => 'logout']
+                [
+                    'title' => 'Logout',
+                    'url' => ['controller' => 'users', 'action' => 'logout']
+                ],
             ];
         } else {
             $array = [
-                'title' => 'Login',
-                'url' => ['controller' => 'users', 'action' => 'login']
+                [
+                    'title' => 'Login',
+                    'url' => ['controller' => 'users', 'action' => 'login']
+                ]
             ];
         }
-        $this->navItems[] = $array;
+        $this->navItems = array_merge($this->navItems, $array);
         return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right">Uni<span>Infos</span></div></div></a></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
     }
 
@@ -58,8 +62,8 @@ class NavHelper extends Helper
             $url = $this->getUrl($item);
 
             $content .= $this->Html->link($item['title'], $url, [
-                    'escape' => false,
-                    'class' => implode(' ', $class),
+                'escape' => false,
+                'class' => implode(' ', $class),
             ]);
         }
 

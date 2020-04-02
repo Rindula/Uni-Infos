@@ -13,6 +13,8 @@ use Cake\Datasource\RepositoryInterface;
 use Cake\Datasource\ResultSetInterface;
 use Cake\Http\Response;
 use Cake\I18n\Time;
+use Cake\View\Helper\TextHelper;
+use Cake\View\View;
 
 /**
  * Stundenplan Controller
@@ -50,6 +52,31 @@ class StundenplanController extends AppController
         $this->set(compact('courses', 'courseSelected'));
     }
 
+    private function getCourses($grouped = false)
+    {
+        Cache::enable();
+        if (($coursesJson = Cache::read('courses', 'longTerm')) === null) {
+            $coursesJson = file_get_contents("https://stuv-mosbach.de/survival/api.php?action=getCourses");
+            Cache::write('courses', $coursesJson, 'longTerm');
+        }
+        $courses = json_decode($coursesJson);
+        foreach ($courses as $key => &$course) {
+            $course = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
+            if (empty($course)) unset($courses[$key]);
+        }
+        sort($courses);
+        if (!$grouped) return $courses;
+
+        $courseGroup = [];
+
+        foreach ($courses as $key => &$course) {
+            $courseGroup[preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$2', $course)][strtolower(preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$1', $course))] = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
+            if (empty($course)) unset($courses[$key]);
+        }
+
+        return $courseGroup;
+    }
+
     public function ajax($course = 'inf19b', $all = false, $showVorlesung = false, $showSeminar = false)
     {
 //        $this->autoRender = false;
@@ -58,56 +85,6 @@ class StundenplanController extends AppController
 
         $this->set(compact('events'));
         $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
-    }
-
-    public function calendar($course = null)
-    {
-        $this->viewBuilder()->setLayout('ajax');
-        if ($course) {
-            $events = $this->fetchCalendar($course, true, false, false);
-            $icsWriter = $this->IcsWrite;
-            foreach ($events as $event) {
-                $categories = [];
-                if ($event['custom']['isKlausur']) $categories[] = "KLAUSUR";
-                if ($event['custom']['isSeminar']) $categories[] = "SEMINAR";
-                if (!($event['custom']['isKlausur'] || $event['custom']['isSeminar'])) $categories[] = "VORLESUNG";
-                $icsWriter->newEvent($event['SUMMARY'], $event['custom']['begin']['timestamp'], $event['custom']['end']['timestamp'], $event['DESCRIPTION'], $event['LOCATION'], $categories);
-            }
-            $this->set('writer', $icsWriter);
-            return;
-        }
-
-        $this->set('writer', $this->IcsWrite);
-    }
-
-    /**
-     * @param $event
-     * @return Stundenplan
-     */
-    private function saveToDatabase($event)
-    {
-        $data = [
-            'uid' => $event['UID'],
-            'info_for_db' => $event['custom']['begin']['nice'] . ' - ' . $event['SUMMARY'],
-        ];
-        /** @var Stundenplan $stundenplan */
-        $stundenplan = $this->Stundenplan->find('all')->where([
-            'uid IS' => $data['uid']
-        ])->select([
-            'uid',
-            'note',
-            'info_for_db',
-        ])->first();
-
-        if (!$stundenplan) {
-            $stundenplan = $this->Stundenplan->newEmptyEntity();
-            $data['note'] = '';
-        }
-
-        $stundenplan = $this->Stundenplan->patchEntity($stundenplan, $data);
-        $this->Stundenplan->save($stundenplan);
-
-        return $stundenplan;
     }
 
     /**
@@ -213,7 +190,7 @@ class StundenplanController extends AppController
             $dbEvent = $this->saveToDatabase($event);
 
             if (!empty($dbEvent->note)) {
-                $event['custom']['note'] = $dbEvent->note;
+                $event['custom']['note'] = (new TextHelper(new View()))->autoLink($dbEvent->note);
             }
 
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
@@ -221,29 +198,54 @@ class StundenplanController extends AppController
         return $events;
     }
 
-    private function getCourses($grouped = false)
+    /**
+     * @param $event
+     * @return Stundenplan
+     */
+    private function saveToDatabase($event)
     {
-        Cache::enable();
-        if (($coursesJson = Cache::read('courses', 'longTerm')) === null) {
-            $coursesJson = file_get_contents("https://stuv-mosbach.de/survival/api.php?action=getCourses");
-            Cache::write('courses', $coursesJson, 'longTerm');
-        }
-        $courses = json_decode($coursesJson);
-        foreach ($courses as $key => &$course) {
-            $course = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
-            if (empty($course)) unset($courses[$key]);
-        }
-        sort($courses);
-        if (!$grouped) return $courses;
+        $data = [
+            'uid' => $event['UID'],
+            'info_for_db' => $event['custom']['begin']['nice'] . ' - ' . $event['SUMMARY'],
+        ];
+        /** @var Stundenplan $stundenplan */
+        $stundenplan = $this->Stundenplan->find('all')->where([
+            'uid IS' => $data['uid']
+        ])->select([
+            'uid',
+            'note',
+            'info_for_db',
+        ])->first();
 
-        $courseGroup = [];
-
-        foreach ($courses as $key => &$course) {
-            $courseGroup[preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$2', $course)][strtolower(preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$1', $course))] = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
-            if (empty($course)) unset($courses[$key]);
+        if (!$stundenplan) {
+            $stundenplan = $this->Stundenplan->newEmptyEntity();
+            $data['note'] = '';
         }
 
-        return $courseGroup;
+        $stundenplan = $this->Stundenplan->patchEntity($stundenplan, $data);
+        $this->Stundenplan->save($stundenplan);
+
+        return $stundenplan;
+    }
+
+    public function calendar($course = null)
+    {
+        $this->viewBuilder()->setLayout('ajax');
+        if ($course) {
+            $events = $this->fetchCalendar($course, true, false, false);
+            $icsWriter = $this->IcsWrite;
+            foreach ($events as $event) {
+                $categories = [];
+                if ($event['custom']['isKlausur']) $categories[] = "KLAUSUR";
+                if ($event['custom']['isSeminar']) $categories[] = "SEMINAR";
+                if (!($event['custom']['isKlausur'] || $event['custom']['isSeminar'])) $categories[] = "VORLESUNG";
+                $icsWriter->newEvent($event['SUMMARY'], $event['custom']['begin']['timestamp'], $event['custom']['end']['timestamp'], $event['DESCRIPTION'], $event['LOCATION'], $categories);
+            }
+            $this->set('writer', $icsWriter);
+            return;
+        }
+
+        $this->set('writer', $this->IcsWrite);
     }
 
 }
