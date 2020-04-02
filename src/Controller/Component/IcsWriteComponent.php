@@ -52,9 +52,9 @@ class IcsWriteComponent extends Component
         return $ics_props;
     }
 
-    public function newEvent($summary, $start, $end, $description = "", $location = "")
+    public function newEvent($summary, $start, $end, $description = "", $location = "", $categories = "")
     {
-        $event = new Event($summary, $start, $end, $description, $location);
+        $event = new Event($summary, $start, $end, $description, $location, $categories);
         $this->events[] = $event;
         return $event;
     }
@@ -73,14 +73,17 @@ class Event
     private $description;
     /** @var string */
     private $location;
+    /** @var string */
+    private $categories;
 
-    public function __construct($summary, $start, $end, $description = "", $location = "")
+    public function __construct($summary, $start, $end, $description = "", $location = "", $categories = [])
     {
         $this->summary = $summary;
         $this->start = new Time($start);
         $this->end = new Time($end);
         $this->description = $description;
         $this->location = $location;
+        $this->categories = strtoupper(join(',', $categories));
     }
 
     /**
@@ -100,6 +103,9 @@ class Event
         }
         if (!empty($this->getDescription())) {
             $props[] = "DESCRIPTION:" . $this->getDescription();
+        }
+        if (!empty($this->getCategories())) {
+            $props[] = "CATEGORIES:" . $this->getCategories();
         }
         $props[] = "END:VEVENT";
         return join(PHP_EOL, $props);
@@ -209,6 +215,22 @@ class Event
     private function getUid()
     {
         return Security::hash($this->getStart()->toAtomString() . $this->getEnd()->toAtomString() . $this->getSummary(), Security::$hashType, Security::getSalt());
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategories(): string
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param array $categories
+     */
+    public function setCategories(array $categories): void
+    {
+        $this->categories = strtoupper(join(',', $categories));
     }
 
 }

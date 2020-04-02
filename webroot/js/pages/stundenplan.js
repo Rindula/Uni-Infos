@@ -11,11 +11,11 @@ function loadData() {
         .fail(function (msg) {
             setTimeout(loadData, 15000);
         })
-};
+}
 
 function setData(msg) {
     var out = "";
-    var lastDay = new Date().getDay();
+    var lastDay = new Date().getDate();
     var first = true;
     var printedToday = false;
     var printedTomorrow = false;
@@ -42,7 +42,7 @@ function setData(msg) {
             html += "<h3 style='text-align: center'>Später</h3>";
             printedLater = true;
         }
-        html += "<blockquote class='" + ((event['custom']['isKlausur']) ? "klausur" : "") + "'><div class=\"row row-top\">" +
+        html += "<blockquote class='" + ((event['custom']['isSeminar']) ? "seminar" : "") + ((event['custom']['isKlausur']) ? "klausur" : "") + "'><div class=\"row row-top\">" +
             "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
             "                    class=\"column-offset-50 column-33 column\" style='text-align: right'>" + event['LOCATION'] + "</span></div>" +
             "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>";
@@ -59,7 +59,7 @@ function setData(msg) {
             "                    <div class='column column-20'>Ende:</div>\n" +
             "                    <div class='column column-80'>" + event['custom']['end']['nice'] + ((event['custom']['begin']['isPast']) ? " (" + event['custom']['end']['words'] + ")" : "") + "</div></div>\n";
         if (event['custom']['current']) {
-            var percent = new Number(((Date.now() / 1000) - event['custom']['begin']['timestamp']) / (event['custom']['end']['timestamp'] - event['custom']['begin']['timestamp'])) * 100;
+            var percent = Number(((Date.now() / 1000) - event['custom']['begin']['timestamp']) / (event['custom']['end']['timestamp'] - event['custom']['begin']['timestamp'])) * 100;
             html += "                        <br><div class='column'>\n" +
                 "                            <div class=\"progress\">\n" +
                 "                                <div class=\"progress-value\" style=\"width: " + percent + "%\">" + percent.toFixed(0) + "%</div>\n" +
@@ -71,7 +71,7 @@ function setData(msg) {
         first = false;
     }
     $('#list').html(out);
-};
+}
 
 $('#courseSelector').on('change', function () {
     setCookie('selectedCourse', $('#courseSelector').val(), 30);
