@@ -24,9 +24,11 @@ function setData(msg) {
         var event = msg[e];
         var html = "";
 
-        if (new Date(event['custom']['begin']['date']).getDate() != lastDay && new Date(event['custom']['begin']['date']).toDateString() != new Date().toDateString() && !first) {
+        if (first) lastDay = new Date(event['custom']['begin']['date']).getDay();
+
+        if (new Date(event['custom']['begin']['date']).getDay() != lastDay && !first) {
             html += "<hr>";
-            lastDay = new Date(event['custom']['begin']['date']).getDate();
+            lastDay = new Date(event['custom']['begin']['date']).getDay();
         }
         if (!printedToday && event['custom']['today']) {
             html += "<h3 style='text-align: center'>Heute</h3>";
@@ -66,7 +68,6 @@ function setData(msg) {
         }
 
         out += html + "</blockquote>";
-        lastDate = new Date(event['custom']['begin']['date']);
         first = false;
     }
     $('#list').html(out);
