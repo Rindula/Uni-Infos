@@ -6,6 +6,8 @@ namespace App\Controller;
 use App\Controller\Component\IcsReadComponent;
 use App\Controller\Component\IcsWriteComponent;
 use App\Model\Entity\Stundenplan;
+use Authentication\Controller\Component\AuthenticationComponent;
+use Authorization\Controller\Component\AuthorizationComponent;
 use Cake\Cache\Cache;
 use Cake\Datasource\RepositoryInterface;
 use Cake\Datasource\ResultSetInterface;
@@ -20,6 +22,8 @@ use Cake\I18n\Time;
  * @property Component\IcsReadComponent|RepositoryInterface|IcsReadComponent|null IcsRead
  * @property RepositoryInterface|null Stundenplan
  * @property Component\IcsWriteComponent|RepositoryInterface|IcsWriteComponent|null IcsWrite
+ * @property AuthorizationComponent|null Authorization
+ * @property AuthenticationComponent|null Authentication
  */
 class StundenplanController extends AppController
 {
@@ -30,6 +34,8 @@ class StundenplanController extends AppController
 
         $this->loadComponent('IcsRead');
         $this->loadComponent('IcsWrite');
+        $this->Authorization->skipAuthorization();
+        $this->Authentication->allowUnauthenticated(['index', 'ajax', 'calendar']);
     }
 
     /**

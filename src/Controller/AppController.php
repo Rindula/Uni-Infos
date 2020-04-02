@@ -36,6 +36,7 @@ class AppController extends Controller
      * e.g. `$this->loadComponent('FormProtection');`
      *
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
@@ -43,6 +44,8 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Authentication.Authentication');
+        $this->loadComponent('Authorization.Authorization');
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.

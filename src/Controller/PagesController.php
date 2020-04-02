@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use Authorization\Controller\Component\AuthorizationComponent;
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -27,10 +28,18 @@ use Cake\View\Exception\MissingTemplateException;
  *
  * This controller will render views from templates/Pages/
  *
+ * @property AuthorizationComponent|null Authorization
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
 class PagesController extends AppController
 {
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $this->Authentication->allowUnauthenticated(['display']);
+    }
+
     /**
      * Displays a view
      *
@@ -45,6 +54,7 @@ class PagesController extends AppController
      */
     public function display(...$path): ?Response
     {
+        $this->Authorization->skipAuthorization();
         if (!$path) {
             return $this->redirect('/');
         }

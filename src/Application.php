@@ -16,6 +16,15 @@ declare(strict_types=1);
  */
 namespace App;
 
+use Authentication\AuthenticationService;
+use Authentication\AuthenticationServiceInterface;
+use Authentication\AuthenticationServiceProviderInterface;
+use Authentication\Middleware\AuthenticationMiddleware;
+use Authorization\AuthorizationService;
+use Authorization\AuthorizationServiceInterface;
+use Authorization\AuthorizationServiceProviderInterface;
+use Authorization\Middleware\AuthorizationMiddleware;
+use Authorization\Policy\OrmResolver;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
@@ -23,6 +32,7 @@ use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Application setup class.
@@ -30,7 +40,7 @@ use Cake\Routing\Middleware\RoutingMiddleware;
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication
+class Application extends BaseApplication implements AuthorizationServiceProviderInterface, AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -57,6 +67,7 @@ class Application extends BaseApplication
         }
 
         // Load more plugins here
+        $this->addPlugin('Authorization');
     }
 
     /**
@@ -85,6 +96,19 @@ class Application extends BaseApplication
             // `new RoutingMiddleware($this, '_cake_routes_')`
             ->add(new RoutingMiddleware($this));
 
+        $middlewareQueue->add(new AuthenticationMiddleware($this));
+        $middlewareQueue->add(new AuthorizationMiddleware($this));
+
+        if (Configure::read('debug')) {
+            // Disable authz for debugkit
+            $middlewareQueue->add(function ($req, $res, $next) {
+                if ($req->getParam('plugin') === 'DebugKit') {
+                    $req->getAttribute('authorization')->skipAuthorization();
+                }
+                return $next($req, $res);
+            });
+        }
+
         return $middlewareQueue;
     }
 
@@ -106,5 +130,46 @@ class Application extends BaseApplication
         $this->addPlugin('Migrations');
 
         // Load more plugins here
+        $this->addPlugin('Authentication');
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getAuthorizationService(ServerRequestInterface $request): AuthorizationServiceInterface
+    {
+        $resolver = new OrmResolver();
+
+        return new AuthorizationService($resolver);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
+    {
+        $service = new AuthenticationService();
+        $service->setConfig([
+            'unauthenticatedRedirect' => '/users/login',
+            'queryParam' => 'redirect',
+        ]);
+
+        $fields = [
+            'username' => 'email',
+            'password' => 'password'
+        ];
+
+        // Load the authenticators, you want session first
+        $service->loadAuthenticator('Authentication.Session');
+        $service->loadAuthenticator('Authentication.Form', [
+            'fields' => $fields,
+            'loginUrl' => '/users/login'
+        ]);
+
+        // Load identifiers
+        $service->loadIdentifier('Authentication.Password', compact('fields'));
+
+        return $service;
     }
 }

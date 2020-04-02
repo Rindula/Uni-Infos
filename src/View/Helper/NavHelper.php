@@ -17,26 +17,14 @@ class NavHelper extends Helper
             'title' => 'Startseite',
             'url' => ['controller' => 'pages', 'action' => 'display', 'home']
         ],
-//        [
-//            'title' => 'Hydra',
-//            'url' => ['controller' => 'hydra', 'action' => 'index']
-//        ],
-//        [
-//            'title' => 'NMap',
-//            'url' => ['controller' => 'nmap', 'action' => 'index']
-//        ],
-//        [
-//            'title' => 'E-Bon',
-//            'url' => ['controller' => 'email', 'action' => 'ebon']
-//        ],
         [
             'title' => 'Stundenplan',
             'url' => ['controller' => 'stundenplan', 'action' => 'index']
         ],
-//        [
-//            'title' => 'Einstellungen',
-//            'url' => ['controller' => 'settings', 'action' => 'index']
-//        ]
+        [
+            'title' => 'Login',
+            'url' => ['controller' => 'users', 'action' => 'login']
+        ],
     );
 
     public function render()
