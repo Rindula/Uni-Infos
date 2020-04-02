@@ -4,12 +4,8 @@
 namespace App\View\Helper;
 
 
-use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\View\Helper;
 
-/**
- * @property AuthenticationComponent|null Authentication
- */
 class NavHelper extends Helper
 {
     public $name = 'Nav';
@@ -27,24 +23,30 @@ class NavHelper extends Helper
         ],
     );
 
-    public function render($loggedIn = false)
+    /**
+     * @param boolean|null $loggedIn
+     * @return string
+     */
+    public function render($loggedIn = null)
     {
-        if ($loggedIn) {
-            $array = [
-                [
-                    'title' => 'Logout',
-                    'url' => ['controller' => 'users', 'action' => 'logout']
-                ],
-            ];
-        } else {
-            $array = [
-                [
-                    'title' => 'Login',
-                    'url' => ['controller' => 'users', 'action' => 'login']
-                ]
-            ];
+        if ($loggedIn !== null) {
+            if ($loggedIn) {
+                $array = [
+                    [
+                        'title' => 'Logout',
+                        'url' => ['controller' => 'users', 'action' => 'logout']
+                    ],
+                ];
+            } else {
+                $array = [
+                    [
+                        'title' => 'Login',
+                        'url' => ['controller' => 'users', 'action' => 'login']
+                    ]
+                ];
+            }
+            $this->navItems = array_merge($this->navItems, $array);
         }
-        $this->navItems = array_merge($this->navItems, $array);
         return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right">Uni<span>Infos</span></div></div></a></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
     }
 

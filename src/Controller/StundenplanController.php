@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Controller\Component\IcsReadComponent;
 use App\Controller\Component\IcsWriteComponent;
 use App\Model\Entity\Stundenplan;
+use App\Model\Table\StundenplanTable;
 use Authentication\Controller\Component\AuthenticationComponent;
 use Authorization\Controller\Component\AuthorizationComponent;
 use Cake\Cache\Cache;
@@ -22,7 +23,7 @@ use Cake\View\View;
  *
  * @method Stundenplan[]|ResultSetInterface paginate($object = null, array $settings = [])
  * @property Component\IcsReadComponent|RepositoryInterface|IcsReadComponent|null IcsRead
- * @property RepositoryInterface|null Stundenplan
+ * @property StundenplanTable|null Stundenplan
  * @property Component\IcsWriteComponent|RepositoryInterface|IcsWriteComponent|null IcsWrite
  * @property AuthorizationComponent|null Authorization
  * @property AuthenticationComponent|null Authentication
@@ -36,7 +37,6 @@ class StundenplanController extends AppController
 
         $this->loadComponent('IcsRead');
         $this->loadComponent('IcsWrite');
-        $this->Authorization->skipAuthorization();
         $this->Authentication->allowUnauthenticated(['index', 'ajax', 'calendar']);
     }
 
@@ -47,6 +47,7 @@ class StundenplanController extends AppController
      */
     public function index()
     {
+        $this->Authorization->skipAuthorization();
         $courses = $this->getCourses(true);
         $courseSelected = (isset($_COOKIE["selectedCourse"])) ? $_COOKIE["selectedCourse"] : "inf19b";
         $this->set(compact('courses', 'courseSelected'));
@@ -79,6 +80,7 @@ class StundenplanController extends AppController
 
     public function ajax($course = 'inf19b', $all = false, $showVorlesung = false, $showSeminar = false)
     {
+        $this->Authorization->skipAuthorization();
 //        $this->autoRender = false;
         $this->viewBuilder()->setLayout('ajax');
         $events = $this->fetchCalendar($course, $all, $showVorlesung, $showSeminar);
@@ -192,6 +194,11 @@ class StundenplanController extends AppController
             if (!empty($dbEvent->note)) {
                 $event['custom']['note'] = (new TextHelper(new View()))->autoLink($dbEvent->note);
             }
+            if (!empty($dbEvent->loggedInNote) && $this->Authentication->getIdentity() !== null) {
+                $event['custom']['loggedInNote'] = (new TextHelper(new View()))->autoLink($dbEvent->loggedInNote);
+            }
+            $event['custom']['can_edit'] = ($this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'update')) ? $dbEvent->uid : false;
+            $event['custom']['can_delete'] = ($this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'delete')) ? $dbEvent->uid : false;
 
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
@@ -209,17 +216,17 @@ class StundenplanController extends AppController
             'info_for_db' => $event['custom']['begin']['nice'] . ' - ' . $event['SUMMARY'],
         ];
         /** @var Stundenplan $stundenplan */
-        $stundenplan = $this->Stundenplan->find('all')->where([
-            'uid IS' => $data['uid']
-        ])->select([
+        $stundenplan = $this->Stundenplan->findByUid($data['uid'])->select([
             'uid',
             'note',
+            'loggedInNote',
             'info_for_db',
         ])->first();
 
         if (!$stundenplan) {
             $stundenplan = $this->Stundenplan->newEmptyEntity();
-            $data['note'] = '';
+            $data['note'] = null;
+            $data['loggedInNote'] = null;
         }
 
         $stundenplan = $this->Stundenplan->patchEntity($stundenplan, $data);
@@ -228,8 +235,56 @@ class StundenplanController extends AppController
         return $stundenplan;
     }
 
+    public function edit($uid = null)
+    {
+        $stundenplan = $this->Stundenplan->findByUid($uid)->firstOrFail();
+        $this->Authorization->authorize($stundenplan, 'update');
+
+        if ($this->request->is(['post', 'put'])) {
+            $data = $this->request->getData();
+            if (empty($data['note'])) $data['note'] = null;
+            if (empty($data['loggedInNote'])) $data['loggedInNote'] = null;
+            $this->Stundenplan->patchEntity($stundenplan, $data);
+            if ($this->Stundenplan->save($stundenplan)) {
+                $this->Flash->success('Notiz gespeichert');
+                return $this->redirect(['controller' => 'stundenplan', 'action' => 'index']);
+            }
+            $this->Flash->error('Notiz konnte nicht gespeichert werden');
+        }
+
+        $this->set(compact('stundenplan'));
+    }
+
+    public function delete($uid = null, $type = 'all')
+    {
+        $stundenplan = $this->Stundenplan->findByUid($uid)->firstOrFail();
+        $this->Authorization->authorize($stundenplan);
+
+        $data = [];
+        switch ($type) {
+            case 'all':
+                $data['note'] = null;
+                $data['loggedInNote'] = null;
+                break;
+            case 'note':
+                $data['note'] = null;
+                break;
+            case 'loggedInNote':
+                $data['loggedInNote'] = null;
+                break;
+        }
+        $this->Stundenplan->patchEntity($stundenplan, $data);
+        if ($this->Stundenplan->save($stundenplan)) {
+            $this->Flash->success('Die Notiz wurde erfolgreich entfernt');
+        } else {
+            $this->Flash->error('Die Notiz konnte nicht entfernt werden');
+        }
+        return $this->redirect(['controller' => 'stundenplan', 'action' => 'index']);
+    }
+
     public function calendar($course = null)
     {
+        $this->Authorization->skipAuthorization();
         $this->viewBuilder()->setLayout('ajax');
         if ($course) {
             $events = $this->fetchCalendar($course, true, false, false);

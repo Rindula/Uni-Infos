@@ -6,15 +6,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Stundenplan Entity
+ * Role Entity
  *
  * @property int $id
- * @property string $uid
- * @property string|null $note
- * @property string|null $loggedInNote
- * @property string $info_for_db
+ * @property string $name
+ * @property string $alias
+ *
+ * @property User[] $users
  */
-class Stundenplan extends Entity
+class Role extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -26,9 +26,8 @@ class Stundenplan extends Entity
      * @var array
      */
     protected $_accessible = [
-        'uid' => true,
-        'note' => true,
-        'loggedInNote' => true,
-        'info_for_db' => true,
+        'name' => true,
+        'alias' => true,
+        'users' => true,
     ];
 }

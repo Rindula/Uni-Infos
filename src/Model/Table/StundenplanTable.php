@@ -3,22 +3,23 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Entity\Stundenplan;
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
  * Stundenplan Model
  *
- * @method \App\Model\Entity\Stundenplan get($primaryKey, $options = [])
- * @method \App\Model\Entity\Stundenplan newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Stundenplan[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Stundenplan|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Stundenplan saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Stundenplan patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Stundenplan[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Stundenplan findOrCreate($search, callable $callback = null, $options = [])
+ * @method Stundenplan get($primaryKey, $options = [])
+ * @method Stundenplan newEntity($data = null, array $options = [])
+ * @method Stundenplan[] newEntities(array $data, array $options = [])
+ * @method Stundenplan|false save(EntityInterface $entity, $options = [])
+ * @method Stundenplan saveOrFail(EntityInterface $entity, $options = [])
+ * @method Stundenplan patchEntity(EntityInterface $entity, array $data, array $options = [])
+ * @method Stundenplan[] patchEntities($entities, array $data, array $options = [])
+ * @method Stundenplan findOrCreate($search, callable $callback = null, $options = [])
  */
 class StundenplanTable extends Table
 {
@@ -40,8 +41,8 @@ class StundenplanTable extends Table
     /**
      * Default validation rules.
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
+     * @param Validator $validator Validator instance.
+     * @return Validator
      */
     public function validationDefault(Validator $validator): Validator
     {
@@ -60,11 +61,27 @@ class StundenplanTable extends Table
             ->allowEmptyString('note');
 
         $validator
+            ->scalar('loggedInNote')
+            ->allowEmptyString('loggedInNote');
+
+        $validator
             ->scalar('info_for_db')
             ->maxLength('info_for_db', 255)
             ->requirePresence('info_for_db', 'create')
             ->notEmptyString('info_for_db');
 
         return $validator;
+    }
+
+    /**
+     * @param string $uid
+     * @param string $type
+     * @return Query
+     */
+    public function findByUid($uid, $type = 'all')
+    {
+        return $this->find($type)->where([
+            'uid IS' => $uid
+        ]);
     }
 }

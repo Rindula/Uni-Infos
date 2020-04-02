@@ -3,20 +3,25 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\Auth\DefaultPasswordHasher;
+use Authentication\IdentityInterface;
+use Authentication\PasswordHasher\DefaultPasswordHasher;
+use Cake\I18n\FrozenTime;
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * User Entity
  *
  * @property int $id
+ * @property int $role_id
+ * @property Role $role
  * @property string $email
  * @property string $password
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
- * @property \Cake\I18n\FrozenTime|null $enabled
+ * @property FrozenTime $created
+ * @property FrozenTime $modified
+ * @property FrozenTime|null $enabled
  */
-class User extends Entity
+class User extends Entity implements IdentityInterface
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -28,6 +33,8 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
+        'role_id' => true,
+        'role' => true,
         'email' => true,
         'password' => true,
         'created' => true,
@@ -43,10 +50,38 @@ class User extends Entity
     protected $_hidden = [
         'password',
     ];
-    protected function _setPassword(string $password) : ?string
+
+    protected function _setPassword(string $password): ?string
     {
         if (strlen($password) > 0) {
             return (new DefaultPasswordHasher())->hash($password);
         }
+    }
+
+    /**
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        $usersTable = TableRegistry::getTableLocator()->get('Users');
+        $entity = $usersTable->get($this->id, ['contain' => ['Roles']]);
+        return $entity->role->alias == $role;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIdentifier()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getOriginalData()
+    {
+        return $this;
     }
 }

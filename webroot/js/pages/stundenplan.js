@@ -47,8 +47,22 @@ function setData(msg) {
             "                    class=\"column-offset-50 column-33 column\" style='text-align: right'>" + event['LOCATION'] + "</span></div>" +
             "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>";
 
-        if (event['custom']['note'] && typeof loggedIn === "boolean" && loggedIn) {
+        if (event['custom']['note']) {
             html += "<p class='message'>" + event['custom']['note'] + "</p>";
+        }
+        if (event['custom']['loggedInNote']) {
+            html += "<p class='message'>" + event['custom']['loggedInNote'] + "</p>";
+        }
+        if (event['custom']['can_edit']) {
+            html += "<a class='button button-outline' href='/stundenplan/edit/" + event['custom']['can_edit'] + "'>Notiz bearbeiten</a>";
+        }
+        if (event['custom']['can_delete']) {
+            if (event['custom']['can_edit']) {
+                html += "<br>";
+            }
+            html += "<a class='button button-clear' href='/stundenplan/delete/" + event['custom']['can_delete'] + "/note'>Notiz löschen</a>";
+            html += "<a class='button button-clear' href='/stundenplan/delete/" + event['custom']['can_delete'] + "/loggedInNote'>Eingeloggten Notiz löschen</a>";
+            html += "<a class='button button-clear' href='/stundenplan/delete/" + event['custom']['can_delete'] + "/all'>Notizen löschen</a>";
         }
 
         html += "<div class='row mobile-margin-down'>\n" +
