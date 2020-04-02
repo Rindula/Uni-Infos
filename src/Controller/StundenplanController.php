@@ -14,6 +14,7 @@ use Cake\Datasource\RepositoryInterface;
 use Cake\Datasource\ResultSetInterface;
 use Cake\Http\Response;
 use Cake\I18n\Time;
+use Cake\View\Helper\HtmlHelper;
 use Cake\View\Helper\TextHelper;
 use Cake\View\View;
 
@@ -106,6 +107,7 @@ class StundenplanController extends AppController
         $cal = $this->IcsRead;
         $events = $cal->getIcsEventsAsArray($icsString);
         $last = null;
+        $htmlHelper = (new HtmlHelper(new View()));
         foreach ($events as $key => &$event) {
 
             if (!empty($event['SUMMARY']) && $event['SUMMARY'] == "Studientag") {
@@ -198,7 +200,7 @@ class StundenplanController extends AppController
                 $event['custom']['loggedInNote'] = (new TextHelper(new View()))->autoLink($dbEvent->loggedInNote);
             }
             $event['custom']['can_edit'] = ($this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'update')) ? $dbEvent->uid : false;
-            $event['custom']['can_delete'] = ($this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'delete')) ? $dbEvent->uid : false;
+            $event['custom']['can_delete'] = ((!empty($dbEvent->loggedInNote) || !empty($dbEvent->note)) && $this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'delete')) ? (!empty($dbEvent->note) ? $htmlHelper->link('Notiz löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'note']) . "<br>" : '') . ((!empty($dbEvent->loggedInNote)) ? $htmlHelper->link('Eingeloggten Notiz löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'loggedInNote']) . "<br>" : '') . $htmlHelper->link('Alle Notizen löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'all']) : false;
 
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }

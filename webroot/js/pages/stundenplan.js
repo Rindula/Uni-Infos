@@ -54,15 +54,17 @@ function setData(msg) {
             html += "<p class='message'>" + event['custom']['loggedInNote'] + "</p>";
         }
         if (event['custom']['can_edit']) {
-            html += "<a class='button button-outline' href='/stundenplan/edit/" + event['custom']['can_edit'] + "'>Notiz bearbeiten</a>";
+            if (event['custom']['note']) {
+                html += "<a class='button button-outline' href='/stundenplan/edit/" + event['custom']['can_edit'] + "'>Notiz bearbeiten</a>";
+            } else {
+                html += "<a class='' href='/stundenplan/edit/" + event['custom']['can_edit'] + "'>📝</a>";
+            }
         }
         if (event['custom']['can_delete']) {
             if (event['custom']['can_edit']) {
                 html += "<br>";
             }
-            html += "<a class='button button-clear' href='/stundenplan/delete/" + event['custom']['can_delete'] + "/note'>Notiz löschen</a>";
-            html += "<a class='button button-clear' href='/stundenplan/delete/" + event['custom']['can_delete'] + "/loggedInNote'>Eingeloggten Notiz löschen</a>";
-            html += "<a class='button button-clear' href='/stundenplan/delete/" + event['custom']['can_delete'] + "/all'>Notizen löschen</a>";
+            html += event['custom']['can_delete'] + "<br><br>";
         }
 
         html += "<div class='row mobile-margin-down'>\n" +
