@@ -82,7 +82,7 @@ class StundenplanController extends AppController
     public function ajax($course = 'inf19b', $all = false, $showVorlesung = false, $showSeminar = false)
     {
         $this->Authorization->skipAuthorization();
-//        $this->autoRender = false;
+        $this->getResponse()->cors($this->getRequest(), '*');
         $this->viewBuilder()->setLayout('ajax');
         $events = $this->fetchCalendar($course, $all, $showVorlesung, $showSeminar);
 
@@ -287,6 +287,7 @@ class StundenplanController extends AppController
     public function calendar($course = null)
     {
         $this->Authorization->skipAuthorization();
+        $this->getResponse()->cors($this->getRequest(), '*');
         $this->viewBuilder()->setLayout('ajax');
         if ($course) {
             $events = $this->fetchCalendar($course, true, false, false);

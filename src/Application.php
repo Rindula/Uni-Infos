@@ -151,7 +151,7 @@ class Application extends BaseApplication implements AuthorizationServiceProvide
     {
         $service = new AuthenticationService();
         $service->setConfig([
-            'unauthenticatedRedirect' => '/users/login',
+            'unauthenticatedRedirect' => '/login',
             'queryParam' => 'redirect',
         ]);
 
@@ -164,7 +164,7 @@ class Application extends BaseApplication implements AuthorizationServiceProvide
         $service->loadAuthenticator('Authentication.Session');
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            'loginUrl' => '/users/login'
+            'loginUrl' => '/login'
         ]);
 
         // Load identifiers

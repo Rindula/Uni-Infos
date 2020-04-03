@@ -8,7 +8,6 @@ use Cake\ORM\Entity;
 /**
  * Stundenplan Entity
  *
- * @property int $id
  * @property string $uid
  * @property string|null $note
  * @property string|null $loggedInNote

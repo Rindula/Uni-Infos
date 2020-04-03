@@ -47,10 +47,6 @@ class StundenplanTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('id')
-            ->allowEmptyString('id', null, 'create');
-
-        $validator
             ->scalar('uid')
             ->maxLength('uid', 255)
             ->requirePresence('uid', 'create')
