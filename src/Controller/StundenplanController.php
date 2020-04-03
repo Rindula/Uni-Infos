@@ -50,7 +50,7 @@ class StundenplanController extends AppController
     {
         $this->Authorization->skipAuthorization();
         $courses = $this->getCourses(true);
-        $courseSelected = (isset($_COOKIE["selectedCourse"])) ? $_COOKIE["selectedCourse"] : "inf19b";
+        $courseSelected = (isset($_COOKIE["selectedCourse"])) ? $_COOKIE["selectedCourse"] : "";
         $this->set(compact('courses', 'courseSelected'));
     }
 
@@ -79,12 +79,45 @@ class StundenplanController extends AppController
         return $courseGroup;
     }
 
-    public function ajax($course = 'inf19b', $all = false, $showVorlesung = false, $showSeminar = false)
+    public function ajax($course = '', $all = false, $showVorlesung = false, $showSeminar = false)
     {
         $this->Authorization->skipAuthorization();
         $this->getResponse()->cors($this->getRequest(), '*');
         $this->viewBuilder()->setLayout('ajax');
-        $events = $this->fetchCalendar($course, $all, $showVorlesung, $showSeminar);
+        if (!empty($course)) {
+            $events = $this->fetchCalendar($course, $all, $showVorlesung, $showSeminar);
+        } else {
+            $events = [
+                [
+                    'SUMMARY' => 'Kein Kurs ausgewählt',
+                    'LOCATION' => '',
+                    'DESCRIPTION' => 'Bitte nutze das Dropdown Menü, um einen Kurs auszuwählen.',
+                    'custom' => [
+                        'begin' => [
+                            'date' => (new Time())->toTimeString(),
+                            'nice' => (new Time())->nice(),
+                            'words' => (new Time())->timeAgoInWords(),
+                            'timestamp' => (new Time())->toUnixString(),
+                            'isPast' => false,
+                        ],
+                        'end' => [
+                            'date' => (new Time())->toTimeString(),
+                            'nice' => (new Time())->nice(),
+                            'words' => (new Time())->timeAgoInWords(),
+                            'timestamp' => (new Time())->toUnixString(),
+                            'isPast' => false,
+                        ],
+                        'current' => false,
+                        'today' => true,
+                        'tomorrow' => false,
+                        'isSeminar' => false,
+                        'isKlausur' => false,
+                        'can_edit' => false,
+                        'can_delete' => false,
+                    ]
+                ]
+            ];
+        }
 
         $this->set(compact('events'));
         $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
