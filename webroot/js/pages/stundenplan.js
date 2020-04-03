@@ -90,7 +90,7 @@ function setData(msg) {
 }
 
 $('#courseSelector').on('change', function () {
-    setCookie('selectedCourse', $('#courseSelector').val(), 30);
+    setCookie('selectedCourse', $('#courseSelector').val(), 365);
     $.ajax({
         method: "GET",
         url: "/stundenplan/ajax/" + $('#courseSelector').val(),
