@@ -165,7 +165,7 @@ class StundenplanController extends AppController
             }
 
             $event['custom']['isKlausur'] = false;
-            if (!empty($event['SUMMARY']) && (strpos($event['SUMMARY'], 'Klausur') || strpos($event['SUMMARY'], 'Praxismodul'))) {
+            if (!empty($event['SUMMARY']) && (strpos($event['SUMMARY'], 'Klausur') !== false || strpos($event['SUMMARY'], 'Praxismodul') !== false)) {
                 $event['custom']['isKlausur'] = true;
             }
 
