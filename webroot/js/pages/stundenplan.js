@@ -1,7 +1,7 @@
 function loadData() {
     $.ajax({
         method: "GET",
-        url: "/stundenplan/ajax/" + $('#courseSelector').val(),
+        url: "/stundenplan/ajax/" + $('#courseSelector').val() + '/0/1',
         dataType: "json"
     })
         .done(function (msg) {
@@ -93,7 +93,7 @@ $('#courseSelector').on('change', function () {
     setCookie('selectedCourse', $('#courseSelector').val(), 365);
     $.ajax({
         method: "GET",
-        url: "/stundenplan/ajax/" + $('#courseSelector').val(),
+        url: "/stundenplan/ajax/" + $('#courseSelector').val() + '/0/1',
         dataType: "json"
     })
         .done(function (msg) {
