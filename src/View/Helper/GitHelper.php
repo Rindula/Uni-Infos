@@ -40,7 +40,7 @@ class GitHelper extends Helper
         if (!Configure::read('debug')) {
             $result = shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit');
         } else {
-            return;
+            $result = shell_exec('cd /mnt/o/interface && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit');
         }
         list($this->shorthash, $this->hash, $this->message, $timestamp) = explode('~#~', $result);
         $this->timestamp = new Time($timestamp);
@@ -48,7 +48,8 @@ class GitHelper extends Helper
 
     public function getFooterInfos()
     {
-        if (Configure::read('debug')) return 'DEVELOPING EDITION';
-        return $this->Html->link($this->shorthash, 'https://gitlab.com/Rindula/interface/-/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' - ' . $this->message . '(' . $this->timestamp->nice() . ')';
+        $prestring = '';
+        if (Configure::read('debug')) $prestring = 'DEVELOPMENT EDITION - ';
+        return $prestring . $this->Html->link($this->shorthash, 'https://gitlab.com/Rindula/interface/-/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' - ' . $this->message . ' (' . $this->timestamp->nice() . ')';
     }
 }
