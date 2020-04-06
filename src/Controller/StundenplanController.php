@@ -107,6 +107,7 @@ class StundenplanController extends AppController
                             'timestamp' => (new Time())->toUnixString(),
                             'isPast' => false,
                         ],
+                        'dayid' => (new Time())->format('Ymd'),
                         'current' => false,
                         'today' => true,
                         'tomorrow' => false,

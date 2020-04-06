@@ -24,12 +24,7 @@ function setData(msg) {
         var event = msg[e];
         var html = "";
 
-        if (first) lastDay = new Date(event['custom']['begin']['date']).getDay();
 
-        if (new Date(event['custom']['begin']['date']).getDay() != lastDay && !first) {
-            html += "<hr>";
-            lastDay = new Date(event['custom']['begin']['date']).getDay();
-        }
         if (!printedToday && event['custom']['today']) {
             html += "<h3 style='text-align: center'>Heute</h3>";
             printedToday = true;
@@ -38,9 +33,13 @@ function setData(msg) {
             html += "<h3 style='text-align: center'>Morgen</h3>";
             printedTomorrow = true;
         }
-        if (!printedLater && !event['custom']['tomorrow'] && !event['custom']['today']) {
-            html += "<h3 style='text-align: center'>Später</h3>";
-            printedLater = true;
+        if (!event['custom']['tomorrow'] && !event['custom']['today'] && new Date(event['custom']['begin']['date']).getDay() != lastDay) {
+            if (!first) html += "<hr>";
+            html += "<h3 style='text-align: center'>" + new Date(event['custom']['begin']['date']).toLocaleDateString() + "</h3>";
+        }
+        if (first) lastDay = new Date(event['custom']['begin']['date']).getDay();
+        if (new Date(event['custom']['begin']['date']).getDay() != lastDay && !first) {
+            lastDay = new Date(event['custom']['begin']['date']).getDay();
         }
         html += "<blockquote class='" + ((event['custom']['isSeminar']) ? "seminar" : "") + ((event['custom']['isKlausur']) ? "klausur" : "") + "'><div class=\"row row-top\">" +
             "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
