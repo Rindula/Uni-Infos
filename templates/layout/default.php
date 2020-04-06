@@ -101,9 +101,9 @@ use Cake\Core\Configure;
     </div>
 </main>
 <?php if (!Configure::read('debug')): ?>
-    <?= $this->Html->tag('footer', shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h - %s (%ci)\' --abbrev-commit') . '') ?>
+    <?= $this->Html->tag('footer', shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h - %s (%ci)\' --abbrev-commit') . '<br>&copy; ' . date('Y') . ' rindula.de') ?>
 <?php else: ?>
-    <?= $this->Html->tag('footer', 'DEVELOPING EDITION<br>&copy; ' . date('Y') . ' rindula.de') ?>
+    <?= $this->Html->tag('footer', 'DEVELOPING EDITION') ?>
 <?php endif; ?>
 <?= $this->fetch('bottomScripts') ?>
 
