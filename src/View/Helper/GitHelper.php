@@ -49,6 +49,6 @@ class GitHelper extends Helper
     public function getFooterInfos()
     {
         if (Configure::read('debug')) return 'DEVELOPING EDITION';
-        return $this->Html->link($this->shorthash, 'https://gitlab.com/Rindula/interface/-/commit/' . $this->hash) . ' - ' . $this->message . '(' . $this->timestamp->nice() . ')';
+        return $this->Html->link($this->shorthash, 'https://gitlab.com/Rindula/interface/-/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' - ' . $this->message . '(' . $this->timestamp->nice() . ')';
     }
 }
