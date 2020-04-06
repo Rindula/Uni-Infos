@@ -142,6 +142,7 @@ class StundenplanController extends AppController
         $events = $cal->getIcsEventsAsArray($icsString);
         $last = null;
         $htmlHelper = (new HtmlHelper(new View()));
+        $textHelper = (new TextHelper(new View()));
         foreach ($events as $key => &$event) {
 
             if (!empty($event['SUMMARY']) && $event['SUMMARY'] == "Studientag") {
@@ -228,10 +229,10 @@ class StundenplanController extends AppController
             $dbEvent = $this->saveToDatabase($event);
 
             if (!empty($dbEvent->note)) {
-                $event['custom']['note'] = (new TextHelper(new View()))->autoLink($dbEvent->note);
+                $event['custom']['note'] = $textHelper->autoParagraph($textHelper->autoLink($dbEvent->note));
             }
             if (!empty($dbEvent->loggedInNote) && $this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'readNote')) {
-                $event['custom']['loggedInNote'] = (new TextHelper(new View()))->autoLink($dbEvent->loggedInNote);
+                $event['custom']['loggedInNote'] = $textHelper->autoParagraph($textHelper->autoLink($dbEvent->loggedInNote));
             }
             $event['custom']['can_edit'] = ($this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'update')) ? $dbEvent->uid : false;
             $event['custom']['can_delete'] = ((!empty($dbEvent->loggedInNote) || !empty($dbEvent->note)) && $this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'delete')) ? (!empty($dbEvent->note) ? $htmlHelper->link('Notiz löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'note'], ['confirm' => 'Bist du sicher, dass du die Notiz löschen willst?']) . "<br>" : '') . ((!empty($dbEvent->loggedInNote)) ? $htmlHelper->link('Eingeloggten Notiz löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'loggedInNote'], ['confirm' => 'Bist du sicher, dass du die Eingeloggten Notiz löschen willst?']) . "<br>" : '') . $htmlHelper->link('Alle Notizen löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'all'], ['confirm' => 'Bist du sicher, dass du die alle Notizen dieser Stunde löschen willst?']) : false;
