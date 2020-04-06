@@ -15,8 +15,8 @@ declare(strict_types=1);
  */
 namespace App\View;
 
+use App\View\Helper\GitHelper;
 use App\View\Helper\NavHelper;
-use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\View\View;
 
 /**
@@ -25,6 +25,7 @@ use Cake\View\View;
  * Your application's default view class
  *
  * @property NavHelper Nav
+ * @property GitHelper Git
  * @link https://book.cakephp.org/4/en/views.html#the-app-view
  */
 class AppView extends View
@@ -41,5 +42,6 @@ class AppView extends View
     public function initialize(): void
     {
         $this->loadHelper('Nav');
+        $this->loadHelper('Git');
     }
 }

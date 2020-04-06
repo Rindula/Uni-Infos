@@ -1,15 +1,18 @@
 footer {
-    height: 50px;
-    text-align: center;
-    position: sticky;
-    bottom: 0px;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-top: 1px dotted white;
+  height: 50px;
+  text-align: center;
+  position: sticky;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-top: 1px dotted white;
+}
+footer a {
+  color: #d39800;
 }
 
 .main {
-    min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 200px);
 }
 
 /*# sourceMappingURL=main.css.map */

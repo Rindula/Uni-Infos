@@ -1,4 +1,7 @@
 $darkened_bg: rgba(0, 0, 0, 0.4);
+$theme-color: #d39800;
+$theme-color-secondary: rgb(132, 132, 132);
+$theme-color-shadow: #8b4100;
 
 footer {
     height: 50px;
@@ -8,6 +11,10 @@ footer {
     width: 100%;
     background-color: $darkened_bg;
     border-top: 1px dotted white;
+
+    a {
+        color: $theme-color;
+    }
 }
 
 .main {
