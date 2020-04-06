@@ -43,7 +43,7 @@ class GitHelper extends Helper
             return;
         }
         list($this->shorthash, $this->hash, $this->message, $timestamp) = explode('~#~', $result);
-        $this->timestamp = new Time($timestamp, 'UTC');
+        $this->timestamp = new Time($timestamp, 'Europe/Berlin');
     }
 
     public function getFooterInfos()
