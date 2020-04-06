@@ -10,7 +10,6 @@
 }
 
 .progress-value {
-    box-shadow: 0 0 10px 1px var(--theme-color-shadow);
     border-radius: 100px;
     background: var(--theme-color);
     height: 20px;

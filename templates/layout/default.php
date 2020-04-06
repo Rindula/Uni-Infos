@@ -97,6 +97,7 @@ use App\View\AppView; ?>
     </div>
 </main>
 <footer>
+    <?= shell_exec("git log -1 --pretty=format:'%h - %s (%ci)' --abbrev-commit"); ?>
 </footer>
 <?= $this->fetch('bottomScripts') ?>
 
