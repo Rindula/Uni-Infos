@@ -17,7 +17,10 @@
 
 $cakeDescription = 'UniInfos';
 
-use App\View\AppView; ?>
+use App\View\AppView;
+use Cake\Core\Configure;
+
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -36,6 +39,7 @@ use App\View\AppView; ?>
     <?= $this->Html->css('milligram.min.css') ?>
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('glitch.css') ?>
+    <?= $this->Html->css('main.css') ?>
     <?= $this->Html->css('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css') ?>
     <?= $this->Html->script('jquery.min.js') ?>
     <?= $this->Html->script('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', ['block' => 'bottomScripts']) ?>
@@ -96,9 +100,11 @@ use App\View\AppView; ?>
         <?= $this->fetch('content') ?>
     </div>
 </main>
-<footer>
-    <?= shell_exec("git log -1 --pretty=format:'%h - %s (%ci)' --abbrev-commit"); ?>
-</footer>
+<?php if (!Configure::read('debug')): ?>
+    <?= $this->Html->tag('footer', shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h - %s (%ci)\' --abbrev-commit') . '') ?>
+<?php else: ?>
+    <?= $this->Html->tag('footer', 'DEVELOPING EDITION<br>&copy; ' . date('Y') . ' rindula.de') ?>
+<?php endif; ?>
 <?= $this->fetch('bottomScripts') ?>
 
 </body>

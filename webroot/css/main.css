@@ -1,0 +1,10 @@
+footer {
+    height: 50px;
+    text-align: center;
+}
+
+.main {
+    min-height: calc(100vh - 210px);
+}
+
+/*# sourceMappingURL=main.css.map */
