@@ -102,7 +102,7 @@ class Event
             $props[] = "LOCATION:" . $this->getLocation();
         }
         if (!empty($this->getDescription())) {
-            $props[] = "DESCRIPTION:" . $this->getDescription();
+            $props[] = "DESCRIPTION:" . str_replace(["\r", "\n"], ['\r', '\n'], $this->getDescription());
         }
         if (!empty($this->getCategories())) {
             $props[] = "CATEGORIES:" . $this->getCategories();

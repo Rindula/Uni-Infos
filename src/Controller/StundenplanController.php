@@ -331,7 +331,11 @@ class StundenplanController extends AppController
                 if ($event['custom']['isKlausur']) $categories[] = "KLAUSUR";
                 if ($event['custom']['isSeminar']) $categories[] = "SEMINAR";
                 if (!($event['custom']['isKlausur'] || $event['custom']['isSeminar'])) $categories[] = "VORLESUNG";
-                $icsWriter->newEvent($event['SUMMARY'], $event['custom']['begin']['timestamp'], $event['custom']['end']['timestamp'], $event['DESCRIPTION'], $event['LOCATION'], $categories);
+                $description = $event['DESCRIPTION'];
+                if (isset($event['custom']['note'])) {
+                    $description .= PHP_EOL . PHP_EOL . strip_tags($event['custom']['note']);
+                }
+                $icsWriter->newEvent($event['SUMMARY'], $event['custom']['begin']['timestamp'], $event['custom']['end']['timestamp'], $description, $event['LOCATION'], $categories);
             }
             $this->set('writer', $icsWriter);
             return;
