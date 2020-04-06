@@ -38,12 +38,12 @@ class GitHelper extends Helper
     {
         parent::initialize($config);
         if (!Configure::read('debug')) {
-            $result = shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ct\' --abbrev-commit');
+            $result = shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit');
         } else {
             return;
         }
         list($this->shorthash, $this->hash, $this->message, $timestamp) = explode('~#~', $result);
-        $this->timestamp = new Time($timestamp, 'Europe/Berlin');
+        $this->timestamp = new Time($timestamp);
     }
 
     public function getFooterInfos()
