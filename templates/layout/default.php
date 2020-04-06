@@ -99,7 +99,7 @@ use App\View\AppView;
         <?= $this->fetch('content') ?>
     </div>
 </main>
-<?= $this->Html->tag('footer', $this->Git->getFooterInfos() . '<br>&copy; ' . date('Y') . ' rindula.de') ?>
+<?= $this->Html->tag('footer', (($this->request->is('mobile')) ? $this->Git->getFooterInfosMobile() : $this->Git->getFooterInfos()) . '<br>' . '&copy; ' . date('Y') . ' rindula.de') ?>
 <?= $this->fetch('bottomScripts') ?>
 
 </body>

@@ -52,4 +52,12 @@ class GitHelper extends Helper
         if (Configure::read('debug')) $prestring = 'DEVELOPMENT EDITION - ';
         return $prestring . $this->Html->link($this->shorthash, 'https://gitlab.com/Rindula/interface/-/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' - ' . $this->message . ' (' . $this->timestamp->nice() . ')';
     }
+
+    public function getFooterInfosMobile()
+    {
+        $prestring = '';
+        if (Configure::read('debug')) $prestring = 'DEVELOPMENT EDITION - ';
+        return $prestring . $this->Html->link($this->shorthash, 'https://gitlab.com/Rindula/interface/-/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' (' . $this->timestamp->nice() . ')';
+
+    }
 }
