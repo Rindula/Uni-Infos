@@ -47,7 +47,7 @@ class NavHelper extends Helper
             }
             $this->navItems = array_merge($this->navItems, $array);
         }
-        return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right">Uni<span>Infos</span></div></div></a></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
+        return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right">Uni<span>Infos</span></a></div></div></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
     }
 
     private function nav(array $items)
