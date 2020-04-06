@@ -1,8 +1,15 @@
+$darkened_bg: rgba(0, 0, 0, 0.4);
+
 footer {
     height: 50px;
     text-align: center;
+    position: sticky;
+    bottom: 0px;
+    width: 100%;
+    background-color: $darkened_bg;
+    border-top: 1px dotted white;
 }
 
 .main {
-    min-height: calc(100vh - 210px);
+    min-height: calc(100vh - 200px);
 }
