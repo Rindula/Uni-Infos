@@ -35,6 +35,7 @@ Thumbs.db
 .settings/*
 # JetBrains, aka PHPStorm, IntelliJ IDEA
 .idea/*
+!.idea/watcherTasks.xml
 # NetBeans
 nbproject/*
 # Visual Studio Code
@@ -42,3 +43,4 @@ nbproject/*
 # Sass preprocessor
 .sass-cache/
 /config/Migrations/schema-dump-default.lock
+config/Seeds/
