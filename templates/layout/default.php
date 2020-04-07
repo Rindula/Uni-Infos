@@ -36,7 +36,6 @@ use App\View\AppView;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
 
     <?= $this->Html->css('milligram.min.css') ?>
-    <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('main.min.css') ?>
     <?= $this->Html->css('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css') ?>
     <?= $this->Html->script('jquery.min.js') ?>
