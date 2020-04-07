@@ -36,6 +36,7 @@ Thumbs.db
 # JetBrains, aka PHPStorm, IntelliJ IDEA
 .idea/*
 !.idea/watcherTasks.xml
+!.idea/scopes/*
 # NetBeans
 nbproject/*
 # Visual Studio Code
