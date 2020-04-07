@@ -37,11 +37,7 @@ class GitHelper extends Helper
     public function initialize(array $config): void
     {
         parent::initialize($config);
-        if (!Configure::read('debug')) {
-            $result = shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit');
-        } else {
-            $result = shell_exec('cd /mnt/o/interface && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit');
-        }
+        $result = !Configure::read('debug') ? shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit') : str_replace('\'', '', shell_exec('cd ' . ROOT . " && git log -1 --pretty=format:'%h~#~%H~#~%s~#~%ci' --abbrev-commit"));
         list($this->shorthash, $this->hash, $this->message, $timestamp) = explode('~#~', $result);
         $this->timestamp = new Time($timestamp);
     }

@@ -37,8 +37,7 @@ use App\View\AppView;
 
     <?= $this->Html->css('milligram.min.css') ?>
     <?= $this->Html->css('cake.css') ?>
-    <?= $this->Html->css('glitch.css') ?>
-    <?= $this->Html->css('main.css') ?>
+    <?= $this->Html->css('main.min.css') ?>
     <?= $this->Html->css('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css') ?>
     <?= $this->Html->script('jquery.min.js') ?>
     <?= $this->Html->script('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', ['block' => 'bottomScripts']) ?>

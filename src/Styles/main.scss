@@ -2,6 +2,11 @@ $darkened_bg: rgba(0, 0, 0, 0.4);
 $theme-color: #d39800;
 $theme-color-secondary: rgb(132, 132, 132);
 $theme-color-shadow: #8b4100;
+$theme-color-secondary-shadow: rgb(75, 75, 75);
+;
+
+@import "progressbar";
+@import "glitch";
 
 footer {
     height: 50px;

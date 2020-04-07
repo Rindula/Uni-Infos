@@ -1,0 +1,26 @@
+.progress {
+    background: $theme-color-secondary;
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    display: flex;
+    height: 20px;
+}
+
+.progress-value {
+    border-radius: 100px;
+    background: $theme-color;
+    @for $i from 90 through 100 {
+        [data-percent="#{$i}"] {
+            opacity: calc(1 - (#{$i} - 90 / 1000));
+        }
+    }
+    height: 20px;
+    min-width: 5px;
+    color: white;
+    text-align: center;
+    font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono", "Droid Sans Mono", monospace, monospace;
+    transition: .2s ease width;
+}

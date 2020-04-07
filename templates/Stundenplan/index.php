@@ -1,12 +1,12 @@
 <?php
 /**
- * @var \App\View\AppView $this
+ * @var AppView $this
  * @var array $events
  */
 
-echo $this->Html->css("progressbar.css");
 $this->Html->script("pages/stundenplan.js", ['block' => 'bottomScripts']);
-?>
+
+use App\View\AppView; ?>
 <?php if ($loggedIn): ?>
     <script>
         var loggedIn = true;
