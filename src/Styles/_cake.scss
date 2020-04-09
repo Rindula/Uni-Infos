@@ -154,22 +154,26 @@ hr {
     border-style: solid;
     border-radius: 4px;
     margin-bottom: 2rem;
+
+    a {
+        color: complement($color-message);
+    }
+
+    .success {
+        background: lighten($color-success, 25%);
+        color: darken($color-success, 25%);
+        border-color: $color-success;
+    }
+
+    .error {
+        background: lighten($color-error, 25%);
+        color: darken($color-error, 15%);;
+        border-color: $color-error;
+    }
 }
 
-.message.hidden {
+.hidden {
     display: none;
-}
-
-.message.success {
-    background: lighten($color-success, 25%);
-    color: darken($color-success, 25%);
-    border-color: $color-success;
-}
-
-.message.error {
-    background: lighten($color-error, 25%);
-    color: darken($color-error, 15%);;
-    border-color: $color-error;
 }
 
 /* Forms */

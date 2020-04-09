@@ -41,6 +41,7 @@ use App\View\AppView;
     <?= $this->Html->script('jquery.min.js') ?>
     <?= $this->Html->script('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', ['block' => 'bottomScripts']) ?>
     <?= $this->Html->script('cookieConsent.js', ['block' => 'bottomScripts']) ?>
+    <?= $this->Html->script('main.min.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -97,7 +98,7 @@ use App\View\AppView;
         <?= $this->fetch('content') ?>
     </div>
 </main>
-<?= $this->Html->tag('footer', (($this->request->is('mobile')) ? $this->Git->getFooterInfosMobile() : $this->Git->getFooterInfos()) . '<br>' . '&copy; ' . date('Y') . ' rindula.de') ?>
+<?= $this->Html->tag('footer', (($this->request->is('mobile')) ? $this->Git->getFooterInfosMobile() : $this->Git->getFooterInfos()) . '<br>' . '&copy; ' . date('Y') . ' rindula.de', ['id' => 'footer']) ?>
 <?= $this->fetch('bottomScripts') ?>
 
 </body>
