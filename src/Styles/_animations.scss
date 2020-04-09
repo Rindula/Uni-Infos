@@ -10,6 +10,45 @@
         0 0 80px $theme-color;
         filter: blur(2px);
         background: #ffffff;
+        color: black;
+    }
+    100% {
+        filter: none;
+        box-shadow: none;
+    }
+}
+
+@keyframes loadingBarAugenkrebs {
+    0% {
+        filter: none;
+        box-shadow: none;
+    }
+    25% {
+        box-shadow: 0 0 10px $theme-color,
+        0 0 20px $theme-color,
+        0 0 40px $theme-color,
+        0 0 80px $theme-color;
+        filter: blur(2px);
+        background: #ffffff;
+        color: complement($theme-color);
+    }
+    50% {
+        box-shadow: 0 0 10px $color-success,
+        0 0 20px $color-success,
+        0 0 40px $color-success,
+        0 0 80px $color-success;
+        filter: blur(2px);
+        background: #ffffff;
+        color: complement($color-success);
+    }
+    75% {
+        box-shadow: 0 0 10px $color-error,
+        0 0 20px $color-error,
+        0 0 40px $color-error,
+        0 0 80px $color-error;
+        filter: blur(2px);
+        background: #ffffff;
+        color: complement($color-error);
     }
     100% {
         filter: none;

@@ -12,14 +12,16 @@
 .progress-value {
     border-radius: 100px;
     background: $theme-color;
-    @for $i from 90 through 100 {
+    @for $i from 96 through 99 {
         &[data-percent="#{$i}"] {
-            opacity: #{1 - (($i - 90) / 10)};
-            @if $i > 95 {
-                animation: loadingBar 2s ease-in-out infinite;
-            }
+            animation: loadingBar 2s ease-in-out infinite;
         }
     }
+
+    &[data-percent="100"] {
+        animation: loadingBarAugenkrebs 0.5s ease-in-out infinite;
+    }
+
     height: 20px;
     min-width: 5px;
     color: white;
