@@ -1,8 +1,12 @@
 <?php
 /**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
+ * @var AppView $this
+ * @var User $user
  */
+
+use App\Model\Entity\User;
+use App\View\AppView;
+
 ?>
 
 <?= $this->Form->create($user) ?>
@@ -13,4 +17,5 @@ $this->Form->controls([
 ], ['legend' => 'Login'])
 ?>
 <?= $this->Form->submit('Login') ?>
+<?= $this->Html->link('Kein Account? Jetzt registrieren', ['controller' => 'users', 'action' => 'register']) ?>
 <?= $this->Form->end() ?>

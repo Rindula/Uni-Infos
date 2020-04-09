@@ -14,7 +14,7 @@ use App\View\AppView;
 $this->Form->controls([
     'email' => [],
     'password' => [],
-    'password_confirm' => [],
+    'password_confirm' => ['type' => 'password'],
 ], ['legend' => 'Registrieren'])
 ?>
 <?= $this->Form->submit('Registrieren') ?>
