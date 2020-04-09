@@ -98,7 +98,7 @@ use App\View\AppView;
         <?= $this->fetch('content') ?>
     </div>
 </main>
-<?= $this->Html->tag('footer', (($this->request->is('mobile')) ? $this->Git->getFooterInfosMobile() : $this->Git->getFooterInfos()) . '<br>' . '&copy; ' . date('Y') . ' rindula.de', ['id' => 'footer']) ?>
+<?= $this->Html->tag('footer', (($this->request->is('mobile')) ? $this->Git->getFooterInfosMobile() : $this->Git->getFooterInfos()) . '<br>' . '&copy; ' . date('Y') . ' rindula.de --- ' . $this->Html->link("Impressum", ['controller' => 'datenschutz', 'action' => 'impressum']) . ' | ' . $this->Html->link("Datenschutzerklärung", ['controller' => 'datenschutz', 'action' => 'index']), ['id' => 'footer']) ?>
 <?= $this->fetch('bottomScripts') ?>
 
 </body>

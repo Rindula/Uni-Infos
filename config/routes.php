@@ -42,7 +42,7 @@ use Cake\Routing\RouteBuilder;
  * inconsistently cased URLs when used with `:plugin`, `:controller` and
  * `:action` markers.
  */
-/** @var \Cake\Routing\RouteBuilder $routes */
+/** @var RouteBuilder $routes */
 $routes->setRouteClass(DashedRoute::class);
 
 $routes->scope('/', function (RouteBuilder $builder) {
@@ -65,6 +65,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
     $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    $builder->connect('/impressum', ['controller' => 'datenschutz', 'action' => 'impressum']);
 
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
