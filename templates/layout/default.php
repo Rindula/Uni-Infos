@@ -36,11 +36,12 @@ use App\View\AppView;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
 
     <?= $this->Html->css('milligram.min.css') ?>
-    <?= $this->Html->css('main.min.css') ?>
     <?= $this->Html->css('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css') ?>
+    <?= $this->Html->css('https://fonts.googleapis.com/icon?family=Material+Icons') ?>
+    <?= $this->Html->css('main.min.css') ?>
     <?= $this->Html->script('jquery.min.js') ?>
     <?= $this->Html->script('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', ['block' => 'bottomScripts']) ?>
-    <?= $this->Html->script('cookieConsent.js', ['block' => 'bottomScripts']) ?>
+    <?= ($this->getRequest()->is('mobile')) ? $this->Html->script('cookieConsentRight.js', ['block' => 'bottomScripts']) : $this->Html->script('cookieConsentBottom.js', ['block' => 'bottomScripts']) ?>
     <?= $this->Html->script('main.min.js') ?>
 
     <?= $this->fetch('meta') ?>
@@ -91,14 +92,14 @@ use App\View\AppView;
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 <?php endif; ?>
-<?= $this->Nav->render($loggedIn) ?>
+<?= ($this->getRequest()->is('mobile')) ? '' : $this->Nav->render($loggedIn) ?>
 <main class="main">
     <div class="container">
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </div>
 </main>
-<?= $this->Html->tag('footer', (($this->request->is('mobile')) ? $this->Git->getFooterInfosMobile() : $this->Git->getFooterInfos()) . '<br>' . '&copy; ' . date('Y') . ' rindula.de --- ' . $this->Html->link("Impressum", ['controller' => 'datenschutz', 'action' => 'impressum']) . ' | ' . $this->Html->link("Datenschutzerklärung", ['controller' => 'datenschutz', 'action' => 'index']), ['id' => 'footer']) ?>
+<?= ($this->getRequest()->is('mobile')) ? $this->Nav->render($loggedIn) : $this->Html->tag('footer', $this->Git->getFooterInfos() . '<br>' . '&copy; ' . date('Y') . ' rindula.de --- ' . $this->Html->link("Impressum", ['controller' => 'datenschutz', 'action' => 'impressum']) . ' | ' . $this->Html->link("Datenschutzerklärung", ['controller' => 'datenschutz', 'action' => 'index']), ['id' => 'footer']) ?>
 <?= $this->fetch('bottomScripts') ?>
 
 </body>

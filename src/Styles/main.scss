@@ -15,11 +15,30 @@ $link-color: #d5d5d8;
 @import "glitch";
 @import "animations";
 
+.bot-nav {
+    width: 100%;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+    background-color: $theme-color-secondary;
+    position: sticky;
+    bottom: 0;
+
+    i {
+        padding: 20px 10vw;
+        margin: 0 1vw;
+    }
+}
+
+.cc-revoke {
+    display: none;
+}
+
 footer {
     height: 50px;
     text-align: center;
     position: sticky;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
     background-color: $darkened_bg;
     border-top: 1px dotted white;
