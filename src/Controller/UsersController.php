@@ -34,8 +34,14 @@ class UsersController extends AppController
         $result = $this->Authentication->getResult();
         // If the user is logged in send them away.
         if ($result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/stundenplan';
-            return $this->redirect($target);
+            if (!empty($result->getData()->enabled) && (new Time())->diffInSeconds($result->getData()->enabled) > 0) {
+                $target = $this->Authentication->getLoginRedirect() ?? '/stundenplan';
+                return $this->redirect($target);
+            } else {
+                $this->Flash->error('Bitte verifiziere zuerst deine E-Mail Adresse!');
+                return $this->redirect(['action' => 'logout']);
+            }
+
         }
         if ($this->request->is('post') && !$result->isValid()) {
             $this->Flash->error('Invalid username or password');
