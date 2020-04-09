@@ -47,10 +47,10 @@ function setData(msg) {
             "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>";
 
         if (event['custom']['note']) {
-            html += "<p class='message'>" + event['custom']['note'] + "</p>";
+            html += "<div class='message'>" + event['custom']['note'] + "</div>";
         }
         if (event['custom']['loggedInNote']) {
-            html += "<p class='message'>" + event['custom']['loggedInNote'] + "</p>";
+            html += "<div class='message'>" + event['custom']['loggedInNote'] + "</div>";
         }
         if (event['custom']['can_edit']) {
             if (event['custom']['note']) {
