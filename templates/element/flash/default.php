@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\View\AppView $this
+ * @var AppView $this
  * @var array $params
  * @var string $message
  */
@@ -11,5 +11,7 @@ if (!empty($params['class'])) {
 if (!isset($params['escape']) || $params['escape'] !== false) {
     $message = h($message);
 }
-?>
-<div class="<?= h($class) ?>" onclick="this.classList.add('hidden');"><?= $message ?></div>
+
+use App\View\AppView; ?>
+<div class="<?= h($class) ?>"><?= $message ?><span class="float-right" style="cursor: pointer"
+                                                   onclick="$(this).parent().fadeOut()">x</span></div>

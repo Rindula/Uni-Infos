@@ -1,11 +1,13 @@
 <?php
 /**
- * @var \App\View\AppView $this
+ * @var AppView $this
  * @var array $params
  * @var string $message
  */
 if (!isset($params['escape']) || $params['escape'] !== false) {
     $message = h($message);
 }
-?>
-<div class="message success" onclick="this.classList.add('hidden')"><?= $message ?></div>
+
+use App\View\AppView; ?>
+<div class="message success"><?= $message ?><span class="float-right" style="cursor: pointer"
+                                                  onclick="$(this).parent().fadeOut()">x</span></div>
