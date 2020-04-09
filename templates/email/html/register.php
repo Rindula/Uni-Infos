@@ -166,7 +166,7 @@
                                             <tr style="line-height:0px">
                                                 <td style="padding-right: 0px;padding-left: 0px;" align="center">
                                         <![endif]--><img align="center" alt="Image" border="0" class="center autowidth"
-                                                         src="images/rindula.jpeg"
+                                                         src="https://uni.rindula.de/img/rindula.jpeg"
                                                          style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 125px; display: block;"
                                                          title="Image" width="125"/>
                                         <!--[if mso]></td></tr></table><![endif]-->

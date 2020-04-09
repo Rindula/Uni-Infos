@@ -31,6 +31,7 @@ class UserMailer extends Mailer
         $this
             ->setEmailFormat('both')
             ->setTo($user->email)
+            ->setFrom('service@rindula.de', 'rindula.de | Uniseite')
             ->setSubject(__('E-Mail Verifizierung | rindula.de'))
             ->setViewVars(['link' => $link, 'user' => $user]);
     }
