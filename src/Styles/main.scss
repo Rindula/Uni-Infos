@@ -17,12 +17,12 @@ $link-color: #d5d5d8;
 
 .bot-nav {
     width: 100%;
-    margin: 0;
     display: inline-block;
     text-align: center;
     background-color: $theme-color-secondary;
-    position: sticky;
+    position: fixed;
     bottom: 0;
+    margin: 80px 0 0;
 
     i {
         padding: 20px 10vw;
@@ -50,4 +50,5 @@ footer {
 
 .main {
     min-height: calc(100vh - 200px);
+    margin-bottom: 80px;
 }
