@@ -48,4 +48,12 @@ class GitHelper extends Helper
         if (Configure::read('debug')) $prestring = 'DEVELOPMENT EDITION - ';
         return $prestring . $this->Html->link($this->shorthash, 'https://gitlab.com/Rindula/interface/-/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' - ' . $this->message . ' (' . $this->timestamp->nice() . ')';
     }
+
+    /**
+     * @return Time
+     */
+    public function getTimestamp(): Time
+    {
+        return $this->timestamp;
+    }
 }
