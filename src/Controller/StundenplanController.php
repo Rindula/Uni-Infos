@@ -229,7 +229,7 @@ class StundenplanController extends AppController
             $dbEvent = $this->saveToDatabase($event);
 
             if (!empty($dbEvent->note)) {
-                $event['custom']['note'] = preg_replace('/(<a[^>]*?>)([^<]*)/i', '${1}*Link*', $textHelper->autoParagraph($textHelper->autoLink($dbEvent->note)));
+                $event['custom']['note'] = preg_replace('/(<a[^>]*?)>([^<]*)/i', '${1} target="_blank">*Link*', $textHelper->autoParagraph($textHelper->autoLink($dbEvent->note)));
             }
             if (!empty($dbEvent->loggedInNote) && $this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'readNote')) {
                 $event['custom']['loggedInNote'] = preg_replace('/(<a[^>]*?)>([^<]*)/i', '${1} target="_blank">*Link*', $textHelper->autoParagraph($textHelper->autoLink($dbEvent->loggedInNote)));
