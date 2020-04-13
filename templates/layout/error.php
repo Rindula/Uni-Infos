@@ -11,9 +11,10 @@
  * @link          https://cakephp.org CakePHP(tm) Project
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
- * @var \App\View\AppView $this
+ * @var AppView $this
  */
-?>
+
+use App\View\AppView; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,22 +23,70 @@
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
+    <meta name="google-site-verification" content="Je2chFzpwnsYGfFP1WVL_-uM0rY4SDWX50MTL5ZviuY"/>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
 
     <?= $this->Html->css('milligram.min.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css') ?>
+    <?= $this->Html->css('https://fonts.googleapis.com/icon?family=Material+Icons') ?>
+    <?= $this->Html->css('main.min.css?' . $this->Git->getTimestamp()->timestamp) ?>
+    <?= $this->Html->script('jquery.min.js') ?>
+    <?= $this->Html->script('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', ['block' => 'bottomScripts']) ?>
+    <?= ($this->getRequest()->is('mobile')) ? $this->Html->script('cookieConsentRight.js', ['block' => 'bottomScripts']) : $this->Html->script('cookieConsentBottom.js', ['block' => 'bottomScripts']) ?>
+    <?= $this->Html->script('main.min.js?' . $this->Git->getTimestamp()->timestamp) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?php if (isset($_COOKIE["cookieconsent_status"]) && $_COOKIE["cookieconsent_status"] !== 'deny'): ?>
+        <!-- Google Tag Manager -->
+        <script>(function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-TKCPTMH');</script>
+        <!-- End Google Tag Manager -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158268171-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-158268171-1', {
+                'storage': 'none'
+            });
+        </script>
+    <?php endif; ?>
 </head>
 <body>
-    <div class="error-container">
-        <?= $this->Flash->render() ?>
-        <?= $this->fetch('content') ?>
-        <?= $this->Html->link(__('Back'), 'javascript:history.back()') ?>
-    </div>
+<?php if (isset($_COOKIE["cookieconsent_status"]) && $_COOKIE["cookieconsent_status"] !== 'deny'): ?>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCPTMH"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+<?php endif; ?>
+<div class="error-container">
+    <?= $this->Flash->render() ?>
+    <?= $this->fetch('content') ?>
+    <?= $this->Html->link(__('Back'), 'javascript:history.back()') ?>
+</div>
 </body>
 </html>
