@@ -24,13 +24,16 @@ use Cake\Collection\CollectionInterface;
             </thead>
             <tbody>
             <?php foreach ($users as $user): ?>
+                <?= $this->Form->create($user); ?>
+                <?= $this->Form->hidden('user.id', ['value' => $user->id]); ?>
                 <?= $this->Html->tableCells([
                     $this->Number->format($user->id),
-                    $this->Html->link($user->role->name, ['controller' => 'Roles', 'action' => 'view', $user->role->id]),
+                    ($this->Identity->getId() === $user->id) ? $user->role->name : $this->Form->control('user.role_id', ['label' => false, 'options' => $options, 'value' => $user->role_id]),
                     h($user->email),
-                    h($user->enabled) ?? '',
-                    (($user->enabled) ? '' : $this->Html->link(__('Freischaltungsmail schicken'), ['action' => 'userAction', $user->id, 'sendmail']))
+                    h($user->enabled) ?? '---',
+                    (($user->enabled) ? '' : $this->Html->link(__('Freischaltungsmail schicken'), ['action' => 'userAction', $user->id, 'sendmail'])) . $this->Form->submit('Benutzer speichern')
                 ]) ?>
+                <?= $this->Form->end(); ?>
             <?php endforeach; ?>
             </tbody>
         </table>

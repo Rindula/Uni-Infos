@@ -99,10 +99,23 @@ class UsersController extends AppController
 
     public function manage()
     {
-        $users = $this->paginate($this->Users, ['contain' => ['Roles']]);
-        $this->Authorization->skipAuthorization();
+        $users = $this->paginate($this->Users, ['contain' => ['Roles'], 'order' => ['Users.id']]);
+        $this->Authorization->authorize($this->Users->find()->first(), 'manage');
 
-        $this->set(compact('users'));
+        if ($this->request->is(['post', 'put'])) {
+            $data = $this->request->getData('user');
+            $user = $this->Users->get($data['id']);
+            $user = $this->Users->patchEntity($user, $data);
+            if ($this->Users->save($user)) {
+                $this->Flash->success('Benutzer gespeichert');
+                return $this->redirect(['action' => 'manage']);
+            } else {
+                $this->Flash->error('Benutzer konnte nicht gespeichert werden');
+            }
+        }
+
+        $options = $this->Users->Roles->find('list');
+        $this->set(compact('users', 'options'));
     }
 
     public function userAction($id = null, $action = null, $additionalData = [])
