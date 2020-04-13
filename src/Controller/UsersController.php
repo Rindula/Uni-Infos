@@ -37,7 +37,7 @@ class UsersController extends AppController
         // If the user is logged in send them away.
         if ($result->isValid()) {
             if (!empty($result->getData()->enabled) && (new Time())->diffInSeconds($result->getData()->enabled) > 0) {
-                $target = $this->Authentication->getLoginRedirect() ?? '/stundenplan';
+                $target = $this->Authentication->getLoginRedirect() ?? '/';
                 return $this->redirect($target);
             } else {
                 $this->Flash->error('Bitte verifiziere zuerst deine E-Mail Adresse!');
