@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+use Authentication\Controller\Component\AuthenticationComponent;
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -13,12 +15,13 @@ declare(strict_types=1);
  * @link      https://cakephp.org CakePHP(tm) Project
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
- * @property \Authentication\Controller\Component\AuthenticationComponent Authentication
+ * @property AuthenticationComponent Authentication
  * @var boolean $loggedIn Ist der Benutzer eingeloggt, oder nicht?
  */
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Exception;
 
 /**
  * Application Controller
@@ -38,7 +41,7 @@ class AppController extends Controller
      * e.g. `$this->loadComponent('FormProtection');`
      *
      * @return void
-     * @throws \Exception
+     * @throws Exception
      */
     public function initialize(): void
     {
@@ -48,7 +51,7 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
         $this->loadComponent('Authorization.Authorization');
-        $loggedIn = !is_null($this->Authentication->getIdentity());
+        $loggedIn = $this->Authentication->getIdentity();
         $this->set(compact('loggedIn'));
         unset($loggedIn);
 

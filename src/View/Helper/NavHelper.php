@@ -4,6 +4,7 @@
 namespace App\View\Helper;
 
 
+use Authentication\Identity;
 use Cake\View\Helper;
 
 class NavHelper extends Helper
@@ -26,38 +27,43 @@ class NavHelper extends Helper
     );
 
     /**
-     * @param boolean|null $loggedIn
+     * @param Identity|null $loggedIn
      * @return string
      */
     public function render($loggedIn = null)
     {
         if ($loggedIn !== null) {
-            if ($loggedIn) {
-                $array = [
-                    [
-                        'title' => 'Logout',
-                        'url' => ['controller' => 'users', 'action' => 'logout'],
-                        'icon' => 'person_outline'
-                    ],
-                ];
-            } else {
-                $array = [
-                    [
-                        'title' => 'Login',
-                        'url' => ['controller' => 'users', 'action' => 'login'],
-                        'icon' => 'person'
-                    ]
+            $array = [];
+            if ($loggedIn->get('role_id') == 3) {
+                $array[] = [
+                    'title' => 'Benutzerverwaltung',
+                    'url' => ['controller' => 'users', 'action' => 'manage'],
+                    'icon' => 'account_circle',
                 ];
             }
-            $this->navItems = array_merge($this->navItems, $array);
+            $array[] =
+                [
+                    'title' => 'Logout',
+                    'url' => ['controller' => 'users', 'action' => 'logout'],
+                    'icon' => 'person_outline'
+                ];
+        } else {
+            $array = [
+                [
+                    'title' => 'Login',
+                    'url' => ['controller' => 'users', 'action' => 'login'],
+                    'icon' => 'person'
+                ]
+            ];
         }
+        $this->navItems = array_merge($this->navItems, $array);
         if ($this->getView()->getRequest()->is('mobile')) {
             return '<nav class="bot-nav">' . $this->navMobile($this->navItems) . '</nav>';
         }
         return '<nav class="top-nav"><div class="top-nav-title"><a href="#!" class="brand-logo right">Uni<span>Infos</span></a></div><div class="top-nav-links">' . $this->nav($this->navItems) . '</div></nav>';
     }
 
-    private function nav(array $items)
+    private function navMobile(array $items)
     {
         $content = '';
 
@@ -70,9 +76,10 @@ class NavHelper extends Helper
 
             $url = $this->getUrl($item);
 
-            $content .= $this->Html->link($item['title'], $url, [
+            $content .= $this->Html->link('<i class="material-icons" style="padding: 20px ' . (100 / count($items) / 3) . 'vw;">' . $item['icon'] . '</i>', $url, [
                 'escape' => false,
                 'class' => implode(' ', $class),
+                'title' => $item['title'],
             ]);
         }
 
@@ -98,7 +105,7 @@ class NavHelper extends Helper
         return $url;
     }
 
-    private function navMobile(array $items)
+    private function nav(array $items)
     {
         $content = '';
 
@@ -111,10 +118,9 @@ class NavHelper extends Helper
 
             $url = $this->getUrl($item);
 
-            $content .= $this->Html->link('<i class="material-icons">' . $item['icon'] . '</i>', $url, [
+            $content .= $this->Html->link($item['title'], $url, [
                 'escape' => false,
                 'class' => implode(' ', $class),
-                'title' => $item['title'],
             ]);
         }
 

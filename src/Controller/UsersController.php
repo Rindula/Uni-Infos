@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Model\Table\UsersTable;
 use Authentication\Controller\Component\AuthenticationComponent;
 use Authorization\Controller\Component\AuthorizationComponent;
+use Cake\Http\Exception\BadRequestException;
 use Cake\I18n\Time;
 use Cake\Mailer\MailerAwareTrait;
 use Cake\Utility\Security;
@@ -25,6 +26,7 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->Authentication->allowUnauthenticated(['login', 'logout', 'register', 'verify']);
+        $this->loadComponent('Paginator');
     }
 
     public function login()
@@ -93,6 +95,30 @@ class UsersController extends AppController
         }
         return $this->redirect(['controller' => 'users', 'action' => 'login']);
 
+    }
+
+    public function manage()
+    {
+        $users = $this->paginate($this->Users, ['contain' => ['Roles']]);
+        $this->Authorization->skipAuthorization();
+
+        $this->set(compact('users'));
+    }
+
+    public function userAction($id = null, $action = null, $additionalData = [])
+    {
+        if ($id !== null) {
+            switch ($action) {
+                case 'sendmail':
+                    $user = $this->Users->get($id);
+                    if ($user) {
+                        $this->getMailer('User')->send('register', [$user]);
+                    }
+                    break;
+                default:
+                    throw new BadRequestException();
+            }
+        }
     }
 
 }
