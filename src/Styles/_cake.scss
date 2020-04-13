@@ -159,16 +159,24 @@ hr {
         color: complement($color-message);
     }
 
-    .success {
+    &.success {
         background: lighten($color-success, 25%);
         color: darken($color-success, 25%);
         border-color: $color-success;
+
+        a {
+            color: complement($color-success);
+        }
     }
 
-    .error {
+    &.error {
         background: lighten($color-error, 25%);
         color: darken($color-error, 15%);;
         border-color: $color-error;
+
+        a {
+            color: complement($color-error);
+        }
     }
 }
 
