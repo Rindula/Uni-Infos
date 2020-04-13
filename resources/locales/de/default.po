@@ -22,3 +22,5 @@ msgstr "Zurück"
 msgid "View"
 msgstr "Ansehen"
 
+msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
+msgstr "Seite {{page}} von {{pages}}, zeige {{current}} Einträge von insgesamt {{count}}"
