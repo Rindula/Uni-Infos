@@ -90,7 +90,7 @@ class StundenplanController extends AppController
             $events = [
                 [
                     'SUMMARY' => 'Kein Kurs ausgewählt',
-                    'LOCATION' => '',
+                    'LOCATION' => '---',
                     'DESCRIPTION' => 'Bitte nutze das Dropdown Menü, um einen Kurs auszuwählen.',
                     'custom' => [
                         'begin' => [
@@ -152,7 +152,7 @@ class StundenplanController extends AppController
 
             if (!empty($last)) {
                 $begin = new Time($event['DTSTART;TZID=Europe/Berlin']);
-                if ($begin->diffInSeconds($last['time']) < 5) {
+                if ($begin->diffInSeconds($last['time'], true) < 5) {
                     $events[$last['key']]['LOCATION'] .= ' / ' . $event['LOCATION'];
                     unset($events[$key]);
                     continue;
@@ -229,10 +229,10 @@ class StundenplanController extends AppController
             $dbEvent = $this->saveToDatabase($event);
 
             if (!empty($dbEvent->note)) {
-                $event['custom']['note'] = $textHelper->autoParagraph($textHelper->autoLink($dbEvent->note));
+                $event['custom']['note'] = preg_replace('/(<a[^>]*?>)([^<]*)/i', '${1}*Link*', $textHelper->autoParagraph($textHelper->autoLink($dbEvent->note)));
             }
             if (!empty($dbEvent->loggedInNote) && $this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'readNote')) {
-                $event['custom']['loggedInNote'] = $textHelper->autoParagraph($textHelper->autoLink($dbEvent->loggedInNote));
+                $event['custom']['loggedInNote'] = preg_replace('/(<a[^>]*?>)([^<]*)/i', '${1}*Link*', $textHelper->autoParagraph($textHelper->autoLink($dbEvent->loggedInNote)));
             }
             $event['custom']['can_edit'] = ($this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'update')) ? $dbEvent->uid : false;
             $event['custom']['can_delete'] = ((!empty($dbEvent->loggedInNote) || !empty($dbEvent->note)) && $this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'delete')) ? (!empty($dbEvent->note) ? $htmlHelper->link('Notiz löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'note'], ['confirm' => 'Bist du sicher, dass du die Notiz löschen willst?']) . "<br>" : '') . ((!empty($dbEvent->loggedInNote)) ? $htmlHelper->link('Eingeloggten Notiz löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'loggedInNote'], ['confirm' => 'Bist du sicher, dass du die Eingeloggten Notiz löschen willst?']) . "<br>" : '') . $htmlHelper->link('Alle Notizen löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'all'], ['confirm' => 'Bist du sicher, dass du die alle Notizen dieser Stunde löschen willst?']) : false;
