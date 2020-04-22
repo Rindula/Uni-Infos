@@ -86,6 +86,7 @@ class UsersController extends AppController
         if ($checkHash === $hash) {
             $user->enabled = new Time();
             if ($this->Users->save($user)) {
+                $this->getMailer('User')->send('notify', [$user]);
                 $this->Flash->success('Dein Account wurde freigeschalten!');
             } else {
                 $this->Flash->error('Es gab einen Fehler beim speichern!');

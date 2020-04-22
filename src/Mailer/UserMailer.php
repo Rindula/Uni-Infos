@@ -35,4 +35,19 @@ class UserMailer extends Mailer
             ->setSubject(__('E-Mail Verifizierung | rindula.de'))
             ->setViewVars(['link' => $link, 'user' => $user]);
     }
+
+    public function notify($user)
+    {
+        $this
+            ->setTransport('default')
+            ->viewBuilder()
+            ->setTemplate('notify')
+            ->setLayout('default');
+        $this
+            ->setEmailFormat('both')
+            ->setTo("webmaster@rindula.de")
+            ->setFrom('service@rindula.de', 'rindula.de | Uniseite')
+            ->setSubject(__('Neuer Benutzer | rindula.de'))
+            ->setViewVars(['user' => $user]);
+    }
 }

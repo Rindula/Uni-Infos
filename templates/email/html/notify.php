@@ -1,8 +1,10 @@
 <?php
 /**
  * @var AppView $this
+ * @var User $user
  */
 
+use App\Model\Entity\User;
 use App\View\AppView;
 
 ?>
@@ -210,8 +212,7 @@ use App\View\AppView;
                                         <div
                                             style="font-size: 14px; line-height: 1.5; color: #555555; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 21px;">
                                             <p style="font-size: 14px; line-height: 1.5; word-break: break-word; mso-line-height-alt: 21px; margin: 0;">
-                                                <strong><span
-                                                        style="font-size: 17px; mso-ansi-font-size: 18px;"><?= $this->Text->autoLinkEmails($title) ?></span></strong>
+                                                <strong><span style="font-size: 17px; mso-ansi-font-size: 18px;">Neuer Benutzer registriert | rindula.de</span></strong>
                                             </p>
                                         </div>
                                     </div>
@@ -259,7 +260,17 @@ use App\View\AppView;
                                     <![endif]-->
                                     <div
                                         style="color:#555555;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-                                        <?= $this->Text->autoParagraph($content) ?>
+                                        <div
+                                            style="font-size: 14px; line-height: 1.2; color: #555555; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 17px;">
+                                            <p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">
+                                                Hallo,</p><br>
+                                            <p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">
+                                                es gibt einen neuen
+                                                Benutzer: <?= $this->Text->autoLinkEmails($user->email) ?></p>
+                                            <br>
+                                            <p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">
+                                                Mit freundlichen Grüßen</p>
+                                        </div>
                                     </div>
                                     <!--[if mso]></td></tr></table><![endif]-->
                                     <!--[if (!mso)&(!IE)]><!-->
