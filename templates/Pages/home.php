@@ -7,7 +7,7 @@ use App\View\AppView; ?>
 <h1 style="width: 100%; text-align: center">UniInfos</h1>
 <h2 style="width: 100%; text-align: center">Links</h2>
 <div style="text-align: center">
-    <?= $this->Html->link("Zum Dateispeicher", 'https://files.rindula.de/nextcloud/index.php/s/GEEgyjNm6zS7xE9', ['class' => 'button button-outline', 'target' => '_blank']) ?>
+    <?= $this->Html->link("Zum Dateispeicher", 'https://files.rindula.de/nextcloud/index.php/s/TqWQwraiBN3JJoZ', ['class' => 'button button-outline', 'target' => '_blank']) ?>
     <?= $this->Html->link("Zum Stundenplan", ['controller' => 'stundenplan', 'action' => 'index'], ['class' => 'button button-clear']) ?>
     <?= $this->Html->link("Sitzungsaufzeichnugnen", 'https://files.rindula.de/nextcloud/index.php/s/z4mi9YMsr74s3AQ', ['class' => 'button button-outline', 'target' => '_blank']) ?>
     <br>
