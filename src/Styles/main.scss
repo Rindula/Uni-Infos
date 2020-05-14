@@ -14,40 +14,4 @@ $link-color: #d5d5d8;
 @import "progressbar";
 @import "glitch";
 @import "animations";
-
-.bot-nav {
-    width: 100vw;
-    display: inline-block;
-    text-align: center;
-    background-color: $theme-color-secondary;
-    position: fixed;
-    bottom: 0;
-    margin: 80px 0 0;
-
-    i {
-        margin: 0 1vw;
-    }
-}
-
-.cc-revoke {
-    display: none;
-}
-
-footer {
-    height: 50px;
-    text-align: center;
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    background-color: $darkened_bg;
-    border-top: 1px dotted white;
-
-    a {
-        color: $theme-color;
-    }
-}
-
-.main {
-    min-height: calc(100vh - 200px);
-    margin-bottom: 80px;
-}
+@import "style";

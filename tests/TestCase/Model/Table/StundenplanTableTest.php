@@ -15,7 +15,7 @@ class StundenplanTableTest extends TestCase
     /**
      * Test subject
      *
-     * @var \App\Model\Table\StundenplanTable
+     * @var StundenplanTable
      */
     protected $Stundenplan;
 
@@ -53,21 +53,21 @@ class StundenplanTableTest extends TestCase
     }
 
     /**
-     * Test initialize method
-     *
-     * @return void
-     */
-    public function testInitialize(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
      * Test validationDefault method
      *
      * @return void
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test findByUid method
+     *
+     * @return void
+     */
+    public function testFindByUid(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

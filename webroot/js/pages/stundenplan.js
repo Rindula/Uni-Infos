@@ -41,7 +41,7 @@ function setData(msg) {
         if (new Date(event['custom']['begin']['date']).getDay() != lastDay && !first) {
             lastDay = new Date(event['custom']['begin']['date']).getDay();
         }
-        html += "<blockquote class='" + ((event['custom']['isSeminar']) ? "seminar" : "") + ((event['custom']['isKlausur']) ? "klausur" : "") + "'><div class=\"row row-top\">" +
+        html += "<blockquote class='" + ((event['custom']['isSeminar']) ? "seminar" : "") + ((event['custom']['isKlausur']) ? "klausur" : "") + ((event['custom']['isOnline']) ? " online" : "") + "'><div class=\"row row-top\">" +
             "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
             "                    class=\"column-offset-50 column-33 column\" style='text-align: right'>" + event['LOCATION'] + "</span></div>" +
             "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>";

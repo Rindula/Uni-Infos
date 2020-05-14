@@ -13,6 +13,7 @@ use App\View\AjaxView;
 <?= $this->Form->controls([
     'note' => ['label' => 'Notiz'],
     'loggedInNote' => ['label' => 'Notiz für eingeloggte Nutzer'],
+    'isOnline' => ['label' => 'Findet Online statt?'],
 ], ['legend' => 'Eintrag bearbeiten']) ?>
 <?= $this->Form->submit() ?>
 <?= $this->Form->end() ?>

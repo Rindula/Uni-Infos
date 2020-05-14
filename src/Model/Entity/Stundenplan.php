@@ -8,10 +8,12 @@ use Cake\ORM\Entity;
 /**
  * Stundenplan Entity
  *
+ * @property int $id
  * @property string $uid
  * @property string|null $note
- * @property string|null $loggedInNote
  * @property string $info_for_db
+ * @property string|null $loggedInNote
+ * @property bool $isOnline
  */
 class Stundenplan extends Entity
 {
@@ -27,7 +29,8 @@ class Stundenplan extends Entity
     protected $_accessible = [
         'uid' => true,
         'note' => true,
-        'loggedInNote' => true,
         'info_for_db' => true,
+        'loggedInNote' => true,
+        'isOnline' => true,
     ];
 }

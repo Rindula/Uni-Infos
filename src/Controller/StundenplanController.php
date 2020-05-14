@@ -236,6 +236,7 @@ class StundenplanController extends AppController
             }
             $event['custom']['can_edit'] = ($this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'update')) ? $dbEvent->uid : false;
             $event['custom']['can_delete'] = ((!empty($dbEvent->loggedInNote) || !empty($dbEvent->note)) && $this->Authentication->getIdentity() && $this->Authorization->can($dbEvent, 'delete')) ? (!empty($dbEvent->note) ? $htmlHelper->link('Notiz löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'note'], ['confirm' => 'Bist du sicher, dass du die Notiz löschen willst?']) . "<br>" : '') . ((!empty($dbEvent->loggedInNote)) ? $htmlHelper->link('Eingeloggten Notiz löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'loggedInNote'], ['confirm' => 'Bist du sicher, dass du die Eingeloggten Notiz löschen willst?']) . "<br>" : '') . $htmlHelper->link('Alle Notizen löschen', ['controller' => 'stundenplan', 'action' => 'delete', $dbEvent->uid, 'all'], ['confirm' => 'Bist du sicher, dass du die alle Notizen dieser Stunde löschen willst?']) : false;
+            $event['custom']['isOnline'] = $dbEvent->isOnline;
 
             $last = ['key' => $key, 'name' => $event['SUMMARY'], 'time' => new Time($event['DTSTART;TZID=Europe/Berlin'])];
         }
@@ -258,6 +259,7 @@ class StundenplanController extends AppController
             'note',
             'loggedInNote',
             'info_for_db',
+            'isOnline',
         ])->first();
 
         if (!$stundenplan) {
