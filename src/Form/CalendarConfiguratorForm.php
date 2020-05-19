@@ -31,7 +31,7 @@ class CalendarConfiguratorForm extends Form
      * @param Validator $validator to use against the form
      * @return Validator
      */
-    protected function _buildValidator(Validator $validator)
+    public function validationDefault(Validator $validator): Validator
     {
         $validator->notEmptyString('course');
         $validator->boolean('onlineOnly');

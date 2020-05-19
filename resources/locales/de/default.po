@@ -87,11 +87,8 @@ msgstr "Zurück"
 msgid "View"
 msgstr "Ansehen"
 
-#~ msgid "Freischaltungsmail schicken"
-#~ msgstr "Freischaltungsmail schicken"
+msgid "course"
+msgstr "Kurs"
 
-#~ msgid "Course"
-#~ msgstr "Kurs"
-
-#~ msgid "Online Only"
-#~ msgstr "Nur Online Vorlesungen"
+msgid "onlineOnly"
+msgstr "Nur Online Vorlesungen"
