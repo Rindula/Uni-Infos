@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Controller\Component\IcsReadComponent;
 use App\Controller\Component\IcsWriteComponent;
+use App\Form\CalendarConfiguratorForm;
 use App\Model\Entity\Stundenplan;
 use App\Model\Table\StundenplanTable;
 use Authentication\Controller\Component\AuthenticationComponent;
@@ -14,6 +15,7 @@ use Cake\Datasource\RepositoryInterface;
 use Cake\Datasource\ResultSetInterface;
 use Cake\Http\Response;
 use Cake\I18n\Time;
+use Cake\Routing\Router;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\Helper\TextHelper;
 use Cake\View\View;
@@ -38,7 +40,7 @@ class StundenplanController extends AppController
 
         $this->loadComponent('IcsRead');
         $this->loadComponent('IcsWrite');
-        $this->Authentication->allowUnauthenticated(['index', 'ajax', 'calendar']);
+        $this->Authentication->allowUnauthenticated(['index', 'api', 'calendar', 'configureCalendarLink']);
     }
 
     /**
@@ -79,7 +81,7 @@ class StundenplanController extends AppController
         return $courseGroup;
     }
 
-    public function ajax($course = '', $all = false, $showVorlesung = false, $showSeminar = false)
+    public function api($course = '', $all = false, $showVorlesung = false, $showSeminar = false, $onlineOnly = false)
     {
         $this->Authorization->skipAuthorization();
         $this->getResponse()->cors($this->getRequest(), '*');
@@ -118,6 +120,14 @@ class StundenplanController extends AppController
                     ]
                 ]
             ];
+        }
+
+        if ($onlineOnly) {
+            foreach ($events as $key => $event) {
+                if (!$event['custom']['isOnline']) {
+                    unset($events[$key]);
+                }
+            }
         }
 
         $this->set(compact('events'));
@@ -321,13 +331,20 @@ class StundenplanController extends AppController
         return $this->redirect(['controller' => 'stundenplan', 'action' => 'index']);
     }
 
-    public function calendar($course = null)
+    public function calendar($course = null, $onlineOnly = false)
     {
         $this->Authorization->skipAuthorization();
         $this->getResponse()->cors($this->getRequest(), '*');
         $this->viewBuilder()->setLayout('ajax');
         if ($course) {
             $events = $this->fetchCalendar($course, true, false, false);
+            if ($onlineOnly) {
+                foreach ($events as $key => $event) {
+                    if (!$event['custom']['isOnline']) {
+                        unset($events[$key]);
+                    }
+                }
+            }
             $icsWriter = $this->IcsWrite;
             foreach ($events as $event) {
                 $categories = [];
@@ -345,6 +362,32 @@ class StundenplanController extends AppController
         }
 
         $this->set('writer', $this->IcsWrite);
+    }
+
+    public function configureCalendarLink()
+    {
+        $this->Authorization->skipAuthorization();
+        $calendarConfigurator = new CalendarConfiguratorForm();
+        $link = '';
+        if ($this->request->is('post')) {
+            $data = $this->request->getData();
+            if ($calendarConfigurator->validate($data)) {
+                $calendarConfigurator->setData($data);
+                $link = Router::url(['_full' => true, 'controller' => 'stundenplan', 'action' => 'calendar', $data['course'], $data['onlineOnly']]);
+                $this->Flash->success('Dein Kalenderlink wurde erstellt.');
+            } else {
+                $this->Flash->error('Es gab ein Problem beim erstellen des Links!');
+            }
+        }
+
+        if ($this->request->is('get')) {
+            $calendarConfigurator->setData([
+                'course' => (isset($_COOKIE["selectedCourse"])) ? $_COOKIE["selectedCourse"] : "",
+                'onlineOnly' => false,
+            ]);
+        }
+
+        $this->set(compact('calendarConfigurator', 'link'));
     }
 
 }

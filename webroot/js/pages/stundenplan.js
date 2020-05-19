@@ -1,7 +1,7 @@
 function loadData() {
     $.ajax({
         method: "GET",
-        url: "/stundenplan/ajax/" + $('#courseSelector').val() + '/0/0/1',
+        url: "/stundenplan/api/" + $('#courseSelector').val() + '/0/0/1',
         dataType: "json"
     })
         .done(function (msg) {

@@ -17,12 +17,20 @@ class NavHelper extends Helper
         [
             'title' => 'Startseite',
             'url' => ['controller' => 'pages', 'action' => 'display', 'home'],
-            'icon' => 'home'
+            'icon' => 'home',
+            'showInMobile' => true,
         ],
         [
             'title' => 'Stundenplan',
             'url' => ['controller' => 'stundenplan', 'action' => 'index'],
-            'icon' => 'calendar_today'
+            'icon' => 'calendar_today',
+            'showInMobile' => true,
+        ],
+        [
+            'title' => 'Kalenderlink konfigurieren',
+            'url' => ['controller' => 'stundenplan', 'action' => 'configureCalendarLink'],
+            'icon' => '',
+            'showInMobile' => false,
         ],
     );
 
@@ -39,20 +47,23 @@ class NavHelper extends Helper
                     'title' => 'Benutzerverwaltung',
                     'url' => ['controller' => 'users', 'action' => 'manage'],
                     'icon' => 'account_circle',
+                    'showInMobile' => true,
                 ];
             }
             $array[] =
                 [
                     'title' => 'Logout',
                     'url' => ['controller' => 'users', 'action' => 'logout'],
-                    'icon' => 'person_outline'
+                    'icon' => 'person_outline',
+                    'showInMobile' => true,
                 ];
         } else {
             $array = [
                 [
                     'title' => 'Login',
                     'url' => ['controller' => 'users', 'action' => 'login'],
-                    'icon' => 'person'
+                    'icon' => 'person',
+                    'showInMobile' => true,
                 ]
             ];
         }
@@ -69,7 +80,7 @@ class NavHelper extends Helper
 
         foreach ($items as $item) {
             $class = array();
-
+            if (!$item['showInMobile']) continue;
             if ($this->isActive($item)) {
                 $class[] = 'active';
             }
@@ -89,7 +100,7 @@ class NavHelper extends Helper
     private function isActive($item)
     {
         $url = $this->Url->build($this->getUrl($item));
-        if ($this->getView()->getRequest()->getRequestTarget() == $url || ($url != '/' && strlen($this->getView()->getRequest()->getRequestTarget()) > strlen($url) && substr($this->getView()->getRequest()->getRequestTarget(), 0, strlen($url)) == $url)) {
+        if ($this->getView()->getRequest()->getRequestTarget() == $url) {
             return true;
         }
         return false;
