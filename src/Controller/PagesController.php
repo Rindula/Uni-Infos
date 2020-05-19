@@ -55,10 +55,10 @@ class PagesController extends AppController
     public function display(...$path): ?Response
     {
         $this->Authorization->skipAuthorization();
-        $this->Flash->error('<a href="https://www.dhbw.de/die-dhbw/aktuelles/detail/2020/4/neuartiges-coronavirus1.html">Hier</a> gibt es informationen zu der aktuellen Coronavirussituation an der DHBW', ['escape' => false]);
         if (!$path) {
             return $this->redirect('/');
         }
+        $this->Flash->set('<a href="https://www.dhbw.de/die-dhbw/aktuelles/detail/2020/4/neuartiges-coronavirus1.html">Hier</a> gibt es informationen zu der aktuellen Coronavirussituation an der DHBW', ['escape' => false]);
         if (in_array('..', $path, true) || in_array('.', $path, true)) {
             throw new ForbiddenException();
         }
