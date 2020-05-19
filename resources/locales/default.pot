@@ -1,9 +1,9 @@
 #: Mailer/UserMailer.php:35
-msgid "E-Mail Verifizierung | rindula.de"
+msgid "Email verification | rindula.de"
 msgstr ""
 
 #: Mailer/UserMailer.php:50
-msgid "Neuer Benutzer | rindula.de"
+msgid "New User | rindula.de"
 msgstr ""
 
 #: View/Helper/NavHelper.php:23
@@ -39,7 +39,7 @@ msgid "Actions"
 msgstr ""
 
 #: Users/manage.php:34
-msgid "Freischaltungsmail schicken"
+msgid "Send activation email"
 msgstr ""
 
 #: Users/manage.php:43

@@ -5,7 +5,7 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: de\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,85 +13,79 @@ msgstr ""
 
 #: Mailer/UserMailer.php:35
 msgid "Email verification | rindula.de"
-msgstr "E-Mail Verifizierung | rindula.de"
+msgstr "Verificacion de email | rindula.de"
 
 #: Mailer/UserMailer.php:50
 msgid "New User | rindula.de"
-msgstr "Neuer Benutzer | rindula.de"
+msgstr "Nuevo Usuario | rindula.de"
 
 #: View/Helper/NavHelper.php:23
 msgid "Homepage"
-msgstr "Startseite"
+msgstr "Página de inicio"
 
 #: View/Helper/NavHelper.php:29
 msgid "Timetable"
-msgstr "Stundenplan"
+msgstr "Calendario"
 
 #: View/Helper/NavHelper.php:35
 msgid "Configure Calendarlink"
-msgstr "Kalenderlink konfigurieren"
+msgstr "Configurar enlace de calendario"
 
 #: View/Helper/NavHelper.php:53
 msgid "Usermanagement"
-msgstr "Benutzerverwaltung"
+msgstr "Gestión de usuarios"
 
 #: View/Helper/NavHelper.php:61
 msgid "Logout"
-msgstr "Abmelden"
+msgstr "Cerrar sesión"
 
 #: View/Helper/NavHelper.php:69
 msgid "Login"
-msgstr "Anmelden"
+msgstr "Iniciar sesión"
 
 #: Users/manage.php:13
 msgid "Users"
-msgstr "Benutzer"
+msgstr "Usuarios"
 
 #: Users/manage.php:22
 msgid "Actions"
-msgstr "Aktionen"
+msgstr "Acciones"
 
 #: Users/manage.php:34
 msgid "Send activation email"
-msgstr "Aktivierungs-E-Mail senden"
+msgstr "Enviar correo de activación"
 
 #: Users/manage.php:43
 msgid "first"
-msgstr "erste"
+msgstr "primero"
 
 #: Users/manage.php:44
 msgid "previous"
-msgstr "zurück"
+msgstr "anterior"
 
 #: Users/manage.php:46
 msgid "next"
-msgstr "weiter"
+msgstr "siguiente"
 
 #: Users/manage.php:47
 msgid "last"
-msgstr "letzte"
+msgstr "último"
 
 #: Users/manage.php:49
 msgid ""
 "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
 "total"
 msgstr ""
-"Seite {{page}} von {{pages}}, zeige {{current}} Einträge von insgesamt "
-"{{count}}"
+"Página {{page}} de {{pages}}, en la que se indican los  registros "
+"{{current}} de {{count}} total"
 
 #: layout/error.php:89
 msgid "Back"
-msgstr "Zurück"
+msgstr "Volver"
 
 #: View/Helper/PaginatorHelper.php:1266
 msgid "View"
-msgstr "Ansehen"
+msgstr "Ver"
 
 #~ msgid "Freischaltungsmail schicken"
-#~ msgstr "Freischaltungsmail schicken"
-
-#~ msgid "Course"
-#~ msgstr "Kurs"
-
-#~ msgid "Online Only"
-#~ msgstr "Nur Online Vorlesungen"
+#~ msgstr "Enviar correo electrónico de activación"

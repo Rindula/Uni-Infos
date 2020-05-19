@@ -32,7 +32,7 @@ class UserMailer extends Mailer
             ->setEmailFormat('both')
             ->setTo($user->email)
             ->setFrom('service@rindula.de', 'rindula.de | Uniseite')
-            ->setSubject(__('E-Mail Verifizierung | rindula.de'))
+            ->setSubject(__('Email verification | rindula.de'))
             ->setViewVars(['link' => $link, 'user' => $user]);
     }
 
@@ -47,7 +47,7 @@ class UserMailer extends Mailer
             ->setEmailFormat('both')
             ->setTo("webmaster@rindula.de")
             ->setFrom('service@rindula.de', 'rindula.de | Uniseite')
-            ->setSubject(__('Neuer Benutzer | rindula.de'))
+            ->setSubject(__('New User | rindula.de'))
             ->setViewVars(['user' => $user]);
     }
 }

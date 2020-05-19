@@ -31,7 +31,7 @@ use Cake\Collection\CollectionInterface;
                     ($this->Identity->getId() === $user->id) ? $user->role->name : $this->Form->control('user.role_id', ['label' => false, 'options' => $options, 'value' => $user->role_id]),
                     h($user->email),
                     h($user->enabled) ?? '---',
-                    (($user->enabled) ? '' : $this->Html->link(__('Freischaltungsmail schicken'), ['action' => 'userAction', $user->id, 'sendmail'])) . $this->Form->submit('Benutzer speichern')
+                    (($user->enabled) ? '' : $this->Html->link(__('Send activation email'), ['action' => 'userAction', $user->id, 'sendmail'])) . $this->Form->submit('Benutzer speichern')
                 ]) ?>
                 <?= $this->Form->end(); ?>
             <?php endforeach; ?>
