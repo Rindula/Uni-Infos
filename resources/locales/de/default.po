@@ -87,8 +87,14 @@ msgstr "Zurück"
 msgid "View"
 msgstr "Ansehen"
 
-msgid "course"
+msgid "Course"
 msgstr "Kurs"
 
-msgid "onlineOnly"
-msgstr "Nur Online Vorlesungen"
+msgid "Online Only"
+msgstr "Nur online"
+
+msgid "Configure Calendar Link"
+msgstr "Kalenderlink konfigurieren"
+
+msgid "No account yet? Register now"
+msgstr "Noch kein Konto? Jetzt registrieren"

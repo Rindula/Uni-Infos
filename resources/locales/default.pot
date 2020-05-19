@@ -70,3 +70,14 @@ msgstr ""
 msgid "View"
 msgstr ""
 
+msgid "Course"
+msgstr ""
+
+msgid "Online Only"
+msgstr ""
+
+msgid "Configure Calendar Link"
+msgstr ""
+
+msgid "No account yet? Register now"
+msgstr ""

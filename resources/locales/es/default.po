@@ -87,5 +87,15 @@ msgstr "Volver"
 msgid "View"
 msgstr "Ver"
 
-#~ msgid "Freischaltungsmail schicken"
-#~ msgstr "Enviar correo electrónico de activación"
+#, fuzzy
+#| msgid "course"
+msgid "Course"
+msgstr "Curso"
+
+#, fuzzy
+#| msgid "onlineOnly"
+msgid "Online Only"
+msgstr "Solo conferencias en línea"
+
+msgid "Configure Calendar Link"
+msgstr "Configurar enlace de calendario"

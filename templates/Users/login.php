@@ -17,5 +17,5 @@ $this->Form->controls([
 ], ['legend' => 'Login'])
 ?>
 <?= $this->Form->submit('Login') ?>
-<?= $this->Html->link('Kein Account? Jetzt registrieren', ['controller' => 'users', 'action' => 'register']) ?>
+<?= $this->Html->link(__('No account yet? Register now'), ['controller' => 'users', 'action' => 'register']) ?>
 <?= $this->Form->end() ?>

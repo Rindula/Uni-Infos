@@ -12,12 +12,13 @@
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @var AppView $this
- * @var boolean $loggedIn Ist der Benutzer eingeloggt, oder nicht?
+ * @var Identity|null $loggedIn Ist der Benutzer eingeloggt, oder nicht?
  */
 
 $cakeDescription = 'UniInfos';
 
 use App\View\AppView;
+use Authentication\Identity;
 use Cake\I18n\I18n;
 
 ?>
