@@ -16,7 +16,7 @@
 
 use App\View\AppView; ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?= I18n::getLocale() ?>">
 <head>
     <?= $this->Html->charset() ?>
     <title>

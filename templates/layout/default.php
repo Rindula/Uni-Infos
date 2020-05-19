@@ -18,10 +18,11 @@
 $cakeDescription = 'UniInfos';
 
 use App\View\AppView;
+use Cake\I18n\I18n;
 
 ?>
 <!DOCTYPE html>
-<html lang="de">
+<html lang="<?= I18n::getLocale() ?>">
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">

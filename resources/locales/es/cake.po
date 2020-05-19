@@ -54,25 +54,25 @@ msgstr "No se encontró el archivo solicitado"
 
 #: I18n/Number.php:108
 msgid "{0,number,#,###.##} KB"
-msgstr "{0, número, #, ###. ##} KB"
+msgstr "{0,number,#,###.##} KB"
 
 #: I18n/Number.php:110
 msgid "{0,number,#,###.##} MB"
-msgstr "{0,número,#,###.##} MB"
+msgstr "{0,number,#,###.##} MB"
 
 #: I18n/Number.php:112
 msgid "{0,number,#,###.##} GB"
-msgstr "{0,número,#,###.##} GB"
+msgstr "{0,number,#,###.##} GB"
 
 #: I18n/Number.php:114
 msgid "{0,number,#,###.##} TB"
-msgstr "{0,número,#,###.##} TB"
+msgstr "{0,number,#,###.##} TB"
 
 #: I18n/Number.php:106
 msgid "{0,number,integer} Byte"
 msgid_plural "{0,number,integer} Bytes"
-msgstr[0] "{0, número, entero} Byte"
-msgstr[1] "{0, número, entero} Bytes"
+msgstr[0] "{0,number,integer} Byte"
+msgstr[1] "{0,number,integer} Bytes"
 
 #: I18n/RelativeTimeFormatter.php:86
 msgid "{0} from now"
