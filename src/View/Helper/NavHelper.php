@@ -13,26 +13,32 @@ class NavHelper extends Helper
 
     public $helpers = ['Html', 'Url'];
 
-    private $navItems = array(
-        [
-            'title' => 'Startseite',
-            'url' => ['controller' => 'pages', 'action' => 'display', 'home'],
-            'icon' => 'home',
-            'showInMobile' => true,
-        ],
-        [
-            'title' => 'Stundenplan',
-            'url' => ['controller' => 'stundenplan', 'action' => 'index'],
-            'icon' => 'calendar_today',
-            'showInMobile' => true,
-        ],
-        [
-            'title' => 'Kalenderlink konfigurieren',
-            'url' => ['controller' => 'stundenplan', 'action' => 'configureCalendarLink'],
-            'icon' => '',
-            'showInMobile' => false,
-        ],
-    );
+    private $navItems = [];
+
+    public function initialize(array $config): void
+    {
+        parent::initialize($config);
+        $this->navItems = [
+            [
+                'title' => __('Homepage'),
+                'url' => ['controller' => 'pages', 'action' => 'display', 'home'],
+                'icon' => 'home',
+                'showInMobile' => true,
+            ],
+            [
+                'title' => __('Timetable'),
+                'url' => ['controller' => 'stundenplan', 'action' => 'index'],
+                'icon' => 'calendar_today',
+                'showInMobile' => true,
+            ],
+            [
+                'title' => __('Configure Calendarlink'),
+                'url' => ['controller' => 'stundenplan', 'action' => 'configureCalendarLink'],
+                'icon' => '',
+                'showInMobile' => false,
+            ],
+        ];
+    }
 
     /**
      * @param Identity|null $loggedIn
@@ -44,7 +50,7 @@ class NavHelper extends Helper
             $array = [];
             if ($loggedIn->get('role_id') == 3) {
                 $array[] = [
-                    'title' => 'Benutzerverwaltung',
+                    'title' => __('Usermanagement'),
                     'url' => ['controller' => 'users', 'action' => 'manage'],
                     'icon' => 'account_circle',
                     'showInMobile' => true,
@@ -52,7 +58,7 @@ class NavHelper extends Helper
             }
             $array[] =
                 [
-                    'title' => 'Logout',
+                    'title' => __('Logout'),
                     'url' => ['controller' => 'users', 'action' => 'logout'],
                     'icon' => 'person_outline',
                     'showInMobile' => true,
@@ -60,7 +66,7 @@ class NavHelper extends Helper
         } else {
             $array = [
                 [
-                    'title' => 'Login',
+                    'title' => __('Login'),
                     'url' => ['controller' => 'users', 'action' => 'login'],
                     'icon' => 'person',
                     'showInMobile' => true,
