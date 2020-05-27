@@ -43,7 +43,7 @@ function setData(msg) {
         }
         html += "<blockquote class='" + ((event['custom']['isSeminar']) ? "seminar" : "") + ((event['custom']['isKlausur']) ? "klausur" : "") + ((event['custom']['isOnline']) ? " online" : "") + "'><div class=\"row row-top\">" +
             "<span class=\"column column-20\">" + event['SUMMARY'] + "</span><span\n" +
-            "                    class=\"column-offset-50 column-33 column\" style='text-align: right'>" + event['LOCATION'] + "</span></div>" +
+            "                    class=\"column-offset-50 column-33 column\" style='text-align: right'>" + ((event['custom']['isOnline']) ? "Online" : event['LOCATION']) + "</span></div>" +
             "<div class='row'><small class='column'>" + event['DESCRIPTION'] + "</small></div><br>";
 
         if (event['custom']['note']) {
