@@ -37,10 +37,9 @@ use Cake\I18n\I18n;
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
 
-    <?= $this->Html->css('milligram.min.css') ?>
     <?= $this->Html->css('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css') ?>
     <?= $this->Html->css('https://fonts.googleapis.com/icon?family=Material+Icons') ?>
-    <?= $this->Html->css('main.min.css?' . $this->Git->getTimestamp()->timestamp) ?>
+    <?= $this->Html->css('main.css?' . $this->Git->getTimestamp()->timestamp) ?>
     <?= $this->Html->script('jquery.min.js') ?>
     <?= $this->Html->script('https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', ['block' => 'bottomScripts']) ?>
     <?= ($this->getRequest()->is('mobile')) ? $this->Html->script('cookieConsentRight.js', ['block' => 'bottomScripts']) : $this->Html->script('cookieConsentBottom.js', ['block' => 'bottomScripts']) ?>

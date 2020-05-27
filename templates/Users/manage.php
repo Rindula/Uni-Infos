@@ -9,7 +9,7 @@ use App\View\AppView;
 use Cake\Collection\CollectionInterface;
 
 ?>
-<div class="users index content">
+<div class="content">
     <h3><?= __('Users') ?></h3>
     <div class="table-responsive">
         <table>

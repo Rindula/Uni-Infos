@@ -46,5 +46,11 @@ class AppView extends View
         $this->loadHelper('Authentication.Identity');
         $this->loadHelper('Nav');
         $this->loadHelper('Git');
+        $this->loadHelper('Form', [
+            'templates' => 'app_form',
+            'widgets' => [
+                'toggleButton' => ['ToggleButton']
+            ],
+        ]);
     }
 }

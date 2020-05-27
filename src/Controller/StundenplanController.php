@@ -387,7 +387,9 @@ class StundenplanController extends AppController
             ]);
         }
 
-        $this->set(compact('calendarConfigurator', 'link'));
+        $courses = $this->getCourses(true);
+
+        $this->set(compact('calendarConfigurator', 'link', 'courses'));
     }
 
 }
