@@ -238,6 +238,24 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        'verteiler' => [
+            'className' => MailTransport::class,
+            /*
+             * The keys host, port, timeout, username, password, client and tls
+             * are used in SMTP transports
+             */
+            'host' => 'localhost',
+            'port' => 25,
+            'timeout' => 30,
+            /*
+             * It is recommended to set these options through your environment or app_local.php
+             */
+            //'username' => null,
+            //'password' => null,
+            'client' => null,
+            'tls' => false,
+            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+        ],
     ],
 
     /*
