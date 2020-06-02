@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2020-06-02 20:36+0200\n"
+"POT-Creation-Date: 2020-06-02 20:42+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -148,6 +148,14 @@ msgstr ""
 
 #: Users/preferences.php:30
 msgid "Reset Password"
+msgstr ""
+
+#: Users/preferences.php:32
+msgid "Password"
+msgstr ""
+
+#: Users/preferences.php:33
+msgid "Confirm password"
 msgstr ""
 
 #: Users/preferences.php:34

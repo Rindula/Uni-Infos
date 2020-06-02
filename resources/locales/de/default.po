@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-06-02 20:36+0200\n"
+"POT-Creation-Date: 2020-06-02 20:42+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -151,6 +151,14 @@ msgstr "Aktiviert seit"
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
+#: Users/preferences.php:32
+msgid "Password"
+msgstr "Passwort"
+
+#: Users/preferences.php:33
+msgid "Confirm password"
+msgstr "Passwort bestätigen"
+
 #: Users/preferences.php:34
 msgid "Change Password"
 msgstr "Passwort ändern"
@@ -183,5 +191,5 @@ msgstr "Zurück"
 msgid "View"
 msgstr "Ansehen"
 
-#~ msgid "Online Only"
-#~ msgstr "Nur online"
+msgid "Online Only"
+msgstr "Nur online"

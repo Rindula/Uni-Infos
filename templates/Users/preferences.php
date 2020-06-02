@@ -29,8 +29,8 @@ use App\View\AppView;
     <div id="settings">
         <h4><?= __('Reset Password') ?></h4>
         <?= $this->Form->create($user) ?>
-        <?= $this->Form->password('password', ['value' => '', 'placeholder' => 'Passwort']) ?>
-        <?= $this->Form->password('passwordConfirm', ['value' => '', 'placeholder' => 'Passwort bestätigen']) ?>
+        <?= $this->Form->password('password', ['value' => '', 'placeholder' => __('Password')]) ?>
+        <?= $this->Form->password('passwordConfirm', ['value' => '', 'placeholder' => __('Confirm password')]) ?>
         <?= $this->Form->submit(__('Change Password')) ?>
         <?= $this->Form->end() ?>
         <h4><?= __('Language') ?></h4>
