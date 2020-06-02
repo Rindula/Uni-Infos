@@ -21,6 +21,7 @@ use Authentication\Controller\Component\AuthenticationComponent;
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\I18n\I18n;
 use Exception;
 
 /**
@@ -53,6 +54,7 @@ class AppController extends Controller
         $this->loadComponent('Authorization.Authorization');
         $loggedIn = $this->Authentication->getIdentity();
         $this->set(compact('loggedIn'));
+        if ($loggedIn) I18n::setLocale($this->getTableLocator()->get('users')->get($this->Authentication->getIdentity()->id)->language ?? 'de');
         unset($loggedIn);
 
         /*

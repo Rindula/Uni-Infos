@@ -41,6 +41,7 @@ class User extends Entity implements IdentityInterface
         'modified' => true,
         'enabled' => true,
         'course' => true,
+        'language' => true,
     ];
 
     /**

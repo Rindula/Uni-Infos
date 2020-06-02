@@ -14,13 +14,13 @@ use App\View\AppView;
     <div id="stats">
         <table class="table-responsive">
             <tr>
-                <td>E-Mail</td>
+                <td><?= __('EMail') ?></td>
                 <td><?= $user->email ?> <span style="color: orangered;cursor: help"
                                               title="Wenn du eine andere E-mail nutzen möchtest, erstelle dir bitte einen neuen Account und deaktiviere diesen!">?</span>
                 </td>
             </tr>
             <tr>
-                <td>Aktiviert seit:</td>
+                <td><?= __('Activated since') ?></td>
                 <td><?= $user->enabled->nice() ?></td>
             </tr>
         </table>
@@ -32,6 +32,11 @@ use App\View\AppView;
         <?= $this->Form->password('password', ['value' => '', 'placeholder' => 'Passwort']) ?>
         <?= $this->Form->password('passwordConfirm', ['value' => '', 'placeholder' => 'Passwort bestätigen']) ?>
         <?= $this->Form->submit(__('Change Password')) ?>
+        <?= $this->Form->end() ?>
+        <h4><?= __('Language') ?></h4>
+        <?= $this->Form->create($user) ?>
+        <?= $this->Form->select('language', ['de' => 'Deutsch', 'en' => 'English', 'es' => 'Español']) ?>
+        <?= $this->Form->submit(__('Change Language')) ?>
         <?= $this->Form->end() ?>
         <h4><?= __('Set Course') ?></h4>
         <?= $this->Form->create($user) ?>

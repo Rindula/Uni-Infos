@@ -53,6 +53,12 @@ class StundenplanController extends AppController
         $this->Authorization->skipAuthorization();
         $courses = getCourses(true);
         $courseSelected = (isset($_COOKIE["selectedCourse"])) ? $_COOKIE["selectedCourse"] : "";
+
+        if ($this->Authentication->getIdentity()) {
+            $user = $this->getTableLocator()->get('Users')->get($this->Authentication->getIdentity()->id);
+            $courseSelected = $user->course ?? $courseSelected;
+        }
+
         $this->set(compact('courses', 'courseSelected'));
     }
 

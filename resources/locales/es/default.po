@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-06-02 19:56+0200\n"
+"POT-Creation-Date: 2020-06-02 20:36+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,10 +16,18 @@ msgid "Password has been updated"
 msgstr "Kata sandi telah diperbarui"
 
 #: Controller/UsersController.php:160
+msgid "Your Language has been updated"
+msgstr "Su configuración de idioma ha sido actualizada"
+
+#: Controller/UsersController.php:163
+msgid "There was an error updating your language!"
+msgstr "¡Se produjo un error al actualizar tu idioma!"
+
+#: Controller/UsersController.php:169
 msgid "Your Course has been updated"
 msgstr "Su curso se ha actualizado"
 
-#: Controller/UsersController.php:163
+#: Controller/UsersController.php:172
 msgid "There was an error updating your course!"
 msgstr "¡Se ha producido un error al actualizar el curso!"
 
@@ -42,6 +50,10 @@ msgstr "¡Las contraseñas deben coincidir!"
 #: Model/Table/UsersTable.php:135
 msgid "The Course must not be empty!"
 msgstr "¡El curso no debe estar vacío!"
+
+#: Model/Table/UsersTable.php:157
+msgid "The Language must not be empty!"
+msgstr "¡El idioma no debe estar vacío!"
 
 #: View/Helper/NavHelper.php:23
 msgid "Homepage"
@@ -70,6 +82,18 @@ msgstr "Cerrar sesión"
 #: View/Helper/NavHelper.php:76
 msgid "Login"
 msgstr "Iniciar sesión"
+
+#: Pages/home.php:10
+msgid "To file storage"
+msgstr "Al archivo de almacenamiento"
+
+#: Pages/home.php:11
+msgid "To the timetable"
+msgstr "Al horario"
+
+#: Pages/home.php:12
+msgid "Session recordings"
+msgstr "Registros de sesión"
 
 #: Users/login.php:20
 msgid "No account yet? Register now"
@@ -115,23 +139,39 @@ msgstr ""
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: Users/preferences.php:28
+#: Users/preferences.php:17
+msgid "EMail"
+msgstr "Correo electrónico"
+
+#: Users/preferences.php:23
+msgid "Activated since"
+msgstr "Activado desde"
+
+#: Users/preferences.php:30
 msgid "Reset Password"
 msgstr "Restablecer contraseña"
 
-#: Users/preferences.php:32
+#: Users/preferences.php:34
 msgid "Change Password"
 msgstr "Cambiar Contraseña"
 
-#: Users/preferences.php:34 Users/preferences.php:37
+#: Users/preferences.php:36
+msgid "Language"
+msgstr "Idioma"
+
+#: Users/preferences.php:39
+msgid "Change Language"
+msgstr "Cambio de idioma"
+
+#: Users/preferences.php:41 Users/preferences.php:44
 msgid "Set Course"
 msgstr "Conjunto Curso"
 
-#: Users/preferences.php:39 Users/preferences.php:40
+#: Users/preferences.php:46 Users/preferences.php:47
 msgid "Disable Account"
 msgstr "Desactivar cuenta"
 
-#: Users/preferences.php:40
+#: Users/preferences.php:47
 msgid "Are you sure you want to disable this Account?"
 msgstr "¿Está seguro de que desea deshabilitar esta cuenta?"
 

@@ -154,6 +154,15 @@ class UsersController extends AppController
                     $this->Flash->error('There was an error saving the password!');
                 }
             }
+            if (isset($data['language'])) {
+                $user = $this->Users->patchEntity($user, $data, ['validate' => 'language']);
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('Your Language has been updated'));
+                    return $this->redirect(['action' => 'preferences']);
+                } else {
+                    $this->Flash->error(__('There was an error updating your language!') . ' / There was an error updating your language!');
+                }
+            }
             if (isset($data['course'])) {
                 $user = $this->Users->patchEntity($user, $data, ['validate' => 'course']);
                 if ($this->Users->save($user)) {

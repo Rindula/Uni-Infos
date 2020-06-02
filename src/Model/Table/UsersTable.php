@@ -139,6 +139,28 @@ class UsersTable extends Table
     }
 
     /**
+     * Default validation rules.
+     *
+     * @param Validator $validator Validator instance.
+     * @return Validator
+     */
+    public function validationLanguage(Validator $validator): Validator
+    {
+        $validator
+            ->nonNegativeInteger('id')
+            ->notEmptyString('id');
+
+        $validator
+            ->scalar('language')
+            ->maxLength('language', 10)
+            ->requirePresence('language')
+            ->notEmptyString('language', __('The Language must not be empty!'))
+            ->inList('course', ['de', 'en', 'es'], 'The selected language is not available!');
+
+        return $validator;
+    }
+
+    /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *
