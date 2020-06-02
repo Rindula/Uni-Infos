@@ -40,7 +40,7 @@ class UsersController extends AppController
                 $target = $this->Authentication->getLoginRedirect() ?? '/';
                 return $this->redirect($target);
             } else {
-                $this->Flash->error('Bitte verifiziere zuerst deine E-Mail Adresse!');
+                $this->Flash->error('Bitte verifiziere zuerst deine E-Mail Adresse! Wenn du keine E-Mail bekommen hast, melde das bitte an webmaster@rindula.de');
                 return $this->redirect(['action' => 'logout']);
             }
 
