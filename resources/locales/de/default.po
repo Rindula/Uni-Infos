@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2020-06-02 19:56+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,6 +11,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3.1\n"
 
+#: Controller/UsersController.php:151
+msgid "Password has been updated"
+msgstr "Passwort wurde aktualisiert"
+
+#: Controller/UsersController.php:160
+msgid "Your Course has been updated"
+msgstr "Dein Kurs wurde aktualisiert"
+
+#: Controller/UsersController.php:163
+msgid "There was an error updating your course!"
+msgstr "Es ist ein Fehler beim Aktualisieren deines Kurses aufgetreten!"
+
 #: Mailer/UserMailer.php:35
 msgid "Email verification | rindula.de"
 msgstr "E-Mail Verifizierung | rindula.de"
@@ -18,6 +30,18 @@ msgstr "E-Mail Verifizierung | rindula.de"
 #: Mailer/UserMailer.php:50
 msgid "New User | rindula.de"
 msgstr "Neuer Benutzer | rindula.de"
+
+#: Model/Table/UsersTable.php:107
+msgid "The Password must not be empty!"
+msgstr "Das Passwort darf nicht leer sein!"
+
+#: Model/Table/UsersTable.php:114
+msgid "The passwords must match!"
+msgstr "Die Passwörter müssen übereinstimmen!"
+
+#: Model/Table/UsersTable.php:135
+msgid "The Course must not be empty!"
+msgstr "Der Kurs darf nicht leer sein!"
 
 #: View/Helper/NavHelper.php:23
 msgid "Homepage"
@@ -36,12 +60,20 @@ msgid "Usermanagement"
 msgstr "Benutzerverwaltung"
 
 #: View/Helper/NavHelper.php:61
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: View/Helper/NavHelper.php:68
 msgid "Logout"
 msgstr "Abmelden"
 
-#: View/Helper/NavHelper.php:69
+#: View/Helper/NavHelper.php:76
 msgid "Login"
 msgstr "Anmelden"
+
+#: Users/login.php:20
+msgid "No account yet? Register now"
+msgstr "Noch kein Konto? Jetzt registrieren"
 
 #: Users/manage.php:13
 msgid "Users"
@@ -79,22 +111,40 @@ msgstr ""
 "Seite {{page}} von {{pages}}, zeige {{current}} Einträge von insgesamt "
 "{{count}}"
 
-#: layout/error.php:89
+#: Users/preferences.php:13
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: Users/preferences.php:28
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
+
+#: Users/preferences.php:32
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+#: Users/preferences.php:34 Users/preferences.php:37
+msgid "Set Course"
+msgstr "Kurs setzen"
+
+#: Users/preferences.php:39 Users/preferences.php:40
+msgid "Disable Account"
+msgstr "Deaktiviertes Konto"
+
+#: Users/preferences.php:40
+msgid "Are you sure you want to disable this Account?"
+msgstr "Möchtest du dieses Konto wirklich deaktivieren?"
+
+#: layout/error.php:88
 msgid "Back"
 msgstr "Zurück"
 
-#: View/Helper/PaginatorHelper.php:1266
+#: View/Helper/PaginatorHelper.php:1268
 msgid "View"
 msgstr "Ansehen"
 
-msgid "Course"
-msgstr "Kurs"
+#~ msgid "Online Only"
+#~ msgstr "Nur online"
 
-msgid "Online Only"
-msgstr "Nur online"
-
-msgid "Configure Calendar Link"
-msgstr "Kalenderlink konfigurieren"
-
-msgid "No account yet? Register now"
-msgstr "Noch kein Konto? Jetzt registrieren"
+#~ msgid "Configure Calendar Link"
+#~ msgstr "Kalenderlink konfigurieren"

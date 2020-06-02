@@ -123,7 +123,7 @@ class UsersController extends AppController
 
     public function userAction($id = null, $action = null, $additionalData = [])
     {
-        $this->Authorization->authorize($this->Users->find()->first(), 'manage');
+        $this->Authorization->authorize($this->Users->get($this->Authentication->getIdentity()->id), 'manage');
         if ($id !== null) {
             switch ($action) {
                 case 'sendmail':
@@ -136,6 +136,49 @@ class UsersController extends AppController
                     throw new BadRequestException();
             }
         }
+    }
+
+    public function preferences()
+    {
+        $user = $this->Users->get($this->Authentication->getIdentity()->id);
+        $this->Authorization->authorize($user);
+
+        if ($this->request->is(['post', 'put'])) {
+            $data = $this->request->getData();
+            if (isset($data['password'], $data['passwordConfirm'])) {
+                $user = $this->Users->patchEntity($user, $data, ['validate' => 'password']);
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('Password has been updated'));
+                    return $this->redirect(['action' => 'preferences']);
+                } else {
+                    $this->Flash->error('There was an error saving the password!');
+                }
+            }
+            if (isset($data['course'])) {
+                $user = $this->Users->patchEntity($user, $data, ['validate' => 'course']);
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('Your Course has been updated'));
+                    return $this->redirect(['action' => 'preferences']);
+                } else {
+                    $this->Flash->error(__('There was an error updating your course!'));
+                }
+            }
+        }
+
+        $courses = getCourses(true);
+
+        $this->set(compact('user', 'courses'));
+    }
+
+    public function disable($id = null)
+    {
+        $this->autoRender = false;
+        $currentUser = ($id == null) ? $this->Users->get($this->Authentication->getIdentity()->id) : $this->Users->get($id);
+        $this->Authorization->authorize($currentUser);
+        $currentUser->enabled = null;
+        $this->Users->saveOrFail($currentUser);
+        if ($currentUser->id == $this->Authentication->getIdentity()->id) return $this->logout();
+        return $this->redirect(['action' => 'manage']);
     }
 
 }

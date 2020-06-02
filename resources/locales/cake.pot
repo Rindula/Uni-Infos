@@ -1,3 +1,19 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP 4.0.8\n"
+"POT-Creation-Date: 2020-06-02 19:56+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
 #: Error/error400.php:36
 #: Error/error500.php:40
 msgid "Error"
@@ -11,7 +27,7 @@ msgstr ""
 msgid "An Internal Error Has Occurred"
 msgstr ""
 
-#: Controller/Component/AuthComponent.php:460
+#: Controller/Component/AuthComponent.php:462
 msgid "You are not authorized to access that location."
 msgstr ""
 
@@ -23,39 +39,43 @@ msgstr ""
 msgid "An Internal Error Has Occurred."
 msgstr ""
 
-#: Http/Middleware/CsrfProtectionMiddleware.php:220
-msgid "Missing CSRF token cookie"
+#: Http/Middleware/CsrfProtectionMiddleware.php:250
+msgid "Missing CSRF cookie."
 msgstr ""
 
-#: Http/Middleware/CsrfProtectionMiddleware.php:236
-msgid "Missing CSRF token body"
+#: Http/Middleware/CsrfProtectionMiddleware.php:254
+msgid "Missing or invalid CSRF cookie."
 msgstr ""
 
-#: Http/Response.php:1486
+#: Http/Middleware/CsrfProtectionMiddleware.php:275
+msgid "CSRF token from either the request body or request headers did not match or is missing."
+msgstr ""
+
+#: Http/Response.php:1490
 msgid "The requested file contains `..` and will not be read."
 msgstr ""
 
-#: Http/Response.php:1494
+#: Http/Response.php:1498
 msgid "The requested file was not found"
 msgstr ""
 
-#: I18n/Number.php:108
+#: I18n/Number.php:116
 msgid "{0,number,#,###.##} KB"
 msgstr ""
 
-#: I18n/Number.php:110
+#: I18n/Number.php:118
 msgid "{0,number,#,###.##} MB"
 msgstr ""
 
-#: I18n/Number.php:112
+#: I18n/Number.php:120
 msgid "{0,number,#,###.##} GB"
 msgstr ""
 
-#: I18n/Number.php:114
+#: I18n/Number.php:122
 msgid "{0,number,#,###.##} TB"
 msgstr ""
 
-#: I18n/Number.php:106
+#: I18n/Number.php:114
 msgid "{0,number,integer} Byte"
 msgid_plural "{0,number,integer} Bytes"
 msgstr[0] ""
@@ -218,11 +238,11 @@ msgstr ""
 msgid "This value does not exist"
 msgstr ""
 
-#: ORM/RulesChecker.php:229
+#: ORM/RulesChecker.php:224
 msgid "Cannot modify row: a constraint for the `{0}` association fails."
 msgstr ""
 
-#: ORM/RulesChecker.php:267
+#: ORM/RulesChecker.php:262
 msgid "The count does not match {0}{1}"
 msgstr ""
 
@@ -230,28 +250,28 @@ msgstr ""
 msgid "and"
 msgstr ""
 
-#: Validation/Validator.php:2495
+#: Validation/Validator.php:2500
 msgid "This field is required"
 msgstr ""
 
-#: Validation/Validator.php:2515
-#: View/Form/ArrayContext.php:254
+#: Validation/Validator.php:2520
+#: View/Form/ArrayContext.php:253
 msgid "This field cannot be left empty"
 msgstr ""
 
-#: Validation/Validator.php:2667
+#: Validation/Validator.php:2672
 msgid "The provided value is invalid"
 msgstr ""
 
-#: View/Helper/FormHelper.php:971
+#: View/Helper/FormHelper.php:968
 msgid "Edit {0}"
 msgstr ""
 
-#: View/Helper/FormHelper.php:973
+#: View/Helper/FormHelper.php:970
 msgid "New {0}"
 msgstr ""
 
-#: View/Helper/FormHelper.php:1880
+#: View/Helper/FormHelper.php:1877
 msgid "Submit"
 msgstr ""
 

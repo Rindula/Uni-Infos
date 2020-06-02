@@ -44,6 +44,14 @@ fieldset {
     &.button-outline {
         color: $theme-color;
         transition: color .1s linear;
+
+        &.delete {
+            border-color: $color-error;
+        }
+    }
+
+    &.delete {
+        color: $color-error;
     }
 }
 

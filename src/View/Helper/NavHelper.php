@@ -58,6 +58,13 @@ class NavHelper extends Helper
             }
             $array[] =
                 [
+                    'title' => __('Settings'),
+                    'url' => ['controller' => 'users', 'action' => 'preferences'],
+                    'icon' => 'settings',
+                    'showInMobile' => true,
+                ];
+            $array[] =
+                [
                     'title' => __('Logout'),
                     'url' => ['controller' => 'users', 'action' => 'logout'],
                     'icon' => 'person_outline',

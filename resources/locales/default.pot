@@ -1,9 +1,49 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2020-06-02 19:56+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/UsersController.php:151
+msgid "Password has been updated"
+msgstr ""
+
+#: Controller/UsersController.php:160
+msgid "Your Course has been updated"
+msgstr ""
+
+#: Controller/UsersController.php:163
+msgid "There was an error updating your course!"
+msgstr ""
+
 #: Mailer/UserMailer.php:35
 msgid "Email verification | rindula.de"
 msgstr ""
 
 #: Mailer/UserMailer.php:50
 msgid "New User | rindula.de"
+msgstr ""
+
+#: Model/Table/UsersTable.php:107
+msgid "The Password must not be empty!"
+msgstr ""
+
+#: Model/Table/UsersTable.php:114
+msgid "The passwords must match!"
+msgstr ""
+
+#: Model/Table/UsersTable.php:135
+msgid "The Course must not be empty!"
 msgstr ""
 
 #: View/Helper/NavHelper.php:23
@@ -23,11 +63,19 @@ msgid "Usermanagement"
 msgstr ""
 
 #: View/Helper/NavHelper.php:61
+msgid "Settings"
+msgstr ""
+
+#: View/Helper/NavHelper.php:68
 msgid "Logout"
 msgstr ""
 
-#: View/Helper/NavHelper.php:69
+#: View/Helper/NavHelper.php:76
 msgid "Login"
+msgstr ""
+
+#: Users/login.php:20
+msgid "No account yet? Register now"
 msgstr ""
 
 #: Users/manage.php:13
@@ -62,22 +110,37 @@ msgstr ""
 msgid "Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total"
 msgstr ""
 
-#: layout/error.php:89
+#: Users/preferences.php:13
+msgid "Preferences"
+msgstr ""
+
+#: Users/preferences.php:28
+msgid "Reset Password"
+msgstr ""
+
+#: Users/preferences.php:32
+msgid "Change Password"
+msgstr ""
+
+#: Users/preferences.php:34
+#: Users/preferences.php:37
+msgid "Set Course"
+msgstr ""
+
+#: Users/preferences.php:39
+#: Users/preferences.php:40
+msgid "Disable Account"
+msgstr ""
+
+#: Users/preferences.php:40
+msgid "Are you sure you want to disable this Account?"
+msgstr ""
+
+#: layout/error.php:88
 msgid "Back"
 msgstr ""
 
-#: View/Helper/PaginatorHelper.php:1266
+#: View/Helper/PaginatorHelper.php:1268
 msgid "View"
 msgstr ""
 
-msgid "Course"
-msgstr ""
-
-msgid "Online Only"
-msgstr ""
-
-msgid "Configure Calendar Link"
-msgstr ""
-
-msgid "No account yet? Register now"
-msgstr ""

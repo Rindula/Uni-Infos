@@ -81,6 +81,60 @@ class UsersTable extends Table
             ->dateTime('enabled')
             ->allowEmptyDateTime('enabled');
 
+        $validator
+            ->scalar('course')
+            ->allowEmptyString('course');
+
+        return $validator;
+    }
+
+    /**
+     * Default validation rules.
+     *
+     * @param Validator $validator Validator instance.
+     * @return Validator
+     */
+    public function validationPassword(Validator $validator): Validator
+    {
+        $validator
+            ->nonNegativeInteger('id')
+            ->notEmptyString('id');
+
+        $validator
+            ->scalar('password')
+            ->maxLength('password', 255)
+            ->requirePresence('password')
+            ->notEmptyString('password', __('The Password must not be empty!'));
+
+        $validator
+            ->scalar('passwordConfirm')
+            ->maxLength('passwordConfirm', 255)
+            ->requirePresence('passwordConfirm')
+            ->notEmptyString('passwordConfirm')
+            ->equalToField('passwordConfirm', 'password', __('The passwords must match!'));
+
+        return $validator;
+    }
+
+    /**
+     * Default validation rules.
+     *
+     * @param Validator $validator Validator instance.
+     * @return Validator
+     */
+    public function validationCourse(Validator $validator): Validator
+    {
+        $validator
+            ->nonNegativeInteger('id')
+            ->notEmptyString('id');
+
+        $validator
+            ->scalar('course')
+            ->maxLength('course', 10)
+            ->requirePresence('course')
+            ->notEmptyString('course', __('The Course must not be empty!'))
+            ->inList('course', getCourses(false, true));
+
         return $validator;
     }
 

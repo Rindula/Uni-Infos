@@ -43,6 +43,7 @@ use Cake\Mailer\Mailer;
 use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+use Detection\MobileDetect;
 
 /*
  * See https://github.com/josegonzalez/php-dotenv for API details.
@@ -77,7 +78,7 @@ use Cake\Utility\Security;
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
-} catch (\Exception $e) {
+} catch (Exception $e) {
     exit($e->getMessage() . "\n");
 }
 
@@ -167,15 +168,42 @@ Security::setSalt(Configure::consume('Security.salt'));
  * Setup detectors for mobile and tablet.
  */
 ServerRequest::addDetector('mobile', function ($request) {
-    $detector = new \Detection\MobileDetect();
+    $detector = new MobileDetect();
 
     return $detector->isMobile();
 });
 ServerRequest::addDetector('tablet', function ($request) {
-    $detector = new \Detection\MobileDetect();
+    $detector = new MobileDetect();
 
     return $detector->isTablet();
 });
+
+
+function getCourses($grouped = false, $toLower = false)
+{
+    Cache::enable();
+    if (($coursesJson = Cache::read('courses', 'longTerm')) === null) {
+        $coursesJson = file_get_contents("https://stuv-mosbach.de/survival/api.php?action=getCourses");
+        Cache::write('courses', $coursesJson, 'longTerm');
+    }
+    $courses = json_decode($coursesJson);
+    foreach ($courses as $key => &$course) {
+        $course = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
+        if (empty($course)) unset($courses[$key]);
+        if ($toLower && $course != null) $courses[$key] = strtolower($courses[$key]);
+    }
+    sort($courses);
+    if (!$grouped) return $courses;
+
+    $courseGroup = [];
+
+    foreach ($courses as $key => &$course) {
+        $courseGroup[preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$2', $course)][strtolower(preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$1', $course))] = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
+        if (empty($course)) unset($courses[$key]);
+    }
+
+    return $courseGroup;
+}
 
 /*
  * You can set whether the ORM uses immutable or mutable Time types.

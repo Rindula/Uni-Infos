@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: \n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2020-06-02 19:56+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3.1\n"
 
 #: Error/error400.php:36 Error/error500.php:40
@@ -24,7 +24,7 @@ msgstr "La dirección solicitada {0} no se encontró en este servidor."
 msgid "An Internal Error Has Occurred"
 msgstr "Ha ocurrido un error interno"
 
-#: Controller/Component/AuthComponent.php:460
+#: Controller/Component/AuthComponent.php:462
 msgid "You are not authorized to access that location."
 msgstr "No está autorizado a acceder a esa ubicación."
 
@@ -36,39 +36,47 @@ msgstr "No encontrado"
 msgid "An Internal Error Has Occurred."
 msgstr "Se ha producido un error interno."
 
-#: Http/Middleware/CsrfProtectionMiddleware.php:220
-msgid "Missing CSRF token cookie"
-msgstr "Falta la cookie de token CSRF"
+#: Http/Middleware/CsrfProtectionMiddleware.php:250
+msgid "Missing CSRF cookie."
+msgstr "Falta la cookie de token CSRF."
 
-#: Http/Middleware/CsrfProtectionMiddleware.php:236
-msgid "Missing CSRF token body"
-msgstr "Falta el cuerpo del token CSRF"
+#: Http/Middleware/CsrfProtectionMiddleware.php:254
+msgid "Missing or invalid CSRF cookie."
+msgstr "Falta la cookie de token CSRF."
 
-#: Http/Response.php:1486
+#: Http/Middleware/CsrfProtectionMiddleware.php:275
+msgid ""
+"CSRF token from either the request body or request headers did not match or "
+"is missing."
+msgstr ""
+"El token CSRF del cuerpo de la solicitud o de los encabezados de solicitud "
+"no coincide o falta."
+
+#: Http/Response.php:1490
 msgid "The requested file contains `..` and will not be read."
 msgstr "El archivo solicitado contiene `..` y no se leerá."
 
-#: Http/Response.php:1494
+#: Http/Response.php:1498
 msgid "The requested file was not found"
 msgstr "No se encontró el archivo solicitado"
 
-#: I18n/Number.php:108
+#: I18n/Number.php:116
 msgid "{0,number,#,###.##} KB"
 msgstr "{0,number,#,###.##} KB"
 
-#: I18n/Number.php:110
+#: I18n/Number.php:118
 msgid "{0,number,#,###.##} MB"
 msgstr "{0,number,#,###.##} MB"
 
-#: I18n/Number.php:112
+#: I18n/Number.php:120
 msgid "{0,number,#,###.##} GB"
 msgstr "{0,number,#,###.##} GB"
 
-#: I18n/Number.php:114
+#: I18n/Number.php:122
 msgid "{0,number,#,###.##} TB"
 msgstr "{0,number,#,###.##} TB"
 
-#: I18n/Number.php:106
+#: I18n/Number.php:114
 msgid "{0,number,integer} Byte"
 msgid_plural "{0,number,integer} Bytes"
 msgstr[0] "{0,number,integer} Byte"
@@ -216,11 +224,13 @@ msgstr "Este valor ya está en uso"
 msgid "This value does not exist"
 msgstr "Este valor no existe"
 
-#: ORM/RulesChecker.php:229
+#: ORM/RulesChecker.php:224
 msgid "Cannot modify row: a constraint for the `{0}` association fails."
-msgstr "No se puede modificar la fila: se produce un error en una restricción para la asociación `{0}`."
+msgstr ""
+"No se puede modificar la fila: se produce un error en una restricción para "
+"la asociación `{0}`."
 
-#: ORM/RulesChecker.php:267
+#: ORM/RulesChecker.php:262
 msgid "The count does not match {0}{1}"
 msgstr "El recuento no coincide con {0} {1}"
 
@@ -228,26 +238,29 @@ msgstr "El recuento no coincide con {0} {1}"
 msgid "and"
 msgstr "y"
 
-#: Validation/Validator.php:2495
+#: Validation/Validator.php:2500
 msgid "This field is required"
 msgstr "Este campo es requerido"
 
-#: Validation/Validator.php:2515 View/Form/ArrayContext.php:254
+#: Validation/Validator.php:2520 View/Form/ArrayContext.php:253
 msgid "This field cannot be left empty"
 msgstr "Este campo no puede dejarse vacío"
 
-#: Validation/Validator.php:2667
+#: Validation/Validator.php:2672
 msgid "The provided value is invalid"
 msgstr "El valor proporcionado no es válido"
 
-#: View/Helper/FormHelper.php:971
+#: View/Helper/FormHelper.php:968
 msgid "Edit {0}"
 msgstr "Editar {0}"
 
-#: View/Helper/FormHelper.php:973
+#: View/Helper/FormHelper.php:970
 msgid "New {0}"
 msgstr "Nuevo {0}"
 
-#: View/Helper/FormHelper.php:1880
+#: View/Helper/FormHelper.php:1877
 msgid "Submit"
 msgstr "Enviar"
+
+#~ msgid "Missing CSRF token body"
+#~ msgstr "Falta el cuerpo del token CSRF"

@@ -22,4 +22,28 @@ class UserPolicy
     {
         return $user->hasRole('admin');
     }
+
+    /**
+     * Check if $user can create Users
+     *
+     * @param IdentityInterface $user The user.
+     * @param User $users
+     * @return bool
+     */
+    public function canPreferences(IdentityInterface $user, User $users)
+    {
+        return $user->hasRole('admin') || $user->hasRole('user');
+    }
+
+    /**
+     * Check if $user can create Users
+     *
+     * @param IdentityInterface $user The user.
+     * @param User $users
+     * @return bool
+     */
+    public function canDisable(IdentityInterface $user, User $users)
+    {
+        return $user->hasRole('admin') || $users->id == $user->id;
+    }
 }
