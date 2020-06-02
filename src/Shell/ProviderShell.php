@@ -55,7 +55,7 @@ class ProviderShell extends Shell
 
         if ($emails) {
             /** @var User[] $mails */
-            $mails = $this->getTableLocator()->get('users')->find();
+            $mails = $this->getTableLocator()->get('users')->find()->where(['role_id >' => 1, 'enabled IS NOT' => null]);
             foreach ($emails as $emailId) {
 
                 $mtype = array('text', 'multipart', 'message', 'application', 'audio',

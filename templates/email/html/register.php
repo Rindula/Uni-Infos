@@ -256,7 +256,8 @@
                                                 Hallo,</p><br>
                                             <p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">
                                                 um deine Registrierung abzuschließen, folge
-                                                bitte <?= $this->Html->link('diesem', $link) ?> Link</p>
+                                                bitte <?= $this->Html->link('diesem', $link) ?> Link. Dadurch wirst du
+                                                nach Administrativer freischaltung in den Verteiler eingetragen!</p>
                                             <br>
                                             <p style="font-size: 14px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 17px; margin: 0;">
                                                 Mit freundlichen Grüßen</p>
