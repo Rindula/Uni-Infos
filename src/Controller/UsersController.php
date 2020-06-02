@@ -83,7 +83,7 @@ class UsersController extends AppController
         $user = $this->Users->get($id);
         $checkHash = Security::hash($user->id . $user->created);
 
-        if ($checkHash === $hash) {
+        if ($user->enabled == null && $checkHash === $hash) {
             $user->enabled = new Time();
             if ($this->Users->save($user)) {
                 $this->getMailer('User')->send('notify', [$user]);
@@ -91,8 +91,10 @@ class UsersController extends AppController
             } else {
                 $this->Flash->error('Es gab einen Fehler beim speichern!');
             }
+        } elseif ($user->enabled != null) {
+            $this->Flash->error('Die Verifizierung ist bereits abgeschlossen!');
         } else {
-            $this->Flash->error('Der Hash ist nicht korrekt');
+            $this->Flash->error('Der Link ist nicht korrekt!');
         }
         return $this->redirect(['controller' => 'users', 'action' => 'login']);
 
@@ -121,6 +123,7 @@ class UsersController extends AppController
 
     public function userAction($id = null, $action = null, $additionalData = [])
     {
+        $this->Authorization->authorize($this->Users->find()->first(), 'manage');
         if ($id !== null) {
             switch ($action) {
                 case 'sendmail':
