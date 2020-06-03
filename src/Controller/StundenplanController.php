@@ -67,8 +67,22 @@ class StundenplanController extends AppController
         $this->Authorization->skipAuthorization();
         $this->getResponse()->cors($this->getRequest(), '*');
         $this->viewBuilder()->setLayout('ajax');
+        $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
+        $this->response = $this->response->withType('application/json');
         if (!empty($course)) {
-            $events = $this->fetchCalendar($course, $all, $showVorlesung, $showSeminar);
+            if (strtolower($course) == 'help') {
+                echo "API URL Usage:" . PHP_EOL;
+                echo Router::url(['controller' => 'stundenplan', 'action' => 'api']) . "/<course>/[all]/[showVorlesung]/[showSeminar]/[onlineOnly]" . PHP_EOL . PHP_EOL;
+                echo "<required>, [optional]" . PHP_EOL . PHP_EOL;
+                echo "course: string - The course name to query" . PHP_EOL;
+                echo "all: int(0,1) - Show all entries, even in the past if true, else just the ones which have not ended yet." . PHP_EOL;
+                echo "showVorlesung: int(0,1) - Display \"Vorlesung\" behind the title, or not." . PHP_EOL;
+                echo "showSeminar: int(0,1) - Display \"Seminar\" behind the title, or not." . PHP_EOL;
+                echo "onlineOnly: int(0,1) - Show only courses that take place online." . PHP_EOL;
+                return $this->response;
+            } else {
+                $events = $this->fetchCalendar($course, $all, $showVorlesung, $showSeminar);
+            }
         } else {
             $events = [
                 [
@@ -112,7 +126,6 @@ class StundenplanController extends AppController
         }
 
         $this->set(compact('events'));
-        $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
     }
 
     /**
