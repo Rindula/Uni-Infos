@@ -40,13 +40,13 @@ class UsersController extends AppController
                 $target = $this->Authentication->getLoginRedirect() ?? '/';
                 return $this->redirect($target);
             } else {
-                $this->Flash->error('Bitte verifiziere zuerst deine E-Mail Adresse! Wenn du keine E-Mail bekommen hast, melde das bitte an webmaster@rindula.de');
+                $this->Flash->error(__('Please verify your email address first! If you have not received an email, please report it to webmaster@rindula.de'));
                 return $this->redirect(['action' => 'logout']);
             }
 
         }
         if ($this->request->is('post') && !$result->isValid()) {
-            $this->Flash->error('Invalid username or password');
+            $this->Flash->error(__('Invalid username or password'));
         }
         $this->set(compact('user'));
     }
@@ -67,7 +67,7 @@ class UsersController extends AppController
             $data = $this->request->getData();
             $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
-                $this->Flash->success('Dein Account wurde erstellt. Bitte verifiziere deine E-mail Adresse um dich einzuloggen!');
+                $this->Flash->success(__('Your account has been created. Please verify your email address to log in!'));
                 $this->getMailer('User')->send('register', [$user]);
                 return $this->redirect(['controller' => 'users', 'action' => 'login']);
             }
@@ -87,14 +87,14 @@ class UsersController extends AppController
             $user->enabled = new Time();
             if ($this->Users->save($user)) {
                 $this->getMailer('User')->send('notify', [$user]);
-                $this->Flash->success('Dein Account wurde freigeschalten!');
+                $this->Flash->success(__('Your account has been activated!'));
             } else {
-                $this->Flash->error('Es gab einen Fehler beim speichern!');
+                $this->Flash->error(__('There was an error saving!'));
             }
         } elseif ($user->enabled != null) {
-            $this->Flash->error('Die Verifizierung ist bereits abgeschlossen!');
+            $this->Flash->error(__('The verification is already complete!'));
         } else {
-            $this->Flash->error('Der Link ist nicht korrekt!');
+            $this->Flash->error(__('The link is not correct!'));
         }
         return $this->redirect(['controller' => 'users', 'action' => 'login']);
 
@@ -110,10 +110,10 @@ class UsersController extends AppController
             $user = $this->Users->get($data['id']);
             $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
-                $this->Flash->success('Benutzer gespeichert');
+                $this->Flash->success(__('User saved'));
                 return $this->redirect(['action' => 'manage']);
             } else {
-                $this->Flash->error('Benutzer konnte nicht gespeichert werden');
+                $this->Flash->error(__('User could not be saved'));
             }
         }
 

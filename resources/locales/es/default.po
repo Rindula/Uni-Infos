@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-06-02 20:42+0200\n"
+"POT-Creation-Date: 2020-06-03 14:10+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,23 +11,66 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3.1\n"
 
-#: Controller/UsersController.php:151
+#: Controller/UsersController.php:45
+msgid ""
+"Please verify your email address first! If you have not received an email, "
+"please report it to webmaster@rindula.de"
+msgstr ""
+"Por favor, verifique su dirección de correo electrónico primero! Si no ha "
+"recibido un correo electrónico, indúzcalo a webmaster@rindula.de"
+
+#: Controller/UsersController.php:51
+msgid "Invalid username or password"
+msgstr "Usuario o contraseña incorrectos"
+
+#: Controller/UsersController.php:72
+msgid ""
+"Your account has been created. Please verify your email address to log in!"
+msgstr ""
+"Se ha creado su cuenta. Por favor, verifique su dirección de correo "
+"electrónico para iniciar sesión!"
+
+#: Controller/UsersController.php:92
+msgid "Your account has been activated!"
+msgstr "¡Tu cuenta ha sido activada!"
+
+#: Controller/UsersController.php:94
+msgid "There was an error saving!"
+msgstr "¡Se ha ahorrado un error!"
+
+#: Controller/UsersController.php:97
+msgid "The verification is already complete!"
+msgstr "¡La verificación ya está completa!"
+
+#: Controller/UsersController.php:99
+msgid "The link is not correct!"
+msgstr "¡El enlace no es correcto!"
+
+#: Controller/UsersController.php:115
+msgid "User saved"
+msgstr "Cliente guardado"
+
+#: Controller/UsersController.php:118
+msgid "User could not be saved"
+msgstr "No se pudo guardar el usuario"
+
+#: Controller/UsersController.php:153
 msgid "Password has been updated"
 msgstr "Kata sandi telah diperbarui"
 
-#: Controller/UsersController.php:160
+#: Controller/UsersController.php:162
 msgid "Your Language has been updated"
 msgstr "Su configuración de idioma ha sido actualizada"
 
-#: Controller/UsersController.php:163
+#: Controller/UsersController.php:165
 msgid "There was an error updating your language!"
 msgstr "¡Se produjo un error al actualizar tu idioma!"
 
-#: Controller/UsersController.php:169
+#: Controller/UsersController.php:171
 msgid "Your Course has been updated"
 msgstr "Su curso se ha actualizado"
 
-#: Controller/UsersController.php:172
+#: Controller/UsersController.php:174
 msgid "There was an error updating your course!"
 msgstr "¡Se ha producido un error al actualizar el curso!"
 
@@ -94,6 +137,14 @@ msgstr "Al horario"
 #: Pages/home.php:12
 msgid "Session recordings"
 msgstr "Registros de sesión"
+
+#: Stundenplan/index.php:16
+msgid "Please select your course"
+msgstr "Por favor, seleccione su curso"
+
+#: Stundenplan/index.php:17
+msgid "Online Only"
+msgstr "Solo conferencias en línea"
 
 #: Users/login.php:20
 msgid "No account yet? Register now"
@@ -193,8 +244,5 @@ msgstr "Ver"
 
 #, fuzzy
 #~| msgid "onlineOnly"
-msgid "Online Only"
-msgstr "Solo conferencias en línea"
-
 #~ msgid "Configure Calendar Link"
 #~ msgstr "Configurar enlace de calendario"

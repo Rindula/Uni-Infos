@@ -40,7 +40,7 @@ use App\View\AppView;
         <?= $this->Form->end() ?>
         <h4><?= __('Set Course') ?></h4>
         <?= $this->Form->create($user) ?>
-        <?= $this->Form->control('course', ['options' => $courses, 'empty' => 'Bitte Kurs auswählen']) ?>
+        <?= $this->Form->control('course', ['options' => $courses, 'empty' => __('Please select your course')]) ?>
         <?= $this->Form->submit(__('Set Course')) ?>
         <?= $this->Form->end() ?>
         <h4><?= __('Disable Account') ?></h4>

@@ -13,8 +13,8 @@ use App\View\AppView; ?>
     </script>
 <?php endif; ?>
 <div class="content">
-    <?= $this->Form->select('course', $courses, ['id' => 'courseSelector', 'default' => $courseSelected, 'empty' => 'Bitte Kurs auswählen']) ?>
-    <?= $this->Form->control('onlineOnly', ['type' => 'toggleButton', 'id' => 'onlineOnly']) ?>
+    <?= $this->Form->select('course', $courses, ['id' => 'courseSelector', 'default' => $courseSelected, 'empty' => __('Please select your course')]) ?>
+    <?= $this->Form->control('onlineOnly', ['type' => 'toggleButton', 'id' => 'onlineOnly', 'label' => __('Online Only')]) ?>
     <div id="list">
     </div>
 </div>
