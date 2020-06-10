@@ -53,11 +53,7 @@ function setData(msg) {
             html += "<div class='message'>" + event['custom']['loggedInNote'] + "</div>";
         }
         if (event['custom']['can_edit']) {
-            if (event['custom']['note']) {
-                html += "<a class='button button-outline' href='/stundenplan/edit/" + event['custom']['can_edit'] + "'>Notiz bearbeiten</a>";
-            } else {
-                html += "<a class='' href='/stundenplan/edit/" + event['custom']['can_edit'] + "'>📝</a>";
-            }
+            html += "<a class='' href='/stundenplan/edit/" + event['custom']['can_edit'] + "'>📝</a>";
         }
         if (event['custom']['can_delete']) {
             if (event['custom']['can_edit']) {
