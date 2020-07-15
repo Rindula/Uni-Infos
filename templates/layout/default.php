@@ -95,6 +95,8 @@ use Cake\I18n\I18n;
 <?php endif; ?>
 <?= ($this->getRequest()->is('mobile')) ? '' : $this->Nav->render($loggedIn) ?>
 <main class="main">
+    <div id="scrollbar"></div>
+    <div id="scrollPath"></div>
     <div class="container">
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
@@ -102,6 +104,15 @@ use Cake\I18n\I18n;
 </main>
 <?= ($this->getRequest()->is('mobile')) ? $this->Nav->render($loggedIn) : $this->Html->tag('footer', $this->Git->getFooterInfos() . '<br>' . '&copy; ' . date('Y') . ' rindula.de --- ' . $this->Html->link("Impressum", ['controller' => 'datenschutz', 'action' => 'impressum']) . ' | ' . $this->Html->link("Datenschutzerklärung", ['controller' => 'datenschutz', 'action' => 'index']), ['id' => 'footer']) ?>
 <?= $this->fetch('bottomScripts') ?>
+<script>
+    // Scrollbar
+    let scrollprogress = document.getElementById('scrollbar');
+    let totalHeight = document.body.scrollHeight - window.innerHeight;
 
+    window.onscroll = function () {
+        let scrollHeight = (window.pageYOffset / totalHeight) * 100;
+        scrollprogress.style.height = scrollHeight + "%";
+    }
+</script>
 </body>
 </html>

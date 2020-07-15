@@ -45,3 +45,4 @@ nbproject/*
 .sass-cache/
 /config/Migrations/schema-dump-default.lock
 config/Seeds/
+/node_modules/
