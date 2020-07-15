@@ -10,6 +10,6 @@ use App\View\AppView; ?>
     <?= $this->Html->link(__("To file storage"), 'https://files.rindula.de/nextcloud/index.php/s/TqWQwraiBN3JJoZ', ['class' => 'button button-outline', 'target' => '_blank']) ?>
     <?= $this->Html->link(__("To the timetable"), ['controller' => 'stundenplan', 'action' => 'index'], ['class' => 'button button-clear']) ?>
     <?= $this->Html->link(__("Session recordings"), 'https://files.rindula.de/nextcloud/index.php/s/z4mi9YMsr74s3AQ', ['class' => 'button button-outline', 'target' => '_blank']) ?>
-    <br>
-    <?= $this->Html->link("<img style='width: 200px' alt='Jetzt bei Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/de_badge_web_generic.png'/>", 'https://play.google.com/store/apps/details?id=de.rindula.uniinfos&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1', ['target' => '_blank', 'escape' => false]) ?>
+    <!--    <br>-->
+    <?= ""//$this->Html->link("<img style='width: 200px' alt='Jetzt bei Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/de_badge_web_generic.png'/>", 'https://play.google.com/store/apps/details?id=de.rindula.uniinfos&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1', ['target' => '_blank', 'escape' => false])  ?>
 </div>
