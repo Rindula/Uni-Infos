@@ -182,13 +182,17 @@ ServerRequest::addDetector('tablet', function ($request) {
 function getCourses($grouped = false, $toLower = false)
 {
     Cache::enable();
-    if (($coursesJson = Cache::read('courses', 'longTerm')) === null) {
-        $coursesJson = file_get_contents("https://stuv-mosbach.de/survival/api.php?action=getCourses");
-        Cache::write('courses', $coursesJson, 'longTerm');
+    if (($coursesCSV = Cache::read('courses', 'longTerm')) === null) {
+        $coursesCSV = file_get_contents("http://ics.mosbach.dhbw.de/ics/calendars.list");
+        Cache::write('courses', $coursesCSV, 'longTerm');
     }
-    $courses = json_decode($coursesJson);
+    $courses = [];
+    foreach (explode("\n", $coursesCSV) as $line) {
+        $courseInfo = str_getcsv($line, ';');
+        $courses[] = $courseInfo;
+    }
     foreach ($courses as $key => &$course) {
-        $course = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course);
+        $course = preg_filter("/(([-a-zA-Z]+)\d+\w?)/", '$0', $course[0]);
         if (empty($course)) unset($courses[$key]);
         if ($toLower && $course != null) $courses[$key] = strtolower($courses[$key]);
     }
