@@ -33,6 +33,7 @@ jobs:
         run: composer run-script test
   deployment:
     runs-on: self-hosted
+    if: github.ref == 'refs/heads/master'
     environment: production
     name: Deploy to Production
     needs:
