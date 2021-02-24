@@ -49,7 +49,7 @@ class GitHelper extends Helper
 
     public function getFooterInfos()
     {
-        $prestring = '<img src="https://github.com/Rindula/Uni-Infos/actions/workflows/ci.yml/badge.svg">';
+        $prestring = '<img style="height: 14px" src="https://github.com/Rindula/Uni-Infos/actions/workflows/ci.yml/badge.svg"> ';
         if (Configure::read('debug') || Configure::read('unittest_running', false)) $prestring = 'DEVELOPMENT EDITION - ';
         return $prestring . $this->Html->link($this->shorthash, 'https://github.com/Rindula/Uni-Infos/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' - ' . $this->message . ' (' . $this->timestamp->nice() . ')';
     }
