@@ -37,7 +37,7 @@ class GitHelper extends Helper
     public function initialize(array $config): void
     {
         parent::initialize($config);
-        $result = !Configure::read('debug') ? shell_exec('cd /var/www/vhosts/rindula.de/git/interface.git && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit') : str_replace('\'', '', shell_exec('cd ' . ROOT . " && git log -1 --pretty=format:'%h~#~%H~#~%s~#~%ci' --abbrev-commit"));
+        $result = !Configure::read('debug') ? shell_exec('cd /var/www/vhosts/rindula.de/git/Uni-Infos.git && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit') : str_replace('\'', '', shell_exec('cd ' . ROOT . " && git log -1 --pretty=format:'%h~#~%H~#~%s~#~%ci' --abbrev-commit"));
         list($this->shorthash, $this->hash, $this->message, $timestamp) = explode('~#~', $result);
         $this->timestamp = new Time($timestamp);
     }
@@ -46,7 +46,7 @@ class GitHelper extends Helper
     {
         $prestring = '';
         if (Configure::read('debug')) $prestring = 'DEVELOPMENT EDITION - ';
-        return $prestring . $this->Html->link($this->shorthash, 'https://gitlab.com/Rindula/interface/-/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' - ' . $this->message . ' (' . $this->timestamp->nice() . ')';
+        return $prestring . $this->Html->link($this->shorthash, 'https://github.com/Rindula/Uni-Infos/commit/' . $this->hash, ['target' => '_blank', 'rel' => 'noopener']) . ' - ' . $this->message . ' (' . $this->timestamp->nice() . ')';
     }
 
     /**

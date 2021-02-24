@@ -1,8 +1,6 @@
 #!/bin/bash
 cd /var/www/vhosts/rindula.de/uni.rindula.de/ || exit
 
-chmod +x ./bin/cake
-
 # Composer Update
 /usr/bin/composer install --dev --no-ansi --optimize-autoloader --no-interaction --no-plugins --no-progress --no-scripts --no-suggest
 

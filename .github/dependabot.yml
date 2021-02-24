@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "composer" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "daily"
+      time: "02:00"
+    assignees:
+      - "Rindula"
+    open-pull-requests-limit: 100
