@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -31,3 +31,11 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Run Tests
         run: composer run-script test
+  deployment:
+    runs-on: self-hosted
+    environment: production
+    name: Deploy to Production
+    needs:
+      - test
+    steps:
+      - run: curl --request POST ${{ secrets.webhook }}
