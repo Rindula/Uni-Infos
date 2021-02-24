@@ -16,15 +16,6 @@ class DatenschutzControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
-     * Fixtures
-     *
-     * @var array
-     */
-    protected $fixtures = [
-        'app.Datenschutz',
-    ];
-
-    /**
      * Test index method
      *
      * @return void

@@ -14,7 +14,8 @@
  * @var AppView $this
  */
 
-use App\View\AppView; ?>
+use App\View\AppView;
+use Cake\I18n\I18n; ?>
 <!DOCTYPE html>
 <html lang="<?= I18n::getLocale() ?>">
 <head>

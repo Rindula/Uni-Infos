@@ -51,8 +51,8 @@ class PagesControllerTest extends TestCase
     {
         $this->get('/pages/home');
         $this->assertResponseOk();
-        $this->assertResponseContains('CakePHP');
-        $this->assertResponseContains('<html>');
+        $this->assertResponseContains('UniInfos');
+        $this->assertResponseContains('<html lang=');
     }
 
     /**
@@ -65,7 +65,7 @@ class PagesControllerTest extends TestCase
         Configure::write('debug', false);
         $this->get('/pages/not_existing');
 
-        $this->assertResponseError();
+        $this->assertResponseError("Something went wrong ...");
         $this->assertResponseContains('Error');
     }
 
@@ -121,6 +121,6 @@ class PagesControllerTest extends TestCase
         $this->post('/pages/home', ['hello' => 'world']);
 
         $this->assertResponseCode(200);
-        $this->assertResponseContains('CakePHP');
+        $this->assertResponseContains('UniInfos');
     }
 }

@@ -24,4 +24,13 @@ class UsersControllerTest extends TestCase
     protected $fixtures = [
         'app.Users',
     ];
+
+    public function testLogin()
+    {
+        $this->markTestIncomplete("ToDo");
+    }
+    public function testRegistration()
+    {
+        $this->markTestIncomplete("ToDo");
+    }
 }

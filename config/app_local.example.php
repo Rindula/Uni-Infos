@@ -66,9 +66,9 @@ return [
         'test' => [
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
-            'username' => 'my_app',
+            'username' => 'uniinfos',
             'password' => 'secret',
-            'database' => 'test_myapp',
+            'database' => 'test_uniinfos',
             //'schema' => 'myapp',
         ],
     ],

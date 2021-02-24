@@ -17,15 +17,6 @@ class MailCheckControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
-     * Fixtures
-     *
-     * @var array
-     */
-    protected $fixtures = [
-        'app.MailCheck',
-    ];
-
-    /**
      * Test index method
      *
      * @return void

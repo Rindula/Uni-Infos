@@ -52,6 +52,6 @@ class StundenplanControllerTest extends TestCase
      */
     public function testAjax(): void
     {
-        $this->markAsRisky();
+        $this->markTestIncomplete("Zu testen");
     }
 }
