@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5bb6a633be5fdd99c0168f879008448",
+    "content-hash": "70177300e2e4e433c0f2e63bb011be2c",
     "packages": [
         {
             "name": "cakephp/authentication",
@@ -370,16 +370,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "4.x-dev",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "e47728b32c94cfaf12049034067fa0554fc349a3"
+                "reference": "a41a44e726dcc3634db0c2ac6bc4e158e416d103"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/e47728b32c94cfaf12049034067fa0554fc349a3",
-                "reference": "e47728b32c94cfaf12049034067fa0554fc349a3",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/a41a44e726dcc3634db0c2ac6bc4e158e416d103",
+                "reference": "a41a44e726dcc3634db0c2ac6bc4e158e416d103",
                 "shasum": ""
             },
             "require": {
@@ -420,7 +420,13 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2020-05-10T21:50:11+00:00"
+            "support": {
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/migrations/issues",
+                "source": "https://github.com/cakephp/migrations"
+            },
+            "time": "2020-05-10T22:26:04+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -1844,22 +1850,22 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "0.12.1",
+            "version": "0.12.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "94d0b78f68bfb20aac4c59b0b3ff49956803fc70"
+                "reference": "9457e3879b0abc02a4022941a6a535141889432e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/94d0b78f68bfb20aac4c59b0b3ff49956803fc70",
-                "reference": "94d0b78f68bfb20aac4c59b0b3ff49956803fc70",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/9457e3879b0abc02a4022941a6a535141889432e",
+                "reference": "9457e3879b0abc02a4022941a6a535141889432e",
                 "shasum": ""
             },
             "require": {
-                "cakephp/collection": "^4.0",
                 "cakephp/database": "^4.0",
                 "php": ">=7.2",
+                "psr/container": "^1.0",
                 "symfony/config": "^3.4|^4.0|^5.0",
                 "symfony/console": "^3.4|^4.0|^5.0"
             },
@@ -1867,7 +1873,7 @@
                 "cakephp/cakephp-codesniffer": "^3.0",
                 "ext-json": "*",
                 "ext-pdo": "*",
-                "phpunit/phpunit": "^8.5",
+                "phpunit/phpunit": "^8.5|^9.3",
                 "sebastian/comparator": ">=1.2.3",
                 "symfony/yaml": "^3.4|^4.0|^5.0"
             },
@@ -1922,7 +1928,11 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2020-04-11T07:17:48+00:00"
+            "support": {
+                "issues": "https://github.com/cakephp/phinx/issues",
+                "source": "https://github.com/cakephp/phinx/tree/0.12.5"
+            },
+            "time": "2021-01-18T19:51:48+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -2037,16 +2047,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v5.1.0",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "b8623ef3d99fe62a34baf7a111b576216965f880"
+                "reference": "50e0e1314a3b2609d32b6a5a0d0fb5342494c4ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/b8623ef3d99fe62a34baf7a111b576216965f880",
-                "reference": "b8623ef3d99fe62a34baf7a111b576216965f880",
+                "url": "https://api.github.com/repos/symfony/config/zipball/50e0e1314a3b2609d32b6a5a0d0fb5342494c4ab",
+                "reference": "50e0e1314a3b2609d32b6a5a0d0fb5342494c4ab",
                 "shasum": ""
             },
             "require": {
@@ -2070,11 +2080,6 @@
                 "symfony/yaml": "To use the yaml reference dumper"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Config\\": ""
@@ -2097,9 +2102,26 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony Config Component",
+            "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
-            "time": "2020-05-23T13:08:13+00:00"
+            "support": {
+                "source": "https://github.com/symfony/config/tree/v5.2.3"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-01-27T10:15:41+00:00"
         },
         {
             "name": "symfony/console",
@@ -2200,16 +2222,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v2.1.2",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "dd99cb3a0aff6cadd2a8d7d7ed72c2161e218337"
+                "reference": "5fa56b4074d1ae755beb55617ddafe6f5d78f665"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/dd99cb3a0aff6cadd2a8d7d7ed72c2161e218337",
-                "reference": "dd99cb3a0aff6cadd2a8d7d7ed72c2161e218337",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/5fa56b4074d1ae755beb55617ddafe6f5d78f665",
+                "reference": "5fa56b4074d1ae755beb55617ddafe6f5d78f665",
                 "shasum": ""
             },
             "require": {
@@ -2218,7 +2240,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
+                },
+                "thanks": {
+                    "name": "symfony/contracts",
+                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -2242,7 +2268,24 @@
             ],
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
-            "time": "2020-05-27T08:34:37+00:00"
+            "support": {
+                "source": "https://github.com/symfony/deprecation-contracts/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-09-07T11:33:47+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -3540,6 +3583,10 @@
                 "dotenv",
                 "php"
             ],
+            "support": {
+                "issues": "https://github.com/josegonzalez/php-dotenv/issues",
+                "source": "https://github.com/josegonzalez/php-dotenv/tree/master"
+            },
             "time": "2017-09-19T15:49:58+00:00"
         },
         {
@@ -3598,6 +3645,10 @@
                 "parser",
                 "support"
             ],
+            "support": {
+                "issues": "https://github.com/m1/Env/issues",
+                "source": "https://github.com/m1/Env/tree/2.2.0"
+            },
             "time": "2020-02-19T09:02:13+00:00"
         },
         {
@@ -5771,6 +5822,8 @@
         "php": ">=7.2",
         "ext-imap": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {
+        "ext-json": "*"
+    },
     "plugin-api-version": "2.0.0"
 }
