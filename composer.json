@@ -20,7 +20,8 @@
         "cakephp/cakephp-codesniffer": "~4.2.4",
         "josegonzalez/dotenv": "^3.2",
         "phpunit/phpunit": "^8.5",
-        "psy/psysh": "@stable"
+        "psy/psysh": "@stable",
+        "ext-json": "*"
     },
     "suggest": {
         "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
