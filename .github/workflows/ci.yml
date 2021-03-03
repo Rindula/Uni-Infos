@@ -12,7 +12,7 @@ jobs:
   test:
     services:
       mysql:
-        image: mysql:5.7
+        image: mariadb:10.3
         env:
           MYSQL_USER: uniinfos
           MYSQL_PASSWORD: secret
