@@ -35,7 +35,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           tools: composer:v2
-          extensions: intl, mbstring, zip, dom, pdo_mysql
+          extensions: intl, mbstring, zip, dom, pdo_mysql, imap
       - name: Validate Composer
         run: composer validate
       - name: Install dependencies
