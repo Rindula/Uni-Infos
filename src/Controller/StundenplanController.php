@@ -157,7 +157,11 @@ class StundenplanController extends AppController
             if (!empty($last)) {
                 $begin = new Time($event['DTSTART;TZID=Europe/Berlin']);
                 if ($begin->diffInSeconds($last['time'], true) < 5) {
-                    $events[$last['key']]['LOCATION'] .= ' / ' . $event['LOCATION'];
+                    if (!empty($events[$last['key']]['LOCATION'])) {
+                        $events[$last['key']]['LOCATION'] .= ' / ' . $event['LOCATION'];
+                    } elseif (!empty($event['LOCATION'])) {
+                        $events[$last['key']]['LOCATION'] = $event['LOCATION'];
+                    }
                     unset($events[$key]);
                     continue;
                 }
