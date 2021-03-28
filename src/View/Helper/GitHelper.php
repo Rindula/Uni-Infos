@@ -41,7 +41,7 @@ class GitHelper extends Helper
             $timestamp = time();
         } else {
             parent::initialize($config);
-            $result = !Configure::read('debug') ? shell_exec('cd /var/www/vhosts/rindula.de/git/Uni-Infos.git && git log -1 --pretty=format:\'%h~#~%H~#~%s~#~%ci\' --abbrev-commit') : str_replace('\'', '', shell_exec('cd ' . ROOT . " && git log -1 --pretty=format:'%h~#~%H~#~%s~#~%ci' --abbrev-commit"));
+            $result = str_replace('\'', '', shell_exec('cd ' . ROOT . " && git log -1 --pretty=format:'%h~#~%H~#~%s~#~%ci' --abbrev-commit"));
             list($this->shorthash, $this->hash, $this->message, $timestamp) = explode('~#~', $result);
         }
         $this->timestamp = new Time($timestamp, "UTC");
