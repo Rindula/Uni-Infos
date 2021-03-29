@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\StundenplanController;
 use Cake\I18n\Date;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Exception;
 
 /**
  * App\Controller\StundenplanController Test Case
@@ -48,7 +48,10 @@ class StundenplanControllerTest extends TestCase
     {
         $year = new Date("last year");
         do {
-            $this->get("/stundenplan/api/inf".$year->format("y")."b/0/0/1/0");
+            $this->configRequest([
+                'headers' => ['Accept' => 'application/json']
+            ]);
+            $this->get("/stundenplan/api/inf" . $year->format("y") . "b/0/0/1/0");
             $this->assertResponseOk();
             $this->assertContentType("application/json");
             $response = json_decode($this->_getBodyAsString(), true);
@@ -62,7 +65,7 @@ class StundenplanControllerTest extends TestCase
                 $this->assertArrayHasKey("DESCRIPTION", $cal_element);
                 $this->assertArrayHasKey("custom", $cal_element);
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->fail($exception->getMessage());
         }
     }
