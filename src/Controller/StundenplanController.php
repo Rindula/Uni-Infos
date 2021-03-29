@@ -40,6 +40,7 @@ class StundenplanController extends AppController
 
         $this->loadComponent('IcsRead');
         $this->loadComponent('IcsWrite');
+        $this->loadComponent('RequestHandler');
         $this->Authentication->allowUnauthenticated(['index', 'api', 'calendar', 'configureCalendarLink']);
     }
 
@@ -66,7 +67,6 @@ class StundenplanController extends AppController
     {
         $this->Authorization->skipAuthorization();
         $this->getResponse()->cors($this->getRequest(), '*');
-        $this->viewBuilder()->setLayout('ajax');
         $this->response = $this->response->cors($this->request)->allowOrigin('*')->allowMethods(['GET'])->build();
         $this->response = $this->response->withType('application/json');
         if (!empty($course)) {
@@ -126,6 +126,7 @@ class StundenplanController extends AppController
         }
 
         $this->set(compact('events'));
+        $this->viewBuilder()->setOption('serialize', 'events')->setOption('jsonOptions', JSON_FORCE_OBJECT);
     }
 
     /**
