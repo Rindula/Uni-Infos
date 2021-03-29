@@ -1,12 +1,14 @@
 #!/bin/bash
-cd /var/www/vhosts/rindula.de/uni.rindula.de/ || exit
+cd /home/rindula/domains/uni.rindula.de/public_html || exit
+
+git pull --rebase origin master
 
 # Composer Update
-/usr/bin/composer install --dev --no-ansi --optimize-autoloader --no-interaction --no-plugins --no-progress --no-scripts --no-suggest
+/usr/bin/composer install --optimize-autoloader --no-interaction
 
 # Cake
 ## Datenbank Migration
-/opt/plesk/php/7.4/bin/php ./bin/cake.php migrations migrate
+bin/cake migrations migrate
 
 ## Cache leeren
-/opt/plesk/php/7.4/bin/php ./bin/cake.php cache clear_all
+bin/cake cache clear_all

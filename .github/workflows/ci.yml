@@ -50,4 +50,14 @@ jobs:
     needs:
       - test
     steps:
-      - run: curl --request POST ${{ secrets.webhook }}
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2.3.2
+
+      - name: 🚦 Deploying
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: /home/rindula/domains/uni.rindula.de/public_html/gogogo.sh
