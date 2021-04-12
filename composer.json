@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "cakephp/bake": "^2.0.3",
-        "cakephp/cakephp-codesniffer": "~4.2.4",
+        "cakephp/cakephp-codesniffer": "~4.3.0",
         "josegonzalez/dotenv": "^3.2",
         "phpunit/phpunit": "^8.5",
         "psy/psysh": "@stable",
