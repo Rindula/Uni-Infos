@@ -88,7 +88,7 @@ class StundenplanController extends AppController
                 [
                     'SUMMARY' => 'Kein Kurs ausgewählt',
                     'LOCATION' => '---',
-                    'DESCRIPTION' => 'Bitte nutze das Dropdown Menü, um einen Kurs auszuwählen.',
+                    'DESCRIPTION' => '',
                     'custom' => [
                         'begin' => [
                             'date' => (new Time())->toTimeString(),
