@@ -15,4 +15,4 @@ use App\View\AppView; ?>
 </div>
 <hr>
 <h3><?=__("Have a featurerequest or improvements?")?></h3>
-<a href="#" style="color: #1957f5;"><?= __("View this project on GitHub") ?></a>
+<a href="https://github.com/Rindula/Uni-Infos" style="color: #1957f5;"><?= __("View this project on GitHub") ?></a>
