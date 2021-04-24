@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-06-03 14:10+0200\n"
+"POT-Creation-Date: 2021-04-24 11:25+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
-#: Controller/UsersController.php:45
+#: Controller/UsersController.php:43
 msgid ""
 "Please verify your email address first! If you have not received an email, "
 "please report it to webmaster@rindula.de"
@@ -19,58 +19,58 @@ msgstr ""
 "Por favor, verifique su dirección de correo electrónico primero! Si no ha "
 "recibido un correo electrónico, indúzcalo a webmaster@rindula.de"
 
-#: Controller/UsersController.php:51
+#: Controller/UsersController.php:49
 msgid "Invalid username or password"
 msgstr "Usuario o contraseña incorrectos"
 
-#: Controller/UsersController.php:72
+#: Controller/UsersController.php:70
 msgid ""
 "Your account has been created. Please verify your email address to log in!"
 msgstr ""
 "Se ha creado su cuenta. Por favor, verifique su dirección de correo "
 "electrónico para iniciar sesión!"
 
-#: Controller/UsersController.php:92
+#: Controller/UsersController.php:90
 msgid "Your account has been activated!"
 msgstr "¡Tu cuenta ha sido activada!"
 
-#: Controller/UsersController.php:94
+#: Controller/UsersController.php:92
 msgid "There was an error saving!"
 msgstr "¡Se ha ahorrado un error!"
 
-#: Controller/UsersController.php:97
+#: Controller/UsersController.php:95
 msgid "The verification is already complete!"
 msgstr "¡La verificación ya está completa!"
 
-#: Controller/UsersController.php:99
+#: Controller/UsersController.php:97
 msgid "The link is not correct!"
 msgstr "¡El enlace no es correcto!"
 
-#: Controller/UsersController.php:115
+#: Controller/UsersController.php:113
 msgid "User saved"
 msgstr "Cliente guardado"
 
-#: Controller/UsersController.php:118
+#: Controller/UsersController.php:116
 msgid "User could not be saved"
 msgstr "No se pudo guardar el usuario"
 
-#: Controller/UsersController.php:153
+#: Controller/UsersController.php:151
 msgid "Password has been updated"
 msgstr "Kata sandi telah diperbarui"
 
-#: Controller/UsersController.php:162
+#: Controller/UsersController.php:160
 msgid "Your Language has been updated"
 msgstr "Su configuración de idioma ha sido actualizada"
 
-#: Controller/UsersController.php:165
+#: Controller/UsersController.php:163
 msgid "There was an error updating your language!"
 msgstr "¡Se produjo un error al actualizar tu idioma!"
 
-#: Controller/UsersController.php:171
+#: Controller/UsersController.php:169
 msgid "Your Course has been updated"
 msgstr "Su curso se ha actualizado"
 
-#: Controller/UsersController.php:174
+#: Controller/UsersController.php:172
 msgid "There was an error updating your course!"
 msgstr "¡Se ha producido un error al actualizar el curso!"
 
@@ -126,19 +126,40 @@ msgstr "Cerrar sesión"
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: Pages/home.php:10
-msgid "To file storage"
-msgstr "Al archivo de almacenamiento"
+#: Pages/home.php:8
+msgid "The unofficial webbased timetable for the DHBW Mosbach"
+msgstr "El horario no oficial basado en la web para el DHBW Mosbach"
 
-#: Pages/home.php:11
-msgid "To the timetable"
-msgstr "Al horario"
+#: Pages/home.php:10
+msgid "What can you do with it?"
+msgstr "¿Qué puedes hacer con él?"
 
 #: Pages/home.php:12
-msgid "Session recordings"
-msgstr "Registros de sesión"
+msgid "View the Timetable for your class"
+msgstr "Vea el horario de su clase"
 
-#: Stundenplan/index.php:16
+#: Pages/home.php:13
+msgid "Get a free Rest API to interface with any timetable"
+msgstr ""
+"Obtenga una API de rest gratuita para interactuar con cualquier horario"
+
+#: Pages/home.php:14
+msgid ""
+"Get a link to import the timetable into your calendar, even filtered by "
+"onlineclasses only"
+msgstr ""
+"Obtener un enlace para importar el horario en su calendario, incluso "
+"filtrado por clases en línea sólo"
+
+#: Pages/home.php:17
+msgid "Have a featurerequest or improvements?"
+msgstr "¿Tiene un featurerequest o mejoras?"
+
+#: Pages/home.php:18
+msgid "View this project on GitHub"
+msgstr "Ver este proyecto en GitHub"
+
+#: Stundenplan/index.php:16 Users/preferences.php:43
 msgid "Please select your course"
 msgstr "Por favor, seleccione su curso"
 
@@ -234,13 +255,22 @@ msgstr "Desactivar cuenta"
 msgid "Are you sure you want to disable this Account?"
 msgstr "¿Está seguro de que desea deshabilitar esta cuenta?"
 
-#: layout/error.php:88
+#: layout/error.php:89
 msgid "Back"
 msgstr "Volver"
 
 #: View/Helper/PaginatorHelper.php:1268
 msgid "View"
 msgstr "Ver"
+
+#~ msgid "To file storage"
+#~ msgstr "Al archivo de almacenamiento"
+
+#~ msgid "To the timetable"
+#~ msgstr "Al horario"
+
+#~ msgid "Session recordings"
+#~ msgstr "Registros de sesión"
 
 #, fuzzy
 #~| msgid "onlineOnly"

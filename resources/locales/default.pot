@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2020-06-03 14:10+0200\n"
+"POT-Creation-Date: 2021-04-24 11:25+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,59 +14,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/UsersController.php:45
+#: Controller/UsersController.php:43
 msgid "Please verify your email address first! If you have not received an email, please report it to webmaster@rindula.de"
 msgstr ""
 
-#: Controller/UsersController.php:51
+#: Controller/UsersController.php:49
 msgid "Invalid username or password"
 msgstr ""
 
-#: Controller/UsersController.php:72
+#: Controller/UsersController.php:70
 msgid "Your account has been created. Please verify your email address to log in!"
 msgstr ""
 
-#: Controller/UsersController.php:92
+#: Controller/UsersController.php:90
 msgid "Your account has been activated!"
 msgstr ""
 
-#: Controller/UsersController.php:94
+#: Controller/UsersController.php:92
 msgid "There was an error saving!"
 msgstr ""
 
-#: Controller/UsersController.php:97
+#: Controller/UsersController.php:95
 msgid "The verification is already complete!"
 msgstr ""
 
-#: Controller/UsersController.php:99
+#: Controller/UsersController.php:97
 msgid "The link is not correct!"
 msgstr ""
 
-#: Controller/UsersController.php:115
+#: Controller/UsersController.php:113
 msgid "User saved"
 msgstr ""
 
-#: Controller/UsersController.php:118
+#: Controller/UsersController.php:116
 msgid "User could not be saved"
 msgstr ""
 
-#: Controller/UsersController.php:153
+#: Controller/UsersController.php:151
 msgid "Password has been updated"
 msgstr ""
 
-#: Controller/UsersController.php:162
+#: Controller/UsersController.php:160
 msgid "Your Language has been updated"
 msgstr ""
 
-#: Controller/UsersController.php:165
+#: Controller/UsersController.php:163
 msgid "There was an error updating your language!"
 msgstr ""
 
-#: Controller/UsersController.php:171
+#: Controller/UsersController.php:169
 msgid "Your Course has been updated"
 msgstr ""
 
-#: Controller/UsersController.php:174
+#: Controller/UsersController.php:172
 msgid "There was an error updating your course!"
 msgstr ""
 
@@ -122,19 +122,36 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: Pages/home.php:10
-msgid "To file storage"
+#: Pages/home.php:8
+msgid "The unofficial webbased timetable for the DHBW Mosbach"
 msgstr ""
 
-#: Pages/home.php:11
-msgid "To the timetable"
+#: Pages/home.php:10
+msgid "What can you do with it?"
 msgstr ""
 
 #: Pages/home.php:12
-msgid "Session recordings"
+msgid "View the Timetable for your class"
+msgstr ""
+
+#: Pages/home.php:13
+msgid "Get a free Rest API to interface with any timetable"
+msgstr ""
+
+#: Pages/home.php:14
+msgid "Get a link to import the timetable into your calendar, even filtered by onlineclasses only"
+msgstr ""
+
+#: Pages/home.php:17
+msgid "Have a featurerequest or improvements?"
+msgstr ""
+
+#: Pages/home.php:18
+msgid "View this project on GitHub"
 msgstr ""
 
 #: Stundenplan/index.php:16
+#: Users/preferences.php:43
 msgid "Please select your course"
 msgstr ""
 
@@ -228,7 +245,7 @@ msgstr ""
 msgid "Are you sure you want to disable this Account?"
 msgstr ""
 
-#: layout/error.php:88
+#: layout/error.php:89
 msgid "Back"
 msgstr ""
 
