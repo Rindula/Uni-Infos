@@ -1,14 +1,27 @@
 function loadData() {
     $.ajax({
-        method: "GET",
-        url: "/stundenplan/api/" + $('#courseSelector').val() + '/0/0/1/' + (($('#onlineOnly')[0].checked) ? 1 : 0),
-        dataType: "json"
-    })
-        .done(function (msg) {
+            method: "GET",
+            url: "/stundenplan/api/" + $('#courseSelector').val() + '/0/0/1/' + (($('#onlineOnly')[0].checked) ? 1 : 0),
+            dataType: "json"
+        })
+        .done(function(msg) {
             setData(msg);
+            if (Object.keys(msg).length == 0) {
+                var template = document.getElementById("lessonTemplate");
+                var clone = template.content.cloneNode(true);
+                clone.querySelector("*").innerHTML = "<i>" + translations['empty'] + "</i>";
+                $('#list').append(clone)
+            }
             setTimeout(loadData, 5000);
         })
-        .fail(function (msg) {
+        .fail(function(msg) {
+            var template = document.getElementById("lessonTemplate");
+            var clone = template.content.cloneNode(true);
+            clone.querySelector("*").innerHTML = "<i>" + translations['error'] + "</i>";
+            if (document.getElementById("list").innerHTML.trim() == "" || document.getElementById("list").innerHTML.trim() == "<blockquote><i>" + translations['empty'] + "</i></blockquote>") {
+                $('#list').html("");
+                $('#list').append(clone)
+            }
             setTimeout(loadData, 15000);
         })
 }
@@ -106,8 +119,7 @@ function setData(msg) {
                     var attribute = link1.getAttribute("href");
                     var replace = attribute.replace("__UID__", event['UID']);
                     link1.setAttribute("href", replace);
-                } catch (e) {
-                }
+                } catch (e) {}
             }
         } else {
             deleteLink.remove();
@@ -135,26 +147,26 @@ function setData(msg) {
     }
 }
 
-$('#courseSelector').on('change', function () {
+$('#courseSelector').on('change', function() {
     setCookie('selectedCourse', $('#courseSelector').val(), 365);
     $.ajax({
-        method: "GET",
-        url: "/stundenplan/api/" + $('#courseSelector').val() + '/0/0/1/' + (($('#onlineOnly')[0].checked) ? 1 : 0),
-        dataType: "json"
-    })
-        .done(function (msg) {
+            method: "GET",
+            url: "/stundenplan/api/" + $('#courseSelector').val() + '/0/0/1/' + (($('#onlineOnly')[0].checked) ? 1 : 0),
+            dataType: "json"
+        })
+        .done(function(msg) {
             setData(msg);
         });
 });
 
-$('#onlineOnly').on('change', function () {
+$('#onlineOnly').on('change', function() {
     setCookie('selectedCourse', $('#courseSelector').val(), 365);
     $.ajax({
-        method: "GET",
-        url: "/stundenplan/api/" + $('#courseSelector').val() + '/0/0/1/' + (($('#onlineOnly')[0].checked) ? 1 : 0),
-        dataType: "json"
-    })
-        .done(function (msg) {
+            method: "GET",
+            url: "/stundenplan/api/" + $('#courseSelector').val() + '/0/0/1/' + (($('#onlineOnly')[0].checked) ? 1 : 0),
+            dataType: "json"
+        })
+        .done(function(msg) {
             setData(msg);
         });
 });

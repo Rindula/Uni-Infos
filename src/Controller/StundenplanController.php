@@ -14,11 +14,13 @@ use Cake\Cache\Cache;
 use Cake\Datasource\RepositoryInterface;
 use Cake\Datasource\ResultSetInterface;
 use Cake\Http\Response;
+use Cake\I18n\I18n;
 use Cake\I18n\Time;
 use Cake\Routing\Router;
 use Cake\View\Helper\HtmlHelper;
 use Cake\View\Helper\TextHelper;
 use Cake\View\View;
+use Locale;
 
 /**
  * Stundenplan Controller
@@ -60,7 +62,9 @@ class StundenplanController extends AppController
             $courseSelected = $user->course ?? $courseSelected;
         }
 
-        $this->set(compact('courses', 'courseSelected'));
+        $translations = ['empty' => __("There is no lesson planned"), 'error' => __('An error occured during the request')];
+
+        $this->set(compact('courses', 'courseSelected', 'translations'));
     }
 
     public function api($course = '', $all = false, $showVorlesung = false, $showSeminar = false, $onlineOnly = false)
