@@ -8,6 +8,7 @@
     <php>
         <ini name="memory_limit" value="-1"/>
         <ini name="apc.enable_cli" value="1"/>
+        <server name="HTTP_ACCEPT_LANGUAGE" value="de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7"/>
     </php>
 
     <!-- Add any additional test suites you want to run here -->
