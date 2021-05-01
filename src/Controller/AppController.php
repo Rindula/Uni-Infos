@@ -52,9 +52,14 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
         $this->loadComponent('Authorization.Authorization');
+        $allowed_langs = array ('es', 'en', 'de');
+
+        $lang = lang_getfrombrowser ($allowed_langs, 'en', null, false);
+
+        I18n::setLocale($lang ?? 'en');
         $loggedIn = $this->Authentication->getIdentity();
         $this->set(compact('loggedIn'));
-        if ($loggedIn) I18n::setLocale($this->getTableLocator()->get('users')->get($this->Authentication->getIdentity()->id)->language ?? 'de');
+        if ($loggedIn) I18n::setLocale($this->getTableLocator()->get('users')->get($this->Authentication->getIdentity()->id)->language ?? 'en');
         unset($loggedIn);
 
         /*
