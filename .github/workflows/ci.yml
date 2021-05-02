@@ -50,9 +50,6 @@ jobs:
     needs:
       - test
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v2.3.2
-
       - name: 🚦 Deploying
         uses: appleboy/ssh-action@master
         with:
