@@ -60,4 +60,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: /home/rindula/domains/uni.rindula.de/public_html/gogogo.sh "${GITHUB_SHA}"
+          script: /home/rindula/domains/uni.rindula.de/public_html/gogogo.sh "${{ github.sha }}"
