@@ -100,7 +100,7 @@ class NavHelper extends Helper
 
             $url = $this->getUrl($item);
 
-            $content .= $this->Html->link('<i class="material-icons" style="padding: 20px ' . (100 / count($items) / 3) . 'vw;">' . $item['icon'] . '</i>', $url, [
+            $content .= $this->Html->link('<i class="material-icons" style="padding: 20px ' . (100 / count($items) / 3) . 'vw;" translate="no">' . $item['icon'] . '</i>', $url, [
                 'escape' => false,
                 'class' => implode(' ', $class),
                 'title' => $item['title'],
