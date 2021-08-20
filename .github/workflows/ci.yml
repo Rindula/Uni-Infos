@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: Run Tests
-        continue-on-error: ${{ matrix.php }} == 8
+        continue-on-error: "${{ matrix.php }} == 8"
         run: composer run-script test
   deployment:
     runs-on: ubuntu-latest
