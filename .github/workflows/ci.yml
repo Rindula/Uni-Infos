@@ -47,6 +47,9 @@ jobs:
     environment: production
     if: github.ref == 'refs/heads/master'
     name: Deploy to Production
+    concurrency: 
+      group: deployment
+      cancel-in-progress: false
     needs:
       - test
     steps:
