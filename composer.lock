@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2032ed879793bcc06c36df8f9272bf7c",
+    "content-hash": "8842495bd13f529901c1eef7c46236ce",
     "packages": [
         {
             "name": "cakephp/authentication",
@@ -304,16 +304,16 @@
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "4.4.3",
+            "version": "4.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "d8a5552096b09a1cdf192b454ec06dc0157a3515"
+                "reference": "10d7d9ba36945844211f1d8763e59618917e1784"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/d8a5552096b09a1cdf192b454ec06dc0157a3515",
-                "reference": "d8a5552096b09a1cdf192b454ec06dc0157a3515",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/10d7d9ba36945844211f1d8763e59618917e1784",
+                "reference": "10d7d9ba36945844211f1d8763e59618917e1784",
                 "shasum": ""
             },
             "require": {
@@ -366,7 +366,7 @@
                 "issues": "https://github.com/cakephp/debug_kit/issues",
                 "source": "https://github.com/cakephp/debug_kit"
             },
-            "time": "2021-05-09T01:21:26+00:00"
+            "time": "2021-09-12T20:06:14+00:00"
         },
         {
             "name": "cakephp/migrations",
